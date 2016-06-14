@@ -1,0 +1,245 @@
+[
+    {
+        "group":"0000","name":"工作","list":[
+            {
+                "code": "1001","view": "TestActivity","name": "销售报表","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1001","view": "TestActivity","name": "日报","has": "true"
+                    },
+                    {
+                        "code": "1001","view": "TestActivity","name": "周报","has": "true"
+                    },
+                    {
+                        "code": "1001","view": "TestActivity","name": "月报","has": "true"
+                    }
+                ]
+            },
+            {
+                "code": "1002","view": "TestActivity","name": "订单查询","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1002","view": "TestActivity","name": "订单明细","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "当日预定","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "未发汇总","has": "true"
+                    }
+                ]
+            },
+            {
+                "code": "1003","view": "TestActivity","name": "发货","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1003","view": "TestActivity","name": "提醒签收","has": "true"
+                    },
+                    {
+                        "code": "1003","view": "TestActivity","name": "发货详情","has": "true"
+                    },
+                    {
+                        "code": "1003","view": "TestActivity","name": "预定详情","has": "true"
+                    }
+                ]
+            },
+            {
+                "code": "1004","view": "TestActivity","name": "库存查询","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1004","view": "TestActivity","name": "库存查询","has": "true"
+                    },
+                    {
+                        "code": "1004","view": "TestActivity","name": "库存分布","has": "true"
+                    }
+                ]
+            },
+            {
+                 "code": "1005","view": "TestActivity","name": "财务管理","has": "true",
+                 "subPermission": [
+                     {
+                         "code": "1005","view": "TestActivity","name": "收支流水","has": "true"
+                     },
+                     {
+                         "code": "1005","view": "TestActivity","name": "收支汇总","has": "true"
+                     },
+                     {
+                         "code": "1005","view": "TestActivity","name": "账号查询","has": "true"
+                     },
+                     {
+                         "code": "1005","view": "TestActivity","name": "对账单","has": "true"
+                     },
+                     {
+                         "code": "1005","view": "TestActivity","name": "发起对账","has": "true"
+                     }
+                 ]
+             },
+             {
+                  "code": "1005","view": "TestActivity","name": "数据分析","has": "true",
+                  "subPermission": []
+             }
+        ]
+    },
+    {
+        "group":"1111","name":"采购","list":[
+            {
+                 "code": "1001","view": "TestActivity","name": "下单","has": "true"
+            },
+            {
+                "code": "1001","view": "TestActivity","name": "订货查询","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1002","view": "TestActivity","name": "订单明细","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "当日预定","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "未发汇总","has": "true"
+                    }
+                ]
+            },
+            {
+                "code": "1001","view": "TestActivity","name": "到货","has": "true"
+            },
+            {
+                "code": "1001","view": "TestActivity","name": "对账单","has": "true"
+            }
+        ]
+    },
+    {
+        "group":"2222","name":"图册","list":[
+            {
+                "code": "1001","view": "TestActivity","name": "管理","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1002","view": "TestActivity","name": "相册管理","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "编辑货品","has": "true"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "group":"3333","name":"相册","list":[
+            {
+                "code": "1001","view": "TestActivity","name": "管理","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1002","view": "TestActivity","name": "相册管理","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "编辑货品","has": "true"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "group":"4444","name":"好友","list":[
+            {
+                "code": "1001","view": "TestActivity","name": "临时沟通","has": "true"
+            },
+            {
+                "code": "1001","view": "TestActivity","name": "客户","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1002","view": "TestActivity","name": "查看客户","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "添加客户","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "删除客户","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "验证客户","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "分配客户","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "发起群聊","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "公告管理","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "客户分组","has": "true"
+                    }
+                ]
+            },
+            {
+                "code": "1001","view": "TestActivity","name": "供应商","has": "true",
+                "subPermission": [
+                {
+                    "code": "1002","view": "TestActivity","name": "查看供应商","has": "true"
+                },
+                {
+                    "code": "1002","view": "TestActivity","name": "添加供应商","has": "true"
+                },
+                {
+                    "code": "1002","view": "TestActivity","name": "删除供应商","has": "true"
+                },
+                {
+                    "code": "1002","view": "TestActivity","name": "验证供应商","has": "true"
+                },
+                {
+                    "code": "1002","view": "TestActivity","name": "分配供应商","has": "true"
+                },
+                {
+                    "code": "1002","view": "TestActivity","name": "发起群聊","has": "true"
+                },
+                {
+                    "code": "1002","view": "TestActivity","name": "公告管理","has": "true"
+                },
+                {
+                    "code": "1002","view": "TestActivity","name": "供应商分组","has": "true"
+                }
+                ]
+            },
+            {
+                "code": "1001","view": "TestActivity","name": "员工","has": "true",
+                "subPermission": [
+                    {
+                        "code": "1002","view": "TestActivity","name": "添加员工","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "门店管理","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "删除员工","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "发起群聊","has": "true"
+                    },
+                    {
+                        "code": "1002","view": "TestActivity","name": "员工分组","has": "true"
+                    }
+                ]
+            },
+            {
+                "code": "1001","view": "TestActivity","name": "印象","has": "true"
+            }
+        ]
+    },
+    {
+        "group":"5555","name":"发现","list":[
+            {
+                 "code": "1001","view": "TestActivity","name": "印象","has": "true"
+            }
+        ]
+    },
+    {
+        "group":"6666","name":"我的","list":[
+            {
+                 "code": "1001","view": "TestActivity","name": "我的关注","has": "true"
+            },
+            {
+                 "code": "1001","view": "TestActivity","name": "我的粉丝","has": "true"
+            }
+        ]
+    }
+]

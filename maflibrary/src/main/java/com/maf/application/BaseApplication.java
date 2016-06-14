@@ -1,0 +1,78 @@
+package com.maf.application;
+
+import android.app.Application;
+import android.content.Context;
+
+import com.maf.utils.FileUtils;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.squareup.leakcanary.LeakCanary;
+
+import org.xutils.x;
+
+/**
+ * Created by mzg on 2016/5/23.
+ * 用于初始化maf中的相关变量
+ */
+public class BaseApplication extends Application {
+    public static Context _application;
+    /**
+     * 是否开启内存溢出检测
+     */
+    private boolean isStartLeakCanary = true;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        _application = getApplicationContext();
+
+        initImageLoader();
+        initLeakCanary();
+        initXUtils();
+
+        FileUtils.initDir();
+
+    }
+
+    /**
+     * 初始化ImageLoader
+     */
+    private void initImageLoader() {
+        // ImageLoader
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                getApplicationContext())
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
+        ImageLoader.getInstance().init(config);
+    }
+
+    /**
+     * 初始化内存溢出检测
+     */
+    private void initLeakCanary() {
+        if (isStartLeakCanary) {
+            LeakCanary.install(this);
+        }
+    }
+
+    /**
+     * 初始化xUtils
+     */
+    private void initXUtils() {
+        x.Ext.init(this);
+        x.Ext.setDebug(true); // 是否输出debug日志
+    }
+
+    /**
+     * 是否开始内存检测
+     *
+     * @param isStart 设置是否开启
+     */
+    public void startLeakCanary(boolean isStart) {
+        isStartLeakCanary = isStart;
+    }
+}

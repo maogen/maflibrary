@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MAFProject</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- activity_main.xml -->
+    <string name="into_toast">进入Toast测试界面</string>
+    <string name="into_image">进入Image测试界面</string>
+    <string name="into_net">进入网络测试界面</string>
+
+    <!-- activity_toast.xml -->
+    <string name="toast_short">显示ShortToast</string>
+    <string name="toast_long">显示LongToast</string>
+    <string name="toast_duration">显示自定义时间Toast</string>
+</resources>
