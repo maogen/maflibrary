@@ -23,10 +23,13 @@ import maf.com.mafproject.R;
  * 开始界面，进入不同的测试界面
  */
 public class MainActivity extends BaseActivity {
-    // 申明Button控件
+    // 声明Button控件
     private Button btnToast;
     private Button btnImage;
     private Button btnNet;
+    private Button btnPrint;
+    private Button btnHtml;
+    private Button btnChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class MainActivity extends BaseActivity {
         btnToast = (Button) findViewById(R.id.btn_goto_toast);
         btnImage = (Button) findViewById(R.id.btn_goto_image);
         btnNet = (Button) findViewById(R.id.btn_goto_net);
+        btnPrint = (Button) findViewById(R.id.btn_goto_print);
+        btnHtml = (Button) findViewById(R.id.btn_goto_html);
+        btnChart = (Button) findViewById(R.id.btn_goto_chart);
     }
 
     @Override
@@ -46,6 +52,9 @@ public class MainActivity extends BaseActivity {
         btnToast.setOnClickListener(this);
         btnImage.setOnClickListener(this);
         btnNet.setOnClickListener(this);
+        btnPrint.setOnClickListener(this);
+        btnHtml.setOnClickListener(this);
+        btnChart.setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +106,18 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_goto_net:
                 // 进入网络测试界面
                 startActivity(NetActivity.class);
+                break;
+            case R.id.btn_goto_print:
+                // 进入打印功能
+                startActivity(PrintActivity.class);
+                break;
+            case R.id.btn_goto_html:
+                // 进入html测试界面
+                startActivity(HtmlActivity.class);
+                break;
+            case R.id.btn_goto_chart:
+                // 进入图形库测试界面
+                startActivity(ChartActivity.class);
                 break;
             default:
                 break;

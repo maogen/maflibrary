@@ -3,12 +3,25 @@
     <string name="action_settings">Settings</string>
 
     <!-- activity_main.xml -->
-    <string name="into_toast">进入Toast测试界面</string>
-    <string name="into_image">进入Image测试界面</string>
-    <string name="into_net">进入网络测试界面</string>
+    <string name="into_toast">Toast测试</string>
+    <string name="into_image">Image测试</string>
+    <string name="into_net">网络测试</string>
+    <string name="into_print">打印机测试</string>
+    <string name="into_html">html测试</string>
+    <string name="into_chart">图形库测试</string>
 
     <!-- activity_toast.xml -->
     <string name="toast_short">显示ShortToast</string>
     <string name="toast_long">显示LongToast</string>
     <string name="toast_duration">显示自定义时间Toast</string>
+
+    <!-- activity_print.xml -->
+    <string name="bluetooth_status">当前蓝牙状态：打开</string>
+    <string name="switch_bluetooth">打开</string>
+    <string name="search">开始搜索</string>
+
+    <!-- activity_chart.xml -->
+    <string name="show_pie">显示饼状图</string>
+    <string name="show_bar">显示柱状图</string>
+    <string name="show_linechart">显示折线图</string>
 </resources>
