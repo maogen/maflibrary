@@ -64,5 +64,17 @@
             android:text="area2d_03.html" />
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/myProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:max="100" />
+
+    <WebView
+        android:id="@+id/web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"></WebView>
 
 </LinearLayout>

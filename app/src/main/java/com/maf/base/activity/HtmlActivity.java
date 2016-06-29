@@ -3,7 +3,10 @@ package com.maf.base.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.maf.activity.BaseBackActivity;
 
@@ -26,6 +29,9 @@ public class HtmlActivity extends BaseBackActivity {
 
     private Button[] btn = new Button[url.length];
 
+    private WebView webView;
+    private ProgressBar bar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_html);
@@ -38,6 +44,25 @@ public class HtmlActivity extends BaseBackActivity {
             btn[i] = (Button) findViewById(btnId[i]);
             btn[i].setOnClickListener(this);
         }
+
+        webView = (WebView) findViewById(R.id.web);
+        bar = (ProgressBar) findViewById(R.id.myProgressBar);
+        webView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress == 100) {
+                    bar.setVisibility(View.INVISIBLE);
+                } else {
+                    if (View.INVISIBLE == bar.getVisibility()) {
+                        bar.setVisibility(View.VISIBLE);
+                    }
+                    bar.setProgress(newProgress);
+                }
+                super.onProgressChanged(view, newProgress);
+            }
+
+        });
     }
 
     @Override
@@ -47,7 +72,18 @@ public class HtmlActivity extends BaseBackActivity {
 
     @Override
     protected void initData() {
-
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+//        webView.getSettings().setSupportZoom(true);
+//        webView.getSettings().setBuiltInZoomControls(true);
+//        webView.getSettings().setUseWideViewPort(true);
+//        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        webView.getSettings().setLoadWithOverviewMode(true);
+//        webView.getSettings().setAppCacheEnabled(true);
+//        webView.getSettings().setDomStorageEnabled(true);
+//        webView.getSettings().setUseWideViewPort(true);//适应分辨率
+//        webView.getSettings().setLoadWithOverviewMode(true);
     }
 
     @Override
@@ -55,34 +91,22 @@ public class HtmlActivity extends BaseBackActivity {
         Intent intent = null;
         switch (v.getId()) {
             case R.id.btn_1:
-                intent = new Intent(HtmlActivity.this, WebViewActivity.class);
-                intent.putExtra("url", url[0]);
-                startActivity(intent);
+                webView.loadUrl(url[0]);
                 break;
             case R.id.btn_2:
-                intent = new Intent(HtmlActivity.this, WebViewActivity.class);
-                intent.putExtra("url", url[1]);
-                startActivity(intent);
+                webView.loadUrl(url[1]);
                 break;
             case R.id.btn_3:
-                intent = new Intent(HtmlActivity.this, WebViewActivity.class);
-                intent.putExtra("url", url[2]);
-                startActivity(intent);
+                webView.loadUrl(url[2]);
                 break;
             case R.id.btn_4:
-                intent = new Intent(HtmlActivity.this, WebViewActivity.class);
-                intent.putExtra("url", url[3]);
-                startActivity(intent);
+                webView.loadUrl(url[3]);
                 break;
             case R.id.btn_5:
-                intent = new Intent(HtmlActivity.this, WebViewActivity.class);
-                intent.putExtra("url", url[4]);
-                startActivity(intent);
+                webView.loadUrl(url[4]);
                 break;
             case R.id.btn_6:
-                intent = new Intent(HtmlActivity.this, WebViewActivity.class);
-                intent.putExtra("url", url[5]);
-                startActivity(intent);
+                webView.loadUrl(url[5]);
                 break;
 
         }
