@@ -1,6 +1,5 @@
 package com.maf.base.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -25,9 +24,8 @@ public class ImageActivity extends BaseBackActivity {
     private ImageView imageUrl;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_image);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutResId() {
+        return R.layout.activity_image;
     }
 
     @Override
@@ -44,7 +42,7 @@ public class ImageActivity extends BaseBackActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initValue() {
         // 得到所有sdcard路径
         List<String> paths = SdcardUtils.getSdcardPath();
         for (int i = 0; i < paths.size(); i++) {

@@ -1,6 +1,5 @@
 package com.maf.base.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,9 +18,8 @@ public class PrintActivity extends BaseBackActivity {
     private Button btnSearch;//搜索蓝牙设备
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_print);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutResId() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -37,7 +35,7 @@ public class PrintActivity extends BaseBackActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initValue() {
 
     }
 

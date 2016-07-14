@@ -1,6 +1,5 @@
 package com.maf.base.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,9 +19,8 @@ public class ToastActivity extends BaseBackActivity {
     private Button btnDuration;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_toast);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutResId() {
+        return R.layout.activity_toast;
     }
 
     @Override
@@ -40,7 +38,7 @@ public class ToastActivity extends BaseBackActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initValue() {
 
     }
 

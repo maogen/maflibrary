@@ -17,7 +17,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.maf.base.activity.MainActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,31 +26,21 @@
         </activity>
         <activity
             android:name="com.maf.base.activity.ToastActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.ImageActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.NetActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.PrintActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.HtmlActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.maf.base.activity.WebViewActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.ChartActivity"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

@@ -5,6 +5,7 @@ import android.os.storage.StorageManager;
 
 import com.maf.application.BaseApplication;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class SdcardUtils {
     public static String getRootPath() {
         List<String> paths = getSdcardPath();
         if (paths != null && paths.size() > 0) {
-            return paths.get(0);
+            return paths.get(0) + File.separator;
         }
         return "";
     }

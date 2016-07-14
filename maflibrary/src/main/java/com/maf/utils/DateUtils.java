@@ -13,6 +13,10 @@ public class DateUtils {
      * 默认的时间格式
      */
     public static String defaultDateFormat = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 后台返回的时间格式
+     */
+    public static final String GET_T_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.sss+08:00";
 
     /**
      * 将Date转成自定义的时间格式

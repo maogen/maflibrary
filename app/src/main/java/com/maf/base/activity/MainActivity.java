@@ -1,6 +1,5 @@
 package com.maf.base.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
@@ -8,12 +7,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseActivity;
 import com.maf.application.BaseApplication;
-import com.maf.git.GsonUtils;
+import com.maf.application.CrashHandler;
 import com.maf.base.permission.PermissionGroup;
+import com.maf.git.GsonUtils;
 import com.maf.utils.DateUtils;
 import com.maf.utils.LogUtils;
 import com.maf.utils.RawUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import maf.com.mafproject.R;
@@ -32,9 +33,8 @@ public class MainActivity extends BaseActivity {
     private Button btnChart;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutResId() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -58,7 +58,8 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initValue() {
+        CrashHandler.getInstance().setStartContext(this);
         testDateUtils();
         testGsonUtils();
     }
@@ -81,13 +82,12 @@ public class MainActivity extends BaseActivity {
     private void testGsonUtils() {
         LogUtils.d("**********测试GsonUtils***********");
         String permissionJson = RawUtils.getRawStr(BaseApplication._application, R.raw.permission);
-//        List<PermissionGroup> groupList =
-//                GsonUtils.getByJsonString(new ArrayList<PermissionGroup>(), permissionJson);
-        List<PermissionGroup> groupList = new Gson().fromJson(permissionJson, new TypeToken<List<PermissionGroup>>() {
-        }.getType());
+
+        List<PermissionGroup> groupList = GsonUtils.stringToGson(permissionJson, new TypeToken<List<PermissionGroup>>() {
+        });
         for (int i = 0; i < groupList.size(); i++) {
             PermissionGroup group = groupList.get(i);
-            LogUtils.d(GsonUtils.getJson(group));
+            LogUtils.d(GsonUtils.gsonToString(group));
         }
         LogUtils.d("**********END***********");
     }

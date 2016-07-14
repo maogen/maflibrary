@@ -39,9 +39,8 @@ public class ChartActivity extends BaseBackActivity {
     private LineChart lineChart;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_chart);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutResId() {
+        return R.layout.activity_chart;
     }
 
     @Override
@@ -63,7 +62,7 @@ public class ChartActivity extends BaseBackActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initValue() {
 
     }
 

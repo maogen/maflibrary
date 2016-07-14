@@ -1,7 +1,6 @@
 package com.maf.base.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -33,9 +32,8 @@ public class HtmlActivity extends BaseBackActivity {
     private ProgressBar bar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_html);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutResId() {
+        return R.layout.activity_html;
     }
 
     @Override
@@ -71,7 +69,7 @@ public class HtmlActivity extends BaseBackActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initValue() {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 //        webView.getSettings().setSupportZoom(true);

@@ -29,21 +29,27 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutResId());
         ActivityManager.getInstance().addActivity(this);
         initView();
         initEvent();
-        initData();
+        initValue();
     }
 
     /**
-     * 进入下一个Activity
-     *
-     * @param activity 下一个界面的class
+     * 启动一个Activity
      */
-    protected void startActivity(Class activity) {
+    public void startActivity(Class activity) {
         Intent intent = new Intent(this, activity);
         startActivity(intent);
     }
+
+    /**
+     * 返回当前Activity布局文件的id
+     *
+     * @return
+     */
+    abstract protected int getLayoutResId();
 
     /**
      * 初始化界面控件方法
@@ -58,7 +64,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * 初始化数据
      */
-    protected abstract void initData();
+    protected abstract void initValue();
 
     @Override
     public abstract void onClick(View v);
