@@ -9,6 +9,7 @@
     <string name="into_print">打印机测试</string>
     <string name="into_html">html测试</string>
     <string name="into_chart">图形库测试</string>
+    <string name="into_collapsing">收缩效果测试</string>
 
     <!-- activity_toast.xml -->
     <string name="toast_short">显示ShortToast</string>

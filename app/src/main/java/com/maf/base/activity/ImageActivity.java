@@ -53,7 +53,7 @@ public class ImageActivity extends BaseBackActivity {
         for (int i = 0; i < imageFiles.size(); i++) {
             LogUtils.d(imageFiles.get(i));
         }
-        ImageLoaderUtils.showLocalImage(imageLocal, "storage/emulated/0/tencent/QQfile_recv/892F1DC337198BA3C2FE3E9291845BCE.png");
+        ImageLoaderUtils.showLocalImage(imageLocal, "storage/emulated/0/tencent/QQfile_recv/111111.png");
         ImageLoaderUtils.showAssetsImage(imageAssets, "image/image_one.jpg");
         ImageLoaderUtils.showDrawableImage(imageDrawable, R.drawable.image_two);
         ImageLoaderUtils.showUrlImage(imageUrl, "http://pic39.nipic.com/20140321/9448607_213919680000_2.jpg");

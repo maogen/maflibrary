@@ -3,7 +3,6 @@ package com.maf.base.activity;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseActivity;
 import com.maf.application.BaseApplication;
@@ -14,7 +13,6 @@ import com.maf.utils.DateUtils;
 import com.maf.utils.LogUtils;
 import com.maf.utils.RawUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import maf.com.mafproject.R;
@@ -31,6 +29,8 @@ public class MainActivity extends BaseActivity {
     private Button btnPrint;
     private Button btnHtml;
     private Button btnChart;
+    private Button btnCollapsing;
+
 
     @Override
     protected int getLayoutResId() {
@@ -45,6 +45,8 @@ public class MainActivity extends BaseActivity {
         btnPrint = (Button) findViewById(R.id.btn_goto_print);
         btnHtml = (Button) findViewById(R.id.btn_goto_html);
         btnChart = (Button) findViewById(R.id.btn_goto_chart);
+        btnCollapsing = (Button) findViewById(R.id.btn_goto_collapsing);
+
     }
 
     @Override
@@ -55,6 +57,7 @@ public class MainActivity extends BaseActivity {
         btnPrint.setOnClickListener(this);
         btnHtml.setOnClickListener(this);
         btnChart.setOnClickListener(this);
+        btnCollapsing.setOnClickListener(this);
     }
 
     @Override
@@ -118,6 +121,10 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_goto_chart:
                 // 进入图形库测试界面
                 startActivity(ChartActivity.class);
+                break;
+            case R.id.btn_goto_collapsing:
+                // 进入收缩测试界面
+                startActivity(MyCollapsingActivity.class);
                 break;
             default:
                 break;

@@ -45,4 +45,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/into_chart" />
+
+    <Button
+        android:id="@+id/btn_goto_collapsing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/into_collapsing" />
+
 </LinearLayout>
