@@ -125,7 +125,7 @@ public class ChartActivity extends BaseBackActivity {
     }
 
     private PieData getPieData(int count) {
-        int[] yy = {12, 12, 18, 20, 28, 10};
+        float[] yy = {1200000, 12, 18, 200000, 28, 10,200000};
 
         ArrayList<String> xValues = new ArrayList<>();  //xVals用来表示每个饼块上的内容
         for (int i = 0; i < count; i++) {

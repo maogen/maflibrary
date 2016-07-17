@@ -7,13 +7,11 @@ import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseActivity;
 import com.maf.application.BaseApplication;
 import com.maf.application.CrashHandler;
-import com.maf.base.permission.PermissionGroup;
+import com.maf.base.bean.JsonTestBean;
 import com.maf.git.GsonUtils;
 import com.maf.utils.DateUtils;
 import com.maf.utils.LogUtils;
 import com.maf.utils.RawUtils;
-
-import java.util.List;
 
 import maf.com.mafproject.R;
 
@@ -84,14 +82,23 @@ public class MainActivity extends BaseActivity {
      */
     private void testGsonUtils() {
         LogUtils.d("**********测试GsonUtils***********");
-        String permissionJson = RawUtils.getRawStr(BaseApplication._application, R.raw.permission);
-
-        List<PermissionGroup> groupList = GsonUtils.stringToGson(permissionJson, new TypeToken<List<PermissionGroup>>() {
+//        String permissionJson = RawUtils.getRawStr(BaseApplication._application, R.raw.permission);
+//
+//        List<PermissionGroup> groupList = GsonUtils.stringToGson(permissionJson, new TypeToken<List<PermissionGroup>>() {
+//        });
+//        for (int i = 0; i < groupList.size(); i++) {
+//            PermissionGroup group = groupList.get(i);
+//            LogUtils.d(GsonUtils.gsonToString(group));
+//        }
+        String jsonString = RawUtils.getRawStr(BaseApplication._application, R.raw.jsontest);
+        JsonTestBean bean = GsonUtils.stringToGson(jsonString, new TypeToken<JsonTestBean>() {
         });
-        for (int i = 0; i < groupList.size(); i++) {
-            PermissionGroup group = groupList.get(i);
-            LogUtils.d(GsonUtils.gsonToString(group));
+        if (bean.getAge() == null) {
+            LogUtils.d("Integer is null");
+        } else {
+            LogUtils.d(bean.getAge().toString());
         }
+        LogUtils.d(GsonUtils.gsonToString(bean));
         LogUtils.d("**********END***********");
     }
 
