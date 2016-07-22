@@ -3,7 +3,9 @@ package com.maf.application;
 import android.app.Application;
 import android.content.Context;
 
+import com.maf.db.DbHelper;
 import com.maf.utils.FileUtils;
+import com.maf.utils.SPUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -22,18 +24,31 @@ public class BaseApplication extends Application {
      * 是否开启内存溢出检测
      */
     private boolean isStartLeakCanary = true;
+    /**
+     * 数据库操作类
+     */
+    public DbHelper db;
 
     @Override
     public void onCreate() {
         super.onCreate();
         _application = getApplicationContext();
-
+        initDB();
         initImageLoader();
         initLeakCanary();
         initXUtils();
 
         FileUtils.initDir();
 
+    }
+
+    /**
+     * 初始化数据库
+     */
+    private void initDB() {
+        db = new DbHelper(getApplicationContext());
+        String dbName = (String) SPUtils.get(this, "dataBase", "MAF_DB");
+        db.init(dbName, 1);
     }
 
     /**
