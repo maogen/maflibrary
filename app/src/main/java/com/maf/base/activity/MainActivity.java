@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
     private Button btnHtml;
     private Button btnChart;
     private Button btnCollapsing;
+    private Button btnSort;
 
 
     @Override
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity {
         btnHtml = (Button) findViewById(R.id.btn_goto_html);
         btnChart = (Button) findViewById(R.id.btn_goto_chart);
         btnCollapsing = (Button) findViewById(R.id.btn_goto_collapsing);
+        btnSort = (Button) findViewById(R.id.btn_goto_sort);
 
     }
 
@@ -56,6 +58,7 @@ public class MainActivity extends BaseActivity {
         btnHtml.setOnClickListener(this);
         btnChart.setOnClickListener(this);
         btnCollapsing.setOnClickListener(this);
+        btnSort.setOnClickListener(this);
     }
 
     @Override
@@ -132,6 +135,10 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_goto_collapsing:
                 // 进入收缩测试界面
                 startActivity(MyCollapsingActivity.class);
+                break;
+            case R.id.btn_goto_sort:
+                // 进入排序界面
+                startActivity(SortTestActivity.class);
                 break;
             default:
                 break;

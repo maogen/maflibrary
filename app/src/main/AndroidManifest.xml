@@ -18,7 +18,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.maf.base.activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.maf.base.activity.ToastActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -44,14 +50,11 @@
             android:name="com.maf.base.activity.MyCollapsingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name="com.maf.base.activity.SortTestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="com.maf.base.activity.FingerprintActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

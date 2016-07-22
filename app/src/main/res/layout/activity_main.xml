@@ -53,4 +53,11 @@
         android:layout_margin="5dp"
         android:text="@string/into_collapsing" />
 
+    <Button
+        android:id="@+id/btn_goto_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/into_sort" />
+
 </LinearLayout>
