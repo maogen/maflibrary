@@ -34,8 +34,8 @@ public class SortTestActivity extends BaseActivity {
     @Override
     protected void initView() {
         listContent = (ListView) findViewById(R.id.list_content);
-        sideBar = (SideBar) findViewById(com.maf.R.id.list_sidebar);
-        dialog = (TextView) findViewById(com.maf.R.id.dialog);
+        sideBar = (SideBar) findViewById(R.id.list_sidebar);
+        dialog = (TextView) findViewById(R.id.dialog);
         String[] datas = getResources().getStringArray(R.array.user_data);
         SideUtils sideUtils = new SideUtils(listContent, sideBar, dialog, datas);
         sideUtils.initSort();
