@@ -5,4 +5,8 @@
     <color name="black">#000000</color>
     <color name="gray">#666666</color>
     <color name="light_gray">#999999</color>
+    <!-- 侧滑菜单绿色按钮 -->
+    <color name="green_swipe">#80CEA6</color>
+    <!-- 侧滑菜单红色按钮 -->
+    <color name="red_swipe">#F64648</color>
 </resources>

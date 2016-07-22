@@ -1,9 +1,6 @@
 package com.maf.net;
 
-import com.maf.utils.LogUtils;
-
 import org.xutils.common.Callback;
-import org.xutils.ex.HttpException;
 
 import java.util.Map;
 
@@ -12,58 +9,51 @@ import java.util.Map;
  * 手机登录请求工具
  */
 public class XAPIServiceUtils {
+    private static Callback.Cancelable cancelable;
 
     /**
-     * 设置token值，在第一次登录后设置
+     * 公用网络请求，默认地址是手机后台服务器地址
      *
-     * @param token
+     * @param listener 网络请求监听器
+     * @param action   地址
+     * @param value    参数
      */
-    public static void setToken(String token) {
-        XBaseAPIUtils.setToken(token);
+    public static Callback.Cancelable post(XAPIServiceListener listener, String action, Map<String, String> value) {
+        cancelable = XBaseAPIUtils.post(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+        return cancelable;
     }
 
     /**
-     * 开始请求，默认地址是手机后台服务器地址
+     * 特殊网络请求一，可以设置不用类型参数
      *
-     * @param listener
-     * @param action
-     * @param value
+     * @param listener 网络请求监听器
+     * @param action   地址
+     * @param value    参数
      */
-    public static Callback.Cancelable post(final XAPIServiceListener listener, String action, Map<String, String> value) {
-        Callback.Cancelable cancelable = XBaseAPIUtils.post(BaseXConst.MOBILE_ADDRESS, action, value, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                // 请求成功，发送结果
-                listener.onSuccess(result);
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                String error;
-                ex.printStackTrace();
-                if (ex instanceof HttpException) { // 网络错误
-                    HttpException httpEx = (HttpException) ex;
-                    int responseCode = httpEx.getCode();
-                    String responseMsg = httpEx.getMessage();
-                    LogUtils.d("responseCode：" + responseCode + ";errorResult:" + responseMsg);
-                    error = responseMsg;
-                } else { // 其他错误
-                    error = "未知错误";
-                }
-                listener.onError(error);
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-                cex.printStackTrace();
-                listener.onError("请求被取消");
-            }
-
-            @Override
-            public void onFinished() {
-                listener.onFinished();
-            }
-        });
+    public static Callback.Cancelable postObject(final XAPIServiceListener listener, String action, Map<String, Object> value) {
+        cancelable = XBaseAPIUtils.postObject(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
         return cancelable;
+    }
+
+    /**
+     * 特殊网络请求二，可以设置任何Object类型参数
+     *
+     * @param listener 网络请求监听器
+     * @param action   地址
+     * @param value    参数
+     */
+    public static Callback.Cancelable postObject(XAPIServiceListener listener, String action, BaseRequestBean value) {
+        cancelable = XBaseAPIUtils.postObject(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+        return cancelable;
+    }
+
+    /**
+     * 停止请求
+     */
+    public static void stop() {
+        if (cancelable != null) {
+            cancelable.cancel();
+            cancelable = null;
+        }
     }
 }

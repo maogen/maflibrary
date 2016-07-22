@@ -1,12 +1,17 @@
 package com.maf.net;
 
 
+import com.google.gson.Gson;
 import com.maf.utils.LogUtils;
+import com.maf.utils.StringUtils;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.http.body.RequestBody;
+import org.xutils.http.body.StringBody;
 import org.xutils.x;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
@@ -14,56 +19,21 @@ import java.util.Map;
  * 网络请求基类，主要设置请求头和参数
  */
 public class XBaseAPIUtils {
-    private static String token = "";
-//    private static boolean isRequest = false;// 是否在请求中，如果在，则无法重复请求
 
     /**
-     * 设置token值
-     *
-     * @param _token
-     */
-    public static void setToken(String _token) {
-        token = _token;
-    }
-
-    /**
-     * Post请求
+     * 公用Post网络请求，默认地址是手机后台服务器地址
      *
      * @param url      请求地址
      * @param action   请求的接口名
      * @param value    参数
      * @param callback 回调接口
-     * @param <T>
      */
-    public static <T> Callback.Cancelable post(String url, String action, Map<String, String> value, Callback.CommonCallback<T> callback) {
-        if (null == token) {
-            LogUtils.d("token值为空，请设置后再请求");
-            callback.onFinished();
-            return null;
-        }
-//        if (isRequest) {
-//            // 如果当前正在网络请求，不重复请求
-//            LogUtils.d("上次请求未结束，继续请求网络");
-//            callback.onFinished();
-//            return null;
-//        }
-        LogUtils.d("请求地址：" + url);
-        LogUtils.d("请求方法：" + action);
-        RequestParams params = new RequestParams(url + action);
+    public static Callback.Cancelable post(String url, String action, Map<String, String> value, XAPIServiceCallBack callback) {
+        String content = "";
         if (null != value) {
-            for (Map.Entry<String, String> entry : value.entrySet()) {
-                LogUtils.d(entry.getKey() + ";" + entry.getValue());
-                params.addParameter(entry.getKey(), entry.getValue());
-            }
-        } else {
-            LogUtils.d("请求参数为空");
+            content = new Gson().toJson(value);
         }
-        params.setHeader("Authorization", token);
-        LogUtils.d("token:" + token);
-//        isRequest = true;
-        Callback.Cancelable cancelable = x.http().post(params, callback);
-//        isRequest = false;
-        return cancelable;
+        return basePost(url, action, content, callback);
         // 上传文件方式
         // 有上传文件时使用multipart表单, 否则上传原始文件流.
         // params.setMultipart(true);
@@ -74,42 +44,152 @@ public class XBaseAPIUtils {
     }
 
     /**
+     * 特殊Post网络请求一，可以设置任何类型Map参数
+     *
+     * @param url      请求地址
+     * @param action   请求的接口名
+     * @param value    参数
+     * @param callback 回调接口
+     */
+    public static Callback.Cancelable postObject(String url, String action, Map<String, Object> value, XAPIServiceCallBack callback) {
+        String content = "";
+        if (null != value) {
+            content = new Gson().toJson(value);
+        }
+        return basePost(url, action, content, callback);
+    }
+
+    /**
+     * 特殊Post网络请求二，可以设置任何Object类型参数
+     *
+     * @param url      请求地址
+     * @param action   请求的接口名
+     * @param value    参数
+     * @param callback 回调接口
+     */
+    public static Callback.Cancelable postObject(String url, String action, BaseRequestBean value, XAPIServiceCallBack callback) {
+        String content = "";
+        if (null != value) {
+            content = new Gson().toJson(value);
+        }
+        return basePost(url, action, content, callback);
+    }
+
+    /**
+     * 基础的Post请求，参数是设置在header里面
+     *
+     * @param url      请求地址
+     * @param action   请求的接口名
+     * @param value    参数
+     * @param callback 回调接口
+     */
+    public static Callback.Cancelable baseHeaderPost(String url, String action, Map<String, String> value, XAPIServiceCallBack callback) {
+        if (null == BaseXConst.token) {
+            LogUtils.d("token值为空，请设置后再请求");
+            callback.onFinished();
+            return null;
+        }
+        RequestParams params = getParams(url, action, null, value);
+        Callback.Cancelable cancelable = x.http().post(params, callback);
+        return cancelable;
+    }
+
+    /**
      * Get请求
      *
      * @param url      请求地址
      * @param action   请求的接口名
      * @param value    参数
      * @param callback 回调接口
-     * @param <T>
      */
-    public static <T> Callback.Cancelable get(String url, String action, Map<String, String> value, Callback.CommonCallback<T> callback) {
-        if (null == token) {
+    public static Callback.Cancelable get(String url, String action, Map<String, String> value, XAPIServiceCallBack callback) {
+        String content = "";
+        if (null != value) {
+            content = new Gson().toJson(value);
+            LogUtils.d("body::::" + content);
+        }
+        return baseGet(url, action, content, callback);
+    }
+
+    /**
+     * 基础的Post请求，参数设置在body中
+     *
+     * @param url      请求地址
+     * @param action   请求的接口名
+     * @param content  参数
+     * @param callback 回调接口
+     */
+    private static Callback.Cancelable basePost(String url, String action, String content, XAPIServiceCallBack callback) {
+        if (null == BaseXConst.token) {
             LogUtils.d("token值为空，请设置后再请求");
             callback.onFinished();
             return null;
         }
-//        if (isRequest) {
-//            // 如果当前正在网络请求，不重复请求
-//            LogUtils.d("上次请求未结束，继续请求网络");
-//            callback.onFinished();
-//            return null;
-//        }
+        RequestParams params = getParams(url, action, content, null);
+        Callback.Cancelable cancelable = x.http().post(params, callback);
+        return cancelable;
+    }
+
+    /**
+     * 构造请求参数
+     *
+     * @return 返回构造的参数
+     */
+    private static RequestParams getParams(String url, String action, String body, Map<String, String> value) {
         LogUtils.d("请求地址：" + url);
         LogUtils.d("请求方法：" + action);
         RequestParams params = new RequestParams(url + action);
+        params.setCacheMaxAge(1000 * 60);// 设置缓存1分钟
+        // 设置header
         if (null != value) {
             for (Map.Entry<String, String> entry : value.entrySet()) {
-                LogUtils.d(entry.getKey() + ";" + entry.getValue());
-                params.addQueryStringParameter(entry.getKey(), entry.getValue());
+                LogUtils.d(entry.getKey() + ":::" + entry.getValue());
+                params.addParameter(entry.getKey(), entry.getValue());
             }
         } else {
             LogUtils.d("请求参数为空");
         }
-        params.setHeader("Authorization", token);
-        LogUtils.d("token:" + token);
-//        isRequest = true;
+        // 设置body
+        if (StringUtils.isNotEmpty(body)) {
+            params.setAsJsonContent(true);
+//            params.addBodyParameter("storeType", 0, "");
+//            params.addBodyParameter("parameter", body);
+            LogUtils.d("body::::" + body);
+//            params.setBodyContent(body);
+            try {
+                RequestBody requestBody = new StringBody(body, "utf-8");
+                requestBody.setContentType("application/json");
+                params.setRequestBody(requestBody);
+            } catch (UnsupportedEncodingException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            LogUtils.d("body参数为空");
+        }
+        params.addHeader("Authorization", BaseXConst.token);
+        LogUtils.d("token:" + BaseXConst.token);
+        return params;
+    }
+
+
+    /**
+     * 基础的Get请求
+     *
+     * @param url      请求地址
+     * @param action   请求的接口名
+     * @param value    参数
+     * @param callback 回调接口
+     */
+    public static Callback.Cancelable baseGet(String url, String action, String value, XAPIServiceCallBack callback) {
+        if (null == BaseXConst.token) {
+            LogUtils.d("token值为空，请设置后再请求");
+            callback.onFinished();
+            return null;
+        }
+        LogUtils.d("请求地址：" + url);
+        LogUtils.d("请求方法：" + action);
+        RequestParams params = getParams(url, action, value, null);
         Callback.Cancelable cancelable = x.http().get(params, callback);
-//        isRequest = false;
         return cancelable;
     }
 }
