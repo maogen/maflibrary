@@ -1,9 +1,11 @@
 package com.maf.git;
 
+import android.content.Context;
 import android.os.Looper;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maf.application.BaseApplication;
 
 import org.xutils.common.util.LogUtil;
@@ -19,8 +21,70 @@ import org.xutils.common.util.LogUtil;
  */
 public class GlideUtils {
 
-    public void showImage(String url, ImageView imageView) {
-        Glide.with(BaseApplication._application).load(url).into(imageView);
+    /**
+     * 加载网络图片
+     *
+     * @param context   由于存在生命周期问题，一般是Activity
+     * @param url       网络图片地址
+     * @param imageView 图片控件
+     */
+    public static void loadImage(Context context, String url, ImageView imageView) {
+        Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+    }
+
+    /**
+     * 加载本地图片
+     *
+     * @param context    由于存在生命周期问题，一般是Activity
+     * @param resourceId 图片id
+     * @param imageView  图片控件
+     */
+    public static void loadImage(Context context, int resourceId, ImageView imageView) {
+        Glide.with(context).load(resourceId).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+    }
+
+    /**
+     * 圆角加载网络图片
+     *
+     * @param context   由于存在生命周期问题，一般是Activity
+     * @param url       图片地址
+     * @param imageView 图片控件
+     */
+    public static void loadImageRound(Context context, String url, ImageView imageView) {
+        Glide.with(context).load(url).transform(new GlideRoundTransform(context, 10)).into(imageView);
+    }
+
+    /**
+     * 圆角加载本地图片
+     *
+     * @param context    由于存在生命周期问题，一般是Activity
+     * @param resourceId 图片id
+     * @param imageView  图片控件
+     */
+    public static void loadImageRound(Context context, int resourceId, ImageView imageView) {
+        Glide.with(context).load(resourceId).transform(new GlideRoundTransform(context, 10)).into(imageView);
+    }
+
+    /**
+     * 加载圆形图片，图片来源网络
+     *
+     * @param context   由于存在生命周期问题，一般是Activity
+     * @param url       图片地址
+     * @param imageView 图片控件
+     */
+    public static void loadImageCircle(Context context, String url, ImageView imageView) {
+        Glide.with(context).load(url).transform(new CircleTransform(context)).into(imageView);
+    }
+
+    /**
+     * 加载圆形图片，图片来源本地
+     *
+     * @param context    由于存在生命周期问题，一般是Activity
+     * @param resourceId 图片地址id
+     * @param imageView  图片控件
+     */
+    public static void loadImageCircle(Context context, int resourceId, ImageView imageView) {
+        Glide.with(context).load(resourceId).transform(new CircleTransform(context)).into(imageView);
     }
 
     /**
