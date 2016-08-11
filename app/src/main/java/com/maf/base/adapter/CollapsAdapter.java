@@ -1,10 +1,10 @@
 package com.maf.base.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.maf.adapter.BaseRecycleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +20,12 @@ import maf.com.mafproject.R;
  * 修改时间：2016/7/14 19:06
  * 修改备注：
  */
-public class CollapsAdapter extends RecyclerView.Adapter<MyViewHolder> {
-    private List<Integer> datas;
-    private Context context;
+public class CollapsAdapter extends BaseRecycleAdapter<Integer, MyViewHolder> {
     private List<Integer> lists;
 
-    public CollapsAdapter(Context context, List<Integer> datas) {
-        this.datas = datas;
-        this.context = context;
-        getRandomHeights(datas);
+    public CollapsAdapter(Context context, List<Integer> list) {
+        super(context, list);
+        getRandomHeights(list);
     }
 
     private void getRandomHeights(List<Integer> datas) {
@@ -39,8 +36,12 @@ public class CollapsAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_list, parent, false);
+    protected int getResourceId() {
+        return R.layout.item_list;
+    }
+
+    @Override
+    protected MyViewHolder getViewHolder(View view) {
         MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
@@ -51,11 +52,6 @@ public class CollapsAdapter extends RecyclerView.Adapter<MyViewHolder> {
         params.height = lists.get(position);//把随机的高度赋予item布局
         holder.itemView.setLayoutParams(params);
         holder.mTextView.setText(position + "");
-    }
-
-    @Override
-    public int getItemCount() {
-        return datas.size();
     }
 
 }

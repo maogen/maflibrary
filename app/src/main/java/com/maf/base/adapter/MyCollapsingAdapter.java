@@ -1,10 +1,9 @@
 package com.maf.base.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
+import com.maf.adapter.BaseRecycleAdapter;
 
 import java.util.List;
 
@@ -19,29 +18,24 @@ import maf.com.mafproject.R;
  * 修改时间：2016/7/14 21:00
  * 修改备注：
  */
-public class MyCollapsingAdapter extends RecyclerView.Adapter<MyViewHolder> {
-    private Context context;
-    private List<String> dataList;
-
-    public MyCollapsingAdapter(Context context, List<String> dataList) {
-        this.context = context;
-        this.dataList = dataList;
+public class MyCollapsingAdapter extends BaseRecycleAdapter<String, MyViewHolder> {
+    public MyCollapsingAdapter(Context context, List<String> list) {
+        super(context, list);
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_list, parent, false);
+    protected int getResourceId() {
+        return R.layout.item_list;
+    }
+
+    @Override
+    protected MyViewHolder getViewHolder(View view) {
         MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.mTextView.setText(dataList.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return dataList.size();
+        holder.mTextView.setText(list.get(position));
     }
 }

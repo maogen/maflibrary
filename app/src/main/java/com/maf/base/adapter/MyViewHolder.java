@@ -1,8 +1,9 @@
 package com.maf.base.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.maf.adapter.BaseRecycleViewHolder;
 
 import maf.com.mafproject.R;
 
@@ -15,11 +16,15 @@ import maf.com.mafproject.R;
  * 修改时间：2016/7/14 21:00
  * 修改备注：
  */
-public class MyViewHolder extends RecyclerView.ViewHolder {
+public class MyViewHolder extends BaseRecycleViewHolder {
     TextView mTextView;
 
     public MyViewHolder(View itemView) {
         super(itemView);
+    }
+
+    @Override
+    protected void initView(View itemView) {
         mTextView = (TextView) itemView.findViewById(R.id.item_tv);
     }
 }
