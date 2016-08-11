@@ -329,6 +329,35 @@ public class DbHelper {
     }
 
     /**
+     * 根据条件查找数据数目查找
+     *
+     * @param clazz
+     * @param where
+     * @param whereargs
+     * @return
+     */
+    public int getCount(Class<?> clazz, String where,
+                        Object... whereargs) {
+        SqlProxy sqlProxy = SqlProxy.count(clazz, where, whereargs);
+        Cursor cursor = sqldb.rawQuery(sqlProxy.getSql(), sqlProxy.paramsArgs());
+        try {
+            if (cursor != null && cursor.moveToNext()) {
+                int count = cursor.getInt(0);
+                if (count > 0) {
+                    return count;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+            cursor = null;
+        }
+        return 0;
+    }
+
+    /**
      * 继承安卓splite数据库操作类
      *
      * @author nanHuang
