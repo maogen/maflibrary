@@ -24,7 +24,8 @@ public class MyViewHolder extends BaseRecycleViewHolder {
     }
 
     @Override
-    protected void initView(View itemView) {
+    protected void initView() {
         mTextView = (TextView) itemView.findViewById(R.id.item_tv);
     }
+
 }

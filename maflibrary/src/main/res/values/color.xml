@@ -12,5 +12,8 @@
     <color name="green_swipe">#80CEA6</color>
     <!-- 侧滑菜单红色按钮 -->
     <color name="red_swipe">#F64648</color>
+    <!-- list选中效果颜色 -->
+    <color name="yellow_selector">#FFF9E9</color>
+
 
 </resources>

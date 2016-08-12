@@ -1,14 +1,14 @@
 package com.maf.base.activity;
 
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.maf.activity.BaseActivity;
 import com.maf.base.adapter.MyCollapsingAdapter;
+import com.maf.interfaces.OnItemClickListener;
+import com.maf.interfaces.OnItemLongClickListener;
+import com.maf.utils.BaseToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +52,24 @@ public class MyCollapsingActivity extends BaseActivity {
 
     @Override
     protected void initValue() {
-        List<String> dataList = new ArrayList<>();
+        final List<String> dataList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             dataList.add("aaa" + i);
         }
         adapter = new MyCollapsingAdapter(this, dataList);
         mRecyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                BaseToast.makeTextShort("点击了：" + dataList.get(position));
+            }
+        });
+        adapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(View view, int position) {
+                BaseToast.makeTextShort("长按了：" + dataList.get(position));
+            }
+        });
     }
 
     @Override

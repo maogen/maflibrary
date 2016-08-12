@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.maf.interfaces.OnItemClickListener;
+import com.maf.interfaces.OnItemLongClickListener;
+
 import java.util.List;
 
 /**
@@ -23,6 +26,10 @@ import java.util.List;
 public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> extends RecyclerView.Adapter<VH> {
     protected Context context;
     protected List<T> list;
+    protected VH viewHolder;
+
+    private OnItemClickListener onItemClickListener;// 单击监听器
+    private OnItemLongClickListener onItemLongClickListener;// 长按监听器
 
     public BaseRecycleAdapter(Context context, List<T> list) {
         this.context = context;
@@ -33,10 +40,37 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
 
     protected abstract VH getViewHolder(View view);
 
+    /**
+     * 设置可点击
+     *
+     * @param onItemClickListener 监听器
+     */
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    /**
+     * 设置长按监听器
+     *
+     * @param onItemLongClickListener 监听器
+     */
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(getResourceId(), parent, false);
-        return getViewHolder(view);
+        viewHolder = getViewHolder(view);
+        // 设置单击监听
+        if (onItemClickListener != null) {
+            viewHolder.setOnItemClickListener(onItemClickListener);
+        }
+        // 设置长按监听
+        if (onItemLongClickListener != null) {
+            viewHolder.setOnItemLongClickListener(onItemLongClickListener);
+        }
+        return viewHolder;
     }
 
 

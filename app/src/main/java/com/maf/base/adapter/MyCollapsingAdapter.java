@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.maf.adapter.BaseRecycleAdapter;
+import com.maf.interfaces.OnItemClickListener;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import maf.com.mafproject.R;
  * 修改备注：
  */
 public class MyCollapsingAdapter extends BaseRecycleAdapter<String, MyViewHolder> {
+
     public MyCollapsingAdapter(Context context, List<String> list) {
         super(context, list);
     }
