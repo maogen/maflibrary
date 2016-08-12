@@ -28,6 +28,31 @@ public class TakePhotoDialogUtils {
 
     /**
      * 选择图片的dialog
+     * 可以选择从相机拍照还是从图册选择
+     * 解析图片地址的方式是重写onActivityResult方法
+     *
+     @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (resultCode != RESULT_OK) {
+                return;
+            }
+            switch (requestCode) {
+                case ImageUtils.TAKE_PHOTO_FROM_CAMERA:
+                // 从相机界面返回
+                if (resultCode == RESULT_OK) {
+                    LogUtils.d("拍照的照片：" + TakePhotoDialogUtils.imagePath);
+                }
+                break;
+                case ImageUtils.TAKE_PHOTO_FROM_ALBUM:
+                // 从相册界面返回
+                if (resultCode == RESULT_OK) {
+                    String imgPath = ImageUtils.getImageAbsolutePath(this, data.getData());
+                    LogUtils.d("选择的照片：" + imgPath);
+                }
+                break;
+            }
+        }
      */
     public static void showTakePictureDialog(final Activity activity) {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);

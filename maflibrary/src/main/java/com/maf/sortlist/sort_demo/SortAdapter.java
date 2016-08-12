@@ -1,4 +1,4 @@
-package com.maf.sortlist;
+package com.maf.sortlist.sort_demo;
 
 import android.content.Context;
 import android.view.LayoutInflater;

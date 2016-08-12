@@ -88,6 +88,5 @@ public class ToastActivity extends BaseBackActivity {
                 }
                 break;
         }
-
     }
 }

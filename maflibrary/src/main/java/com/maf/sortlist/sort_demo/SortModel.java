@@ -1,4 +1,4 @@
-package com.maf.sortlist;
+package com.maf.sortlist.sort_demo;
 
 /**
  * 项目名称：maflibrary
