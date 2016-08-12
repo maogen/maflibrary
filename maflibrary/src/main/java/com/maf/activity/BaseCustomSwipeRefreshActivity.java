@@ -7,7 +7,25 @@ import com.maf.views.CustomSwipeRefreshLayout;
 
 /**
  * 项目名称：maflibrary
- * 类描述：
+ * 类描述：集成下拉刷新SwipeRefresh组件的界面，在布局中需要包含以下布局：
+ *
+ *  <com.hd.ytb.views.CustomSwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/include_bottom">
+
+        <com.hd.ytb.views.CustomScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
  * 创建人：mzg
  * 创建时间：2016/7/14 9:13
  * 修改人：mzg

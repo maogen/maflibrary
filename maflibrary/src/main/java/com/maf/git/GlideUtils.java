@@ -1,12 +1,17 @@
 package com.maf.git;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Looper;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.maf.application.BaseApplication;
+import com.maf.utils.StringUtils;
 
 import org.xutils.common.util.LogUtil;
 
@@ -86,7 +91,28 @@ public class GlideUtils {
     public static void loadImageCircle(Context context, int resourceId, ImageView imageView) {
         Glide.with(context).load(resourceId).transform(new CircleTransform(context)).into(imageView);
     }
-
+    /**
+     * 加载常规图片，图片长宽自适应
+     *
+     * @param context   由于存在生命周期问题，一般是Activity
+     * @param url       图片地址
+     * @param imageView 图片控件
+     */
+    public static void loadImageGetSize(Context context, String url, final ImageView imageView) {
+        if (StringUtils.isEmpty(url)) {
+            return;
+        }
+        if (imageView == null) {
+            return;
+        }
+        Glide.with(context).load(url).asBitmap().
+                into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        imageView.setImageBitmap(resource);
+                    }
+                });
+    }
     /**
      * 清楚图片缓存
      */

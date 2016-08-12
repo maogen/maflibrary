@@ -21,6 +21,14 @@ public class FileUtils {
      */
     private static String DIR_NAME = "MAF_DIR";
     /**
+     * 本地图片保存地址
+     */
+    public static final String DIR_IMAGE_NAME = "Image";
+    /**
+     * 保存的文件后缀名
+     */
+    public static final String IMAGE_FORMAT = ".jpg";
+    /**
      * 以同伴存放log文件的文件夹
      */
     private static final String DIR_LOG_NAME = "Log";
@@ -117,6 +125,17 @@ public class FileUtils {
         imageList = new ArrayList<>();
         getPath(file);
         return imageList;
+    }
+
+    /**
+     * 得到图片保存目录
+     *
+     * @return 图片保存目录
+     */
+    public static String getImageDir() {
+        String imageDir = rootPath + DIR_NAME + File.separator + DIR_IMAGE_NAME;
+        mkDirs(imageDir);
+        return imageDir;
     }
 
     /**

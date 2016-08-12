@@ -11,6 +11,23 @@ import android.view.ViewGroup;
 /**
  * 项目名称：Ytb
  * 类描述：fragment基类
+ *  <com.hd.ytb.views.CustomSwipeRefreshLayout
+ android:id="@+id/swipe_container"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:layout_above="@id/include_bottom">
+
+ <com.hd.ytb.views.CustomScrollView
+ android:id="@+id/scrollView"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:fillViewport="true"
+ android:scrollbars="none">
+
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:orientation="vertical">
  * 创建人：gaokang
  * 创建时间：2016/3/30 16:36
  * 修改人：gaokang
