@@ -34,13 +34,6 @@ public class XBaseAPIUtils {
             content = new Gson().toJson(value);
         }
         return basePost(url, action, content, callback);
-        // 上传文件方式
-        // 有上传文件时使用multipart表单, 否则上传原始文件流.
-        // params.setMultipart(true);
-        // 上传文件方式 1
-        // params.uploadFile = new File("/sdcard/test.txt");
-        // 上传文件方式 2
-        // params.addBodyParameter("uploadFile", new File("/sdcard/test.txt"));
     }
 
     /**
@@ -67,7 +60,7 @@ public class XBaseAPIUtils {
      * @param value    参数
      * @param callback 回调接口
      */
-    public static Callback.Cancelable postObject(String url, String action, BaseRequestBean value, XAPIServiceCallBack callback) {
+    public static Callback.Cancelable postObject(String url, String action, Object value, XAPIServiceCallBack callback) {
         String content = "";
         if (null != value) {
             content = new Gson().toJson(value);
@@ -111,6 +104,37 @@ public class XBaseAPIUtils {
         return baseGet(url, action, content, callback);
     }
 
+    /**
+     * 特殊get网络请求一，可以设置任何类型Map参数
+     *
+     * @param url      请求地址
+     * @param action   请求的接口名
+     * @param value    参数
+     * @param callback 回调接口
+     */
+    public static Callback.Cancelable getObject(String url, String action, Map<String, Object> value, XAPIServiceCallBack callback) {
+        String content = "";
+        if (null != value) {
+            content = new Gson().toJson(value);
+        }
+        return baseGet(url, action, content, callback);
+    }
+
+    /**
+     * 特殊get网络请求二，可以设置任何Object类型参数
+     *
+     * @param url      请求地址
+     * @param action   请求的接口名
+     * @param value    参数
+     * @param callback 回调接口
+     */
+    public static Callback.Cancelable getObject(String url, String action, Object value, XAPIServiceCallBack callback) {
+        String content = "";
+        if (null != value) {
+            content = new Gson().toJson(value);
+        }
+        return baseGet(url, action, content, callback);
+    }
     /**
      * 基础的Post请求，参数设置在body中
      *

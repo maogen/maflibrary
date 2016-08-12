@@ -24,6 +24,7 @@ public class GsonUtils {
      * json字符串转成实体类
      *
      * @param json
+     * @param token new TypeToken<T>() {}
      * @return
      */
     public static <T> T stringToGson(String json, TypeToken<T> token) {
