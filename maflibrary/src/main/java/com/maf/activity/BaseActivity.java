@@ -3,6 +3,7 @@ package com.maf.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.maf.application.ActivityManager;
@@ -12,7 +13,7 @@ import com.maf.utils.LogUtils;
  * Created by mzg on 2016/5/23.
  * MAF包的基础Activity类，用于使用堆栈管理Activity
  */
-public abstract class BaseActivity extends Activity implements View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     /**
      * 是否显示周期Activity回调函数的log
      */
