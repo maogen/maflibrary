@@ -1,7 +1,8 @@
 package com.maf.application;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.maf.db.DbHelper;
 import com.maf.utils.FileUtils;
@@ -18,7 +19,7 @@ import org.xutils.x;
  * Created by mzg on 2016/5/23.
  * 用于初始化maf中的相关变量
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
     public static Context _application;
     /**
      * 是否开启内存溢出检测
@@ -40,6 +41,17 @@ public class BaseApplication extends Application {
 
         FileUtils.initDir();
 
+    }
+
+    /**
+     * 分割 Dex 支持
+     *
+     * @param base
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     /**

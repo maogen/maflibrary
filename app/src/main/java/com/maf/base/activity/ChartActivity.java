@@ -110,7 +110,7 @@ public class ChartActivity extends BaseBackActivity {
 //        pieChart.setCenterText("中间的文字");  //饼状图中间的文字
 
         //设置数据
-        PieData pieData = getPieData(6);
+        PieData pieData = getPieData(9);
         pieChart.setData(pieData);
 
 //        Legend mLegend = pieChart.getLegend();  //设置比例图
@@ -125,7 +125,8 @@ public class ChartActivity extends BaseBackActivity {
     }
 
     private PieData getPieData(int count) {
-        float[] yy = {1200000, 12, 18, 200000, 28, 10,200000};
+//        double[] yy = {1200000, 12, 18, 200000, 28, 10,200000};
+        double[] yy = {0.753, 0.143, 0.043, 0.029, 0.022, 0.005, 0.003, 0.001, 1.2};
 
         ArrayList<String> xValues = new ArrayList<>();  //xVals用来表示每个饼块上的内容
         for (int i = 0; i < count; i++) {
@@ -139,7 +140,7 @@ public class ChartActivity extends BaseBackActivity {
          */
         ArrayList<Entry> yValues = new ArrayList<>();  //yVals用来表示封装每个饼块的实际数据
         for (int i = 0; i < count; i++) {
-            yValues.add(new Entry(yy[i], i));
+            yValues.add(new Entry((float) yy[i], i));
         }
 
         //y轴的集合
@@ -154,6 +155,9 @@ public class ChartActivity extends BaseBackActivity {
         colors.add(Color.rgb(57, 135, 200));
         colors.add(Color.rgb(30, 20, 200));
         colors.add(Color.rgb(80, 60, 150));
+        colors.add(Color.rgb(41, 115, 124));
+        colors.add(Color.rgb(120, 31, 120));
+        colors.add(Color.rgb(11, 200, 150));
         pieDataSet.setColors(colors);
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
