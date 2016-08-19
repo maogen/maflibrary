@@ -34,4 +34,39 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <style name="customDialog" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景是否透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <!-- 背景透明的dialog样式 -->
+    <style name="customDialogNoBG" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!--半透明-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景是否透明 -->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!-- dialog动画显示、退出效果 -->
+    <style name="DialogShowStyle">
+        <item name="android:windowEnterAnimation">@anim/dialog_show_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_show_out</item>
+    </style>
 </resources>

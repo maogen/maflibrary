@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.hd.ytb.dialog.CustomCheckMark
+        android:id="@+id/check_mark"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        app:bgColor="@color/trans"
+        app:paintWidth="5dp"
+        app:runSpeed="3" />
+
+    <ImageView
+        android:id="@+id/image_check"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_half_trans_r5"
+        android:padding="10dp"
+        android:src="@drawable/check_mark_error" />
+</RelativeLayout>
