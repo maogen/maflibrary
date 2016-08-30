@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.maf.R;
+import com.maf.adapter.BaseListAdapter;
 
 import java.util.List;
 
@@ -21,43 +21,18 @@ import java.util.List;
  * 修改时间：2016/7/22 14:56
  * 修改备注：
  */
-public class SortAdapter extends BaseAdapter implements SectionIndexer {
-    private List<SortModel> list = null;
-    private Context mContext;
-
-    public SortAdapter(Context mContext, List<SortModel> list) {
-        this.mContext = mContext;
-        this.list = list;
+public class SortAdapter extends BaseListAdapter<SortModel> implements SectionIndexer {
+    public SortAdapter(Context context, List<SortModel> list) {
+        super(context, list);
     }
 
-    /**
-     * 当ListView数据发生变化时,调用此方法来更新ListView
-     *
-     * @param list
-     */
-    public void updateListView(List<SortModel> list) {
-        this.list = list;
-        notifyDataSetChanged();
-    }
-
-    public int getCount() {
-        return this.list.size();
-    }
-
-    public Object getItem(int position) {
-        return list.get(position);
-    }
-
-    public long getItemId(int position) {
-        return position;
-    }
 
     public View getView(final int position, View view, ViewGroup arg2) {
-        ViewHolder viewHolder = null;
+        ViewHolder viewHolder;
         final SortModel mContent = list.get(position);
         if (view == null) {
             viewHolder = new ViewHolder();
-            view = LayoutInflater.from(mContext).inflate(R.layout.layout_sort_item, null);
+            view = LayoutInflater.from(context).inflate(R.layout.layout_sort_item, null);
             viewHolder.tvTitle = (TextView) view.findViewById(R.id.title);
             viewHolder.tvLetter = (TextView) view.findViewById(R.id.catalog);
             view.setTag(viewHolder);

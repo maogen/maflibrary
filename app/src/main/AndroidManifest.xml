@@ -19,7 +19,7 @@
         <activity
             android:name="com.maf.base.activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,43 +29,43 @@
         <activity
             android:name="com.maf.base.activity.PieChartActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.maf.base.activity.ToastActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.ImageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.NetActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.PrintActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.HtmlActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.ChartActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.MyCollapsingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.SortTestActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.FingerprintActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

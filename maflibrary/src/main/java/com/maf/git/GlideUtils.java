@@ -56,7 +56,7 @@ public class GlideUtils {
      * @param imageView 图片控件
      */
     public static void loadImageRound(Context context, String url, ImageView imageView) {
-        Glide.with(context).load(url).transform(new GlideRoundTransform(context, 10)).into(imageView);
+        Glide.with(context).load(url).transform(new GlideRoundTransform(context, 10)).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
     }
 
     /**
@@ -67,7 +67,7 @@ public class GlideUtils {
      * @param imageView  图片控件
      */
     public static void loadImageRound(Context context, int resourceId, ImageView imageView) {
-        Glide.with(context).load(resourceId).transform(new GlideRoundTransform(context, 10)).into(imageView);
+        Glide.with(context).load(resourceId).transform(new GlideRoundTransform(context, 10)).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
     }
 
     /**
@@ -78,7 +78,7 @@ public class GlideUtils {
      * @param imageView 图片控件
      */
     public static void loadImageCircle(Context context, String url, ImageView imageView) {
-        Glide.with(context).load(url).transform(new CircleTransform(context)).into(imageView);
+        Glide.with(context).load(url).transform(new CircleTransform(context)).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
     }
 
     /**
@@ -89,8 +89,9 @@ public class GlideUtils {
      * @param imageView  图片控件
      */
     public static void loadImageCircle(Context context, int resourceId, ImageView imageView) {
-        Glide.with(context).load(resourceId).transform(new CircleTransform(context)).into(imageView);
+        Glide.with(context).load(resourceId).transform(new CircleTransform(context)).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
     }
+
     /**
      * 加载常规图片，图片长宽自适应
      *
@@ -113,6 +114,7 @@ public class GlideUtils {
                     }
                 });
     }
+
     /**
      * 清楚图片缓存
      */

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.maf.R;
+import com.maf.utils.BaseToast;
 
 /**
  * 项目名称：Ytb_Android
@@ -19,7 +20,6 @@ import com.maf.R;
  * 修改备注：
  */
 public class CheckMarDialogUtils {
-    private static CheckMarkDialog checkDialog;
 
     /**
      * 显示操作成功与否对话框
@@ -35,14 +35,6 @@ public class CheckMarDialogUtils {
         } else {
             imageView.setImageResource(R.drawable.check_mark_error);
         }
-        Toast toast = new Toast(context);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setView(view);
-        toast.show();
-//        if (checkDialog == null) {
-//            checkDialog = new CheckMarkDialog(context);
-//        }
-//        checkDialog.showCheck(isSuccess);
+        BaseToast.showView(context, view);
     }
 }

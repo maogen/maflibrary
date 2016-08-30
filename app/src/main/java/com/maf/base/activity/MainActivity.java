@@ -8,6 +8,8 @@ import com.maf.activity.BaseActivity;
 import com.maf.application.BaseApplication;
 import com.maf.application.CrashHandler;
 import com.maf.base.bean.JsonTestBean;
+import com.maf.dialog.CheckMarDialogUtils;
+import com.maf.dialog.CitySelectDialog;
 import com.maf.git.GsonUtils;
 import com.maf.utils.DateUtils;
 import com.maf.utils.LogUtils;

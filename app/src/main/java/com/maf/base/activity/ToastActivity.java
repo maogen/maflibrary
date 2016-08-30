@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.maf.activity.BaseBackActivity;
+import com.maf.dialog.CheckMarDialogUtils;
 import com.maf.dialog.TakePhotoDialogUtils;
 import com.maf.utils.BaseToast;
 import com.maf.utils.ImageUtils;
@@ -58,9 +59,11 @@ public class ToastActivity extends BaseBackActivity {
                 break;
             case R.id.btn_show_long:
                 BaseToast.makeTextLong("Toast Long Test");
+                CheckMarDialogUtils.showCheck(this, true);
                 break;
             case R.id.btn_show_duration:
                 BaseToast.makeText("Toast Duration", 3000);
+                CheckMarDialogUtils.showCheck(this, false);
                 break;
             default:
                 break;

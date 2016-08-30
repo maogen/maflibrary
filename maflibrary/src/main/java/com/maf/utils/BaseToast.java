@@ -1,5 +1,8 @@
 package com.maf.utils;
 
+import android.content.Context;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.maf.application.BaseApplication;
@@ -52,5 +55,28 @@ public class BaseToast {
         }
         _toast = Toast.makeText(BaseApplication._application, text, duration);
         _toast.show();
+    }
+
+    /**
+     * 显示自定义View的Toast
+     *
+     * @param context
+     * @param view
+     */
+    public static void showView(Context context, View view) {
+        if (_toast == null) {
+            _toast = new Toast(context);
+            _toast.setGravity(Gravity.CENTER, 0, 0);
+            _toast.setDuration(Toast.LENGTH_SHORT);
+            _toast.setView(view);
+            _toast.show();
+        } else {
+            _toast.cancel();
+            _toast = new Toast(context);
+            _toast.setGravity(Gravity.CENTER, 0, 0);
+            _toast.setDuration(Toast.LENGTH_SHORT);
+            _toast.setView(view);
+            _toast.show();
+        }
     }
 }

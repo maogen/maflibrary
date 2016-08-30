@@ -5,6 +5,9 @@ import com.maf.utils.LogUtils;
 import org.xutils.common.Callback;
 import org.xutils.ex.HttpException;
 
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
 /**
  * 项目名称：maflibrary
  * 类描述：统一处理网络请求的回调
@@ -29,18 +32,21 @@ public class XAPIServiceCallBack implements Callback.CommonCallback<String> {
 
     @Override
     public void onError(Throwable ex, boolean isOnCallback) {
-        String error;
         ex.printStackTrace();
-        if (ex instanceof HttpException) { // 网络错误
+        String responseCode = "";
+        if (ex instanceof HttpException) { // 服务器异常
             HttpException httpEx = (HttpException) ex;
-            int responseCode = httpEx.getCode();
+            responseCode = String.valueOf(httpEx.getCode());
             String responseMsg = httpEx.getMessage();
             LogUtils.d("responseCode：" + responseCode + ";errorResult:" + responseMsg);
-            error = responseMsg;
-        } else { // 其他错误
-            error = "未知错误";
+        } else if (ex instanceof UnknownHostException) {
+            // 网络异常
+            responseCode = BaseXConst.XAPI_ERROR_NET_ERROR;
+        } else if (ex instanceof SocketTimeoutException) {
+            // 请求超时
+            responseCode = BaseXConst.XAPI_ERROR_TIME_OUT;
         }
-        listener.onError(error);
+        listener.onError(responseCode);
     }
 
     @Override

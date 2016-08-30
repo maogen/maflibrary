@@ -1,64 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_goto_toast"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_toast" />
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_goto_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_image" />
+        <Button
+            android:id="@+id/btn_goto_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_toast" />
 
-    <Button
-        android:id="@+id/btn_goto_net"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_net" />
+        <Button
+            android:id="@+id/btn_goto_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_image" />
 
-    <Button
-        android:id="@+id/btn_goto_print"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_print" />
+        <Button
+            android:id="@+id/btn_goto_net"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_net" />
 
-    <Button
-        android:id="@+id/btn_goto_html"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_html" />
+        <Button
+            android:id="@+id/btn_goto_print"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_print" />
 
-    <Button
-        android:id="@+id/btn_goto_chart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_chart" />
+        <Button
+            android:id="@+id/btn_goto_html"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_html" />
 
-    <Button
-        android:id="@+id/btn_goto_collapsing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_collapsing" />
+        <Button
+            android:id="@+id/btn_goto_chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_chart" />
 
-    <Button
-        android:id="@+id/btn_goto_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/into_sort" />
+        <Button
+            android:id="@+id/btn_goto_collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_collapsing" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_goto_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/into_sort" />
+
+    </LinearLayout>
+</ScrollView>

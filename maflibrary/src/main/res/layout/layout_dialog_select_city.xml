@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/gray_view_background"
     android:orientation="vertical"
     android:paddingTop="20dip">
 
@@ -26,19 +27,19 @@
         android:layout_marginTop="30dip"
         android:orientation="horizontal">
 
-        <com.hd.ytb.city_wheel.WheelView
+        <com.maf.city_wheel.WheelView
             android:id="@+id/id_province"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <com.hd.ytb.city_wheel.WheelView
+        <com.maf.city_wheel.WheelView
             android:id="@+id/id_city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <com.hd.ytb.city_wheel.WheelView
+        <com.maf.city_wheel.WheelView
             android:id="@+id/id_district"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -60,7 +61,7 @@
             android:gravity="center"
             android:text="取消"
             android:textColor="@color/white"
-            android:textSize="@dimen/atlases_common_text_size" />
+            android:textSize="@dimen/base_text_size" />
 
         <Button
             android:id="@+id/btn_confirm"
@@ -73,7 +74,7 @@
             android:gravity="center"
             android:text="确定"
             android:textColor="@color/white"
-            android:textSize="@dimen/atlases_common_text_size" />
+            android:textSize="@dimen/base_text_size" />
     </LinearLayout>
 
 

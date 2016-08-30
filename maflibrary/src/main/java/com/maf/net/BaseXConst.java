@@ -13,4 +13,12 @@ public class BaseXConst {
      * 手机接口地址
      */
     public static final String MOBILE_ADDRESS = "https://192.168.1.205/TestDataServer/";
+    /**
+     * 网络请求超时
+     */
+    public static final String XAPI_ERROR_TIME_OUT = "error_time_out";
+    /**
+     * 网络请求网络异常
+     */
+    public static final String XAPI_ERROR_NET_ERROR = "error_net_error";
 }

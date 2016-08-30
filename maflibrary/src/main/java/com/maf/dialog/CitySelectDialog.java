@@ -33,7 +33,16 @@ import javax.xml.parsers.SAXParserFactory;
  * 创建时间：2016/8/19 9:45
  * 修改人：mzg
  * 修改时间：2016/8/19 9:45
- * 修改备注：
+ * 修改备注：使用方法
+    CitySelectDialog dialog = new CitySelectDialog(this);
+    dialog.setSelectCity("浙江省", "杭州市", "");
+    dialog.setOnSelectListener(new CitySelectDialog.OnSelectListener() {
+        @Override
+        public void onCitySelect(String provinceName, String cityName, String districtName) {
+            LogUtils.d(provinceName + ";" + cityName + ";" + districtName);
+        }
+    });
+    dialog.show();
  */
 public class CitySelectDialog extends Dialog implements OnWheelChangedListener {
     private WheelView mViewProvince;// 显示省
