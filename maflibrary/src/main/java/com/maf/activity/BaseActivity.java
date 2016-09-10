@@ -1,11 +1,13 @@
 package com.maf.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.maf.application.ActivityManager;
+import com.maf.permission.AppPermissionUtil;
 import com.maf.utils.LogUtils;
 
 /**
@@ -34,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         initView();
         initEvent();
         initValue();
+        AppPermissionUtil.checkPermission(this, 1001);
     }
 
     /**
@@ -95,5 +98,27 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         super.onDestroy();
         if (isShowCycleLog)
             LogUtils.d(getLocalClassName() + " onDestroy");
+    }
+
+    /**
+     * 申请权限的回调
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 1001:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    LogUtils.d("权限获取成功");
+
+                } else {
+                    LogUtils.d("权限获取失败");
+                }
+                break;
+        }
     }
 }

@@ -31,6 +31,7 @@ public class MainActivity extends BaseActivity {
     private Button btnChart;
     private Button btnCollapsing;
     private Button btnSort;
+    private Button btnCode;
 
 
     @Override
@@ -48,7 +49,7 @@ public class MainActivity extends BaseActivity {
         btnChart = (Button) findViewById(R.id.btn_goto_chart);
         btnCollapsing = (Button) findViewById(R.id.btn_goto_collapsing);
         btnSort = (Button) findViewById(R.id.btn_goto_sort);
-
+        btnCode = (Button) findViewById(R.id.btn_goto_code);
     }
 
     @Override
@@ -61,6 +62,7 @@ public class MainActivity extends BaseActivity {
         btnChart.setOnClickListener(this);
         btnCollapsing.setOnClickListener(this);
         btnSort.setOnClickListener(this);
+        btnCode.setOnClickListener(this);
     }
 
     @Override
@@ -87,14 +89,6 @@ public class MainActivity extends BaseActivity {
      */
     private void testGsonUtils() {
         LogUtils.d("**********测试GsonUtils***********");
-//        String permissionJson = RawUtils.getRawStr(BaseApplication._application, R.raw.permission);
-//
-//        List<PermissionGroup> groupList = GsonUtils.stringToGson(permissionJson, new TypeToken<List<PermissionGroup>>() {
-//        });
-//        for (int i = 0; i < groupList.size(); i++) {
-//            PermissionGroup group = groupList.get(i);
-//            LogUtils.d(GsonUtils.gsonToString(group));
-//        }
         String jsonString = RawUtils.getRawStr(BaseApplication._application, R.raw.jsontest);
         JsonTestBean bean = GsonUtils.stringToGson(jsonString, new TypeToken<JsonTestBean>() {
         });
@@ -141,6 +135,10 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_goto_sort:
                 // 进入排序界面
                 startActivity(SortTestActivity.class);
+                break;
+            case R.id.btn_goto_code:
+                // 进入二维码测试界面
+                startActivity(CodeActivity.class);
                 break;
             default:
                 break;

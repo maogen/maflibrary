@@ -23,5 +23,7 @@
     <color name="red_base_button">#F5193D</color>
     <!-- 基本按钮公用的绿色 -->
     <color name="green_base_button">#63BA72</color>
+    <!-- 标题栏背景色 -->
+    <color name="titlebar_background">#44464d</color>
 
 </resources>

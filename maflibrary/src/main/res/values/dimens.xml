@@ -2,4 +2,12 @@
 <resources>
     <!-- 一般字体大小 -->
     <dimen name="base_text_size">16dp</dimen>
+    <!-- 标题栏图标的高 -->
+    <dimen name="title_icon_height">40dp</dimen>
+    <!-- 标题栏图标的宽 -->
+    <dimen name="title_icon_width">40dp</dimen>
+    <!-- 标题栏字体大小 -->
+    <dimen name="title_size">20dp</dimen>
+    <!-- 标题栏的高度 -->
+    <dimen name="title_height">58dp</dimen>
 </resources>
