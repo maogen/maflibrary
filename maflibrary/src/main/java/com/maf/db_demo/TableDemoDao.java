@@ -1,4 +1,4 @@
-package com.maf.bean;
+package com.maf.db_demo;
 
 import android.content.Context;
 
@@ -107,18 +107,6 @@ public class TableDemoDao {
      */
     public List<TableDemo> getAllData() {
         return db.queryList(TableDemo.class, "", "");
-    }
-
-    /**
-     * 根据name字段查找数据数目
-     *
-     * @param name
-     * @return
-     */
-    public int getCountByName(String name) {
-        StringBuffer sql = new StringBuffer();
-        sql.append(":name = ? ");
-        return db.getCount(TableDemo.class, sql.toString(), name);
     }
 
     /**

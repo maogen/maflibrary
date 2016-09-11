@@ -1,4 +1,4 @@
-package com.maf.bean;
+package com.maf.db_demo;
 
 
 import com.maf.db.Column;

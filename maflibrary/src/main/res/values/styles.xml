@@ -6,7 +6,7 @@
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/red_swipe</item>
     </style>
-    <!-- 没有ActionBar的Activity样式 -->
+    <!-- 没有ActionBar的Activity样式，使用时删除原来的自动生成的style.xml里面的AppTheme和AppTheme.NoActionBar -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
