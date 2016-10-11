@@ -14,6 +14,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
 import com.maf.application.BaseApplication;
+import com.maf.crop.Crop;
 
 import java.io.File;
 
@@ -30,6 +31,11 @@ public class ImageUtils {
     public static final int TAKE_PHOTO_FROM_CAMERA = 0x1000;
     public static final int TAKE_PHOTO_FROM_ALBUM = 0x1001;
     public static final int TAKE_PHOTO_FROM_CROP = 0x1002;
+
+    /**
+     * 裁剪图片的临时文件路径
+     */
+    public static String cropTempImagePath;
 
     /**
      * 根据图片id得到图片的bitmap
@@ -91,6 +97,28 @@ public class ImageUtils {
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         activity.startActivityForResult(intent, TAKE_PHOTO_FROM_ALBUM);
+    }
+
+    /**
+     * 裁剪图片
+     *
+     * @param activity  activity
+     * @param imagePath imagePath
+     *                  获取裁剪后的方法：
+     * @Override protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+     * if (requestCode == Crop.REQUEST_CROP && resultCode == RESULT_OK) {
+     * ImageUtils.cropTempImagePath;
+     * }
+     * }
+     */
+    public static void takePhotoFromCrop(Activity activity, String imagePath) {
+        if (StringUtils.isEmpty(imagePath)) {
+            return;
+        }
+        Uri uri = Uri.fromFile(new File(imagePath));
+        cropTempImagePath = FileUtils.getTempImagePath().getAbsolutePath();
+        Uri outUri = Uri.fromFile(new File(cropTempImagePath));
+        new Crop(uri).output(outUri).asSquare().start(activity);
     }
 
     /**

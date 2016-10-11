@@ -25,7 +25,10 @@ import java.io.File;
  */
 public class TakePhotoDialogUtils {
     public static String imagePath;
-
+    /**
+     * 弹出时间
+     */
+    public final static int ANIMATION_TIME = 100;
     /**
      * 选择图片的dialog
      * 可以选择从相机拍照还是从图册选择
@@ -58,6 +61,8 @@ public class TakePhotoDialogUtils {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
         View pictureDialog = LayoutInflater.from(activity).inflate(R.layout.dialog_take_picture, null);
         bottomSheetDialog.setContentView(pictureDialog);
+        bottomSheetDialog.inDuration(ANIMATION_TIME);
+        bottomSheetDialog.outDuration(ANIMATION_TIME);
         bottomSheetDialog.show();
 
         TextView txt_take_photo = (TextView) pictureDialog.findViewById(R.id.txt_take_photo);

@@ -181,4 +181,13 @@ public class FileUtils {
         return fileDir + File.separator + fileName;
     }
 
+    /**
+     * 返回一个临时的图片路径
+     *
+     * @return 图片路劲
+     */
+    public static File getTempImagePath() {
+        File tempCameraFile = new File(FileUtils.getImageDir(), System.currentTimeMillis() + FileUtils.IMAGE_FORMAT);
+        return tempCameraFile;
+    }
 }
