@@ -92,6 +92,11 @@
             android:name="com.maf.zxing.CaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.maf.base.activity.HotFixActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

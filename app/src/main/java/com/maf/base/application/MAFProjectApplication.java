@@ -13,7 +13,10 @@ public class MAFProjectApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         startLeakCanary(true);
+        // 工具类调用
         FileUtils.initDir();
+        // 应用崩溃初始化
 //        CrashHandler.getInstance().init(this);
+
     }
 }

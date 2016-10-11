@@ -32,6 +32,10 @@ public class FileUtils {
      * 以同伴存放log文件的文件夹
      */
     private static final String DIR_LOG_NAME = "Log";
+    /**
+     * 保存文件的文件夹
+     */
+    private static final String DIR_FILE_NAME = "File";
 
     /**
      * 判断文件是否存在，不存在则新建
@@ -165,5 +169,16 @@ public class FileUtils {
         }
     }
 
+    /**
+     * 根据文件名，拼接MAF框架文件路径
+     *
+     * @param fileName
+     * @return
+     */
+    public static String getFilePath(String fileName) {
+        String fileDir = rootPath + DIR_NAME + File.separator + DIR_FILE_NAME;
+        mkDirs(fileDir);
+        return fileDir + File.separator + fileName;
+    }
 
 }

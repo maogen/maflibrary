@@ -11,12 +11,28 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    //配置keystore签名+
+    signingConfigs {
+        release {
+            storeFile file("jykj.keystore")
+            storePassword "jykj123456"
+            keyAlias "jykj.keystore"
+            keyPassword "jykj123456"
+        }
+    }
+
     buildTypes {
+        // debug版本
+        debug {
+            signingConfig signingConfigs.release
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
 }
 
 dependencies {
@@ -24,5 +40,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
+    compile 'com.alipay.euler:andfix:0.5.0@aar'
     compile project(':maflibrary')
 }

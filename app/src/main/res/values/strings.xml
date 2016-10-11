@@ -12,6 +12,7 @@
     <string name="into_collapsing">收缩效果测试</string>
     <string name="into_sort">索引列表测试</string>
     <string name="into_code">二维码测试</string>
+    <string name="into_hot_fix">热修复测试</string>
 
     <!-- activity_toast.xml -->
     <string name="toast_short">显示ShortToast</string>

@@ -2,7 +2,6 @@ package com.maf.base.activity;
 
 import android.view.View;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseCustomSwipeRefreshActivity;
 import com.maf.base.bean.BaseRequestBean;
@@ -98,7 +97,7 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
             public void onFinished() {
                 finishRefresh();
             }
-        }, "api/Store/GetStores", null);
+        }, "api/Store/GetStores", null, null);
     }
 
 }

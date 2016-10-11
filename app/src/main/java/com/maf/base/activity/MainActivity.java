@@ -22,17 +22,13 @@ import maf.com.mafproject.R;
  * 开始界面，进入不同的测试界面
  */
 public class MainActivity extends BaseActivity {
+    private int[] btnIds = {R.id.btn_goto_toast, R.id.btn_goto_image,
+            R.id.btn_goto_net, R.id.btn_goto_print,
+            R.id.btn_goto_html, R.id.btn_goto_chart,
+            R.id.btn_goto_collapsing, R.id.btn_goto_sort,
+            R.id.btn_goto_code, R.id.btn_goto_hot_fix};
     // 声明Button控件
-    private Button btnToast;
-    private Button btnImage;
-    private Button btnNet;
-    private Button btnPrint;
-    private Button btnHtml;
-    private Button btnChart;
-    private Button btnCollapsing;
-    private Button btnSort;
-    private Button btnCode;
-
+    private Button[] btn = new Button[btnIds.length];
 
     @Override
     protected int getLayoutResId() {
@@ -41,28 +37,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        btnToast = (Button) findViewById(R.id.btn_goto_toast);
-        btnImage = (Button) findViewById(R.id.btn_goto_image);
-        btnNet = (Button) findViewById(R.id.btn_goto_net);
-        btnPrint = (Button) findViewById(R.id.btn_goto_print);
-        btnHtml = (Button) findViewById(R.id.btn_goto_html);
-        btnChart = (Button) findViewById(R.id.btn_goto_chart);
-        btnCollapsing = (Button) findViewById(R.id.btn_goto_collapsing);
-        btnSort = (Button) findViewById(R.id.btn_goto_sort);
-        btnCode = (Button) findViewById(R.id.btn_goto_code);
+        for (int i = 0; i < btnIds.length; i++) {
+            btn[i] = (Button) findViewById(btnIds[i]);
+            btn[i].setOnClickListener(this);
+        }
     }
 
     @Override
     protected void initEvent() {
-        btnToast.setOnClickListener(this);
-        btnImage.setOnClickListener(this);
-        btnNet.setOnClickListener(this);
-        btnPrint.setOnClickListener(this);
-        btnHtml.setOnClickListener(this);
-        btnChart.setOnClickListener(this);
-        btnCollapsing.setOnClickListener(this);
-        btnSort.setOnClickListener(this);
-        btnCode.setOnClickListener(this);
     }
 
     @Override
@@ -139,6 +121,10 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_goto_code:
                 // 进入二维码测试界面
                 startActivity(CodeActivity.class);
+                break;
+            case R.id.btn_goto_hot_fix:
+                // 进入热修复界面
+                startActivity(HotFixActivity.class);
                 break;
             default:
                 break;

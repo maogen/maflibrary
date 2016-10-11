@@ -36,7 +36,6 @@ public class BaseApplication extends MultiDexApplication {
         _application = getApplicationContext();
         initDB();
         initImageLoader();
-        initLeakCanary();
         initXUtils();
 
         FileUtils.initDir();
@@ -101,5 +100,6 @@ public class BaseApplication extends MultiDexApplication {
      */
     public void startLeakCanary(boolean isStart) {
         isStartLeakCanary = isStart;
+        initLeakCanary();
     }
 }

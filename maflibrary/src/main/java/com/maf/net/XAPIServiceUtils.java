@@ -16,10 +16,12 @@ public class XAPIServiceUtils {
      *
      * @param listener 网络请求监听器
      * @param action   地址
+     * @param body     body参数
      * @param value    参数
      */
-    public static Callback.Cancelable post(XAPIServiceListener listener, String action, Map<String, String> value) {
-        cancelable = XBaseAPIUtils.post(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+    public static Callback.Cancelable post(XAPIServiceListener listener, String action, Map<String, String> body,
+                                           Map<String, String> value) {
+        cancelable = XBaseAPIUtils.post(BaseXConst.MOBILE_ADDRESS, action, body, value, new XAPIServiceCallBack(listener));
         return cancelable;
     }
 
@@ -30,8 +32,10 @@ public class XAPIServiceUtils {
      * @param action   地址
      * @param value    参数
      */
-    public static Callback.Cancelable postObject(final XAPIServiceListener listener, String action, Map<String, Object> value) {
-        cancelable = XBaseAPIUtils.postObject(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+    public static Callback.Cancelable postObject(final XAPIServiceListener listener, String action,
+                                                 Map<String, Object> body,
+                                                 Map<String, String> value) {
+        cancelable = XBaseAPIUtils.postObject(BaseXConst.MOBILE_ADDRESS, action, body, value, new XAPIServiceCallBack(listener));
         return cancelable;
     }
 
@@ -42,8 +46,10 @@ public class XAPIServiceUtils {
      * @param action   地址
      * @param value    参数
      */
-    public static Callback.Cancelable postObject(XAPIServiceListener listener, String action, Object value) {
-        cancelable = XBaseAPIUtils.postObject(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+    public static Callback.Cancelable postObject(XAPIServiceListener listener, String action,
+                                                 Object body,
+                                                 Map<String, String> value) {
+        cancelable = XBaseAPIUtils.postObject(BaseXConst.MOBILE_ADDRESS, action, body, value, new XAPIServiceCallBack(listener));
         return cancelable;
     }
 
@@ -54,8 +60,10 @@ public class XAPIServiceUtils {
      * @param action   地址
      * @param value    参数
      */
-    public static Callback.Cancelable get(XAPIServiceListener listener, String action, Map<String, String> value) {
-        cancelable = XBaseAPIUtils.get(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+    public static Callback.Cancelable get(XAPIServiceListener listener, String action,
+                                          Map<String, String> body,
+                                          Map<String, String> value) {
+        cancelable = XBaseAPIUtils.get(BaseXConst.MOBILE_ADDRESS, action, body, value, new XAPIServiceCallBack(listener));
         return cancelable;
     }
 
@@ -66,8 +74,10 @@ public class XAPIServiceUtils {
      * @param action   地址
      * @param value    参数
      */
-    public static Callback.Cancelable getObject(final XAPIServiceListener listener, String action, Map<String, Object> value) {
-        cancelable = XBaseAPIUtils.getObject(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+    public static Callback.Cancelable getObject(final XAPIServiceListener listener, String action,
+                                                Map<String, Object> body,
+                                                Map<String, String> value) {
+        cancelable = XBaseAPIUtils.getObject(BaseXConst.MOBILE_ADDRESS, action, body, value, new XAPIServiceCallBack(listener));
         return cancelable;
     }
 
@@ -78,10 +88,13 @@ public class XAPIServiceUtils {
      * @param action   地址
      * @param value    参数
      */
-    public static Callback.Cancelable getObject(XAPIServiceListener listener, String action, Object value) {
-        cancelable = XBaseAPIUtils.getObject(BaseXConst.MOBILE_ADDRESS, action, value, new XAPIServiceCallBack(listener));
+    public static Callback.Cancelable getObject(XAPIServiceListener listener, String action,
+                                                Object body,
+                                                Map<String, String> value) {
+        cancelable = XBaseAPIUtils.getObject(BaseXConst.MOBILE_ADDRESS, action, body, value, new XAPIServiceCallBack(listener));
         return cancelable;
     }
+
     /**
      * 停止请求
      */
@@ -91,4 +104,5 @@ public class XAPIServiceUtils {
             cancelable = null;
         }
     }
+
 }
