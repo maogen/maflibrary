@@ -1,7 +1,10 @@
 package com.maf.base.application;
 
+import android.content.Intent;
+
 import com.maf.application.BaseApplication;
 import com.maf.application.CrashHandler;
+import com.maf.base.activity.MainActivity;
 import com.maf.utils.FileUtils;
 
 /**
@@ -16,7 +19,6 @@ public class MAFProjectApplication extends BaseApplication {
         // 工具类调用
         FileUtils.initDir();
         // 应用崩溃初始化
-//        CrashHandler.getInstance().init(this);
-
+        CrashHandler.getInstance().init(this);
     }
 }

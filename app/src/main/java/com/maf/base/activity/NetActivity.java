@@ -4,16 +4,17 @@ import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseCustomSwipeRefreshActivity;
-import com.maf.base.bean.BaseRequestBean;
-import com.maf.base.bean.Stores;
+import com.maf.base.bean.PatchBean;
 import com.maf.git.GsonUtils;
 import com.maf.net.XAPIServiceListener;
-import com.maf.net.XAPIServiceUtils;
+import com.maf.net.XBaseAPIUtils;
 import com.maf.utils.BaseToast;
 import com.maf.utils.LogUtils;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
+import maf.com.mafproject.BuildConfig;
 import maf.com.mafproject.R;
 
 /**
@@ -63,6 +64,11 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
 
     }
 
+    // 热修复后台地址
+    private String patchBaseUrl = "http://192.168.1.176:8089/HotFixWebservice/";
+    // 热修复后台地址
+    private String patchAction = "getPatchPath.do";
+
     /**
      * 测试开停服务的获取状态接口
      */
@@ -70,34 +76,36 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
         if (!swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.autoRefresh();
         }
-        XAPIServiceUtils.post(new XAPIServiceListener() {
-            @Override
-            public void onSuccess(String result) {
+        Map<String, String> map = new HashMap<>();
+        map.put("appversion", BuildConfig.VERSION_NAME);
+        XBaseAPIUtils.post(patchBaseUrl, patchAction, null,
+                map, new XAPIServiceListener() {
+                    @Override
+                    public void onSuccess(String result) {
+                        LogUtils.d("获取成功：" + result);
+                        PatchBean patchBean = GsonUtils.stringToGson(result, new TypeToken<PatchBean>() {
+                        });
+                        if (patchBean != null && patchBean.isHasNewPatch()) {
+                            // 有新插件，下载插件地址
+                            BaseToast.makeTextShort("有新插件：" + patchBean.getPatchPath());
 
-                BaseRequestBean<Stores> catchStores = GsonUtils.stringToGson(result, new TypeToken<BaseRequestBean<Stores>>() {
-                });
-                if (null != catchStores) {
-                    List<Stores.Store> jsonStores = catchStores.getContent().getStores();
-                    if (null != jsonStores) {
-                        for (int i = 0; i < jsonStores.size(); i++) {
-                            Stores.Store item = jsonStores.get(i);
-                            LogUtils.d("店铺名：" + item.getName());
-                            BaseToast.makeTextShort(item.getName());
+                        } else {
+                            BaseToast.makeTextShort("无需修复");
                         }
                     }
-                }
-            }
 
-            @Override
-            public void onError(String result) {
+                    @Override
+                    public void onError(String result) {
+                        // 请求错误
+                        LogUtils.d("获取失败：" + result);
+                        BaseToast.makeTextShort("获取热修复信息失败");
+                    }
 
-            }
-
-            @Override
-            public void onFinished() {
-                finishRefresh();
-            }
-        }, "api/Store/GetStores", null, null);
+                    @Override
+                    public void onFinished() {
+                        finishRefresh();
+                    }
+                });
     }
 
 }

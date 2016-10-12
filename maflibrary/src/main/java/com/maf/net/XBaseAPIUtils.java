@@ -26,17 +26,17 @@ public class XBaseAPIUtils {
      *
      * @param url      请求地址
      * @param action   请求的接口名
-     * @param body     body参数
-     * @param value    header参数
-     * @param callback 回调接口
+     * @param body     body参数，可以传空
+     * @param value    header参数，可以传空
+     * @param listener 回调接口
      */
     public static Callback.Cancelable post(String url, String action, Map<String, String> body,
-                                           Map<String, String> value, XAPIServiceCallBack callback) {
+                                           Map<String, String> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
         }
-        return basePost(url, action, content, value, callback);
+        return basePost(url, action, content, value, listener);
     }
 
     /**
@@ -44,17 +44,17 @@ public class XBaseAPIUtils {
      *
      * @param url      请求地址
      * @param action   请求的接口名
-     * @param body     body参数
-     * @param value    参数
-     * @param callback 回调接口
+     * @param body     body参数，可以传空
+     * @param value    header参数，可以传空
+     * @param listener 回调接口
      */
     public static Callback.Cancelable postObject(String url, String action, Map<String, Object> body,
-                                                 Map<String, String> value, XAPIServiceCallBack callback) {
+                                                 Map<String, String> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
         }
-        return basePost(url, action, content, value, callback);
+        return basePost(url, action, content, value, listener);
     }
 
     /**
@@ -62,35 +62,17 @@ public class XBaseAPIUtils {
      *
      * @param url      请求地址
      * @param action   请求的接口名
-     * @param value    参数
-     * @param callback 回调接口
+     * @param body     body参数，可以传空
+     * @param value    header参数，可以传空
+     * @param listener 回调接口
      */
     public static Callback.Cancelable postObject(String url, String action, Object body,
-                                                 Map<String, String> value, XAPIServiceCallBack callback) {
+                                                 Map<String, String> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
         }
-        return basePost(url, action, content, value, callback);
-    }
-
-    /**
-     * 基础的Post请求，参数是设置在header里面
-     *
-     * @param url      请求地址
-     * @param action   请求的接口名
-     * @param value    参数
-     * @param callback 回调接口
-     */
-    public static Callback.Cancelable baseHeaderPost(String url, String action, Map<String, String> value, XAPIServiceCallBack callback) {
-        if (null == BaseXConst.token) {
-            LogUtils.d("token值为空，请设置后再请求");
-            callback.onFinished();
-            return null;
-        }
-        RequestParams params = getParams(url, action, null, value);
-        Callback.Cancelable cancelable = x.http().post(params, callback);
-        return cancelable;
+        return basePost(url, action, content, value, listener);
     }
 
     /**
@@ -98,17 +80,18 @@ public class XBaseAPIUtils {
      *
      * @param url      请求地址
      * @param action   请求的接口名
-     * @param value    参数
-     * @param callback 回调接口
+     * @param body     body参数，可以传空
+     * @param value    header参数，可以传空
+     * @param listener 回调接口
      */
     public static Callback.Cancelable get(String url, String action, Map<String, String> body,
-                                          Map<String, String> value, XAPIServiceCallBack callback) {
+                                          Map<String, String> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
             LogUtils.d("body::::" + content);
         }
-        return baseGet(url, action, content, value, callback);
+        return baseGet(url, action, content, value, listener);
     }
 
     /**
@@ -116,16 +99,17 @@ public class XBaseAPIUtils {
      *
      * @param url      请求地址
      * @param action   请求的接口名
-     * @param value    参数
-     * @param callback 回调接口
+     * @param body     body参数，可以传空
+     * @param value    header参数，可以传空
+     * @param listener 回调接口
      */
     public static Callback.Cancelable getObject(String url, String action, Map<String, Object> body,
-                                                Map<String, String> value, XAPIServiceCallBack callback) {
+                                                Map<String, String> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
         }
-        return baseGet(url, action, content, value, callback);
+        return baseGet(url, action, content, value, listener);
     }
 
     /**
@@ -133,16 +117,17 @@ public class XBaseAPIUtils {
      *
      * @param url      请求地址
      * @param action   请求的接口名
-     * @param value    参数
-     * @param callback 回调接口
+     * @param body     body参数，可以传空
+     * @param value    header参数，可以传空
+     * @param listener 回调接口
      */
     public static Callback.Cancelable getObject(String url, String action, Object body,
-                                                Map<String, String> value, XAPIServiceCallBack callback) {
+                                                Map<String, String> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
         }
-        return baseGet(url, action, content, value, callback);
+        return baseGet(url, action, content, value, listener);
     }
 
     /**
@@ -152,17 +137,17 @@ public class XBaseAPIUtils {
      * @param action   请求的接口名
      * @param content  body参数
      * @param value    header参数，一般常用
-     * @param callback 回调接口
+     * @param listener 回调接口
      */
     private static Callback.Cancelable basePost(String url, String action, String content,
-                                                Map<String, String> value, XAPIServiceCallBack callback) {
+                                                Map<String, String> value, XAPIServiceListener listener) {
         if (null == BaseXConst.token) {
             LogUtils.d("token值为空，请设置后再请求");
-            callback.onFinished();
+            listener.onFinished();
             return null;
         }
         RequestParams params = getParams(url, action, content, value);
-        Callback.Cancelable cancelable = x.http().post(params, callback);
+        Callback.Cancelable cancelable = x.http().post(params, new XAPIServiceCallBack(listener));
         return cancelable;
     }
 
@@ -188,10 +173,7 @@ public class XBaseAPIUtils {
         // 设置body
         if (StringUtils.isNotEmpty(body)) {
             params.setAsJsonContent(true);
-//            params.addBodyParameter("storeType", 0, "");
-//            params.addBodyParameter("parameter", body);
             LogUtils.d("body::::" + body);
-//            params.setBodyContent(body);
             try {
                 RequestBody requestBody = new StringBody(body, "utf-8");
                 requestBody.setContentType("application/json");
@@ -213,20 +195,21 @@ public class XBaseAPIUtils {
      *
      * @param url      请求地址
      * @param action   请求的接口名
-     * @param value    参数
-     * @param callback 回调接口
+     * @param body     body参数，可以传空
+     * @param value    header参数，可以传空
+     * @param listener 回调接口
      */
     public static Callback.Cancelable baseGet(String url, String action, String body,
-                                              Map<String, String> value, XAPIServiceCallBack callback) {
+                                              Map<String, String> value, XAPIServiceListener listener) {
         if (null == BaseXConst.token) {
             LogUtils.d("token值为空，请设置后再请求");
-            callback.onFinished();
+            listener.onFinished();
             return null;
         }
         LogUtils.d("请求地址：" + url);
         LogUtils.d("请求方法：" + action);
         RequestParams params = getParams(url, action, body, value);
-        Callback.Cancelable cancelable = x.http().get(params, callback);
+        Callback.Cancelable cancelable = x.http().get(params, new XAPIServiceCallBack(listener));
         return cancelable;
     }
 

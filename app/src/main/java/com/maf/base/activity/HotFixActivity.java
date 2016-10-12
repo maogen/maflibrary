@@ -8,7 +8,6 @@ import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseBackActivity;
 import com.maf.base.bean.PatchBean;
 import com.maf.git.GsonUtils;
-import com.maf.net.XAPIServiceCallBack;
 import com.maf.net.XAPIServiceListener;
 import com.maf.net.XBaseAPIUtils;
 import com.maf.utils.BaseToast;
@@ -46,7 +45,7 @@ public class HotFixActivity extends BaseBackActivity {
     // 热修复插件地址
     private String patchPath;
     // 热修复后台地址
-    private String patchBaseUrl = "http://192.168.1.176:8089/HotFixWebservice/";
+    private String patchBaseUrl = "http://192.168.1.174:8089/HotFixWebservice/";
     // 热修复后台地址
     private String patchAction = "getPatchPath.do";
     // 插件下载到本地的地址
@@ -73,6 +72,12 @@ public class HotFixActivity extends BaseBackActivity {
 
     @Override
     protected void initValue() {
+        // 获取修复包地址
+        // 一般在Application中初始化
+        patchManager = new PatchManager(this);
+        patchManager.init(BuildConfig.VERSION_NAME);
+        patchManager.loadPatch();
+        // 建议使用是，将之前下载的插件包删除
     }
 
     @Override
@@ -112,18 +117,11 @@ public class HotFixActivity extends BaseBackActivity {
      * 请求插件路径
      */
     private void requestPatch() {
-        // 获取修复包地址
-        if (patchManager == null) {
-            // 一般在Application中初始化
-            patchManager = new PatchManager(this);
-            patchManager.init(BuildConfig.VERSION_NAME);
-            patchManager.loadPatch();
-        }
         DialogUtil.showProgressDialog(this);
         Map<String, String> map = new HashMap<>();
         map.put("appversion", BuildConfig.VERSION_NAME);
         XBaseAPIUtils.post(patchBaseUrl, patchAction, null,
-                map, new XAPIServiceCallBack(new XAPIServiceListener() {
+                map, new XAPIServiceListener() {
                     @Override
                     public void onSuccess(String result) {
                         LogUtils.d("获取成功：" + result);
@@ -156,7 +154,7 @@ public class HotFixActivity extends BaseBackActivity {
                     public void onFinished() {
 
                     }
-                }));
+                });
     }
 
     /**
