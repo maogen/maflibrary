@@ -73,11 +73,16 @@
             android:text="@string/into_code" />
 
         <Button
-            android:id="@+id/btn_goto_hot_fix"
+        android:id="@+id/btn_goto_hot_fix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/into_hot_fix" />
+        <Button
+            android:id="@+id/btn_goto_main_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/into_hot_fix" />
-
+            android:text="@string/into_main_test" />
     </LinearLayout>
 </ScrollView>

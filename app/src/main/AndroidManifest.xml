@@ -45,6 +45,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.maf.base.test.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="com.maf.base.activity.PieChartActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>

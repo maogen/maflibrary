@@ -8,8 +8,6 @@ import com.maf.activity.BaseActivity;
 import com.maf.application.BaseApplication;
 import com.maf.application.CrashHandler;
 import com.maf.base.bean.JsonTestBean;
-import com.maf.dialog.CheckMarDialogUtils;
-import com.maf.dialog.CitySelectDialog;
 import com.maf.git.GsonUtils;
 import com.maf.utils.DateUtils;
 import com.maf.utils.LogUtils;
@@ -26,7 +24,8 @@ public class MainActivity extends BaseActivity {
             R.id.btn_goto_net, R.id.btn_goto_print,
             R.id.btn_goto_html, R.id.btn_goto_chart,
             R.id.btn_goto_collapsing, R.id.btn_goto_sort,
-            R.id.btn_goto_code, R.id.btn_goto_hot_fix};
+            R.id.btn_goto_code, R.id.btn_goto_hot_fix,
+            R.id.btn_goto_main_text};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
@@ -125,6 +124,10 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_goto_hot_fix:
                 // 进入热修复界面
                 startActivity(HotFixActivity.class);
+                break;
+            case R.id.btn_goto_main_text:
+                // 进入测试界面
+                startActivity(com.maf.base.test.MainActivity.class);
                 break;
             default:
                 break;
