@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
             R.id.btn_goto_html, R.id.btn_goto_chart,
             R.id.btn_goto_collapsing, R.id.btn_goto_sort,
             R.id.btn_goto_code, R.id.btn_goto_hot_fix,
-            R.id.btn_goto_main_text};
+            R.id.btn_goto_main_text, R.id.btn_goto_load};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
@@ -129,6 +129,9 @@ public class MainActivity extends BaseActivity {
                 // 进入测试界面
                 startActivity(com.maf.base.test.MainActivity.class);
                 break;
+            case R.id.btn_goto_load:
+                // 进入测试上拉刷新，下拉加载更多组件测试界面
+                startActivity(LoadMoreActivity.class);
             default:
                 break;
         }

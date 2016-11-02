@@ -3,6 +3,7 @@ package com.maf.views;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -29,7 +30,7 @@ public class CustomSwipeRefreshLayout extends SwipeRefreshLayout {
     }
 
     /**
-     * 自动刷新
+     * 自动刷新，如果每次进入该页面的时候，要求自动请求加载数据，可调用该方法自动显示刷新动画
      */
     public void autoRefresh() {
         try {
@@ -44,4 +45,6 @@ public class CustomSwipeRefreshLayout extends SwipeRefreshLayout {
             e.printStackTrace();
         }
     }
+
+
 }

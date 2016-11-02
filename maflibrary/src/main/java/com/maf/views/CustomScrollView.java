@@ -11,6 +11,8 @@ import android.webkit.WebView;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 
+import com.maf.interfaces.ScrollCallBack;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -23,6 +25,8 @@ public class CustomScrollView extends ScrollView {
     private int view_height = 0;
     protected Field scrollView_mScroller;
     private static final String TAG = "CustomScrollView";
+
+    private ScrollCallBack scrollCallBack;// 当滚动到做底部、到顶部，回调该监听器
 
     public CustomScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -51,14 +55,62 @@ public class CustomScrollView extends ScrollView {
         }
     }
 
+    /**
+     * 设置滚动到最底部监听器
+     *
+     * @param callBack 监听器
+     */
+    public void setCallBack(ScrollCallBack callBack) {
+        this.scrollCallBack = callBack;
+    }
+
+    // ScrollView是否已经在顶部
+    private boolean isTop = true;
+    // ScrollView是否已经在底部
+    private boolean isBottom = false;
+    // 是否在加载数据中，如果正在加载，滑动到底部不触发回调
+    private boolean isLoading = false;
+
+    /**
+     * 设置是否在加载数据中，如果在加载，则滑动到底部，不触发回调
+     *
+     * @param isLoading
+     */
+    public void setIsLoading(boolean isLoading) {
+        this.isLoading = isLoading;
+    }
+
     @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+    protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
+        // 判断是否滑动到底部
+        View view = getChildAt(getChildCount() - 1);
+        int d = view.getBottom();
+        d -= (getHeight() + getScrollY());
+        if (d == 0 && scrollCallBack != null && !isBottom) {
+            if (!isLoading) {
+                // 不再加载数据，所以滑动到底部，回调
+                scrollCallBack.scrollBottomState();
+            }
+            isBottom = true;
+        } else if (d != 0 && scrollCallBack != null && isBottom) {
+            isBottom = false;
+        }
+        // 判断是否滑到顶部
+        if (scrollCallBack != null) {
+            if (top <= 50 && !isTop) {
+                scrollCallBack.OnScrollTop(true);
+                isTop = true;
+            } else if (top > 50 && isTop) {
+                scrollCallBack.OnScrollTop(false);
+                isTop = false;
+            }
+        }
         boolean stop = false;
-        if (Scroll_height - view_height == t) {
+        if (Scroll_height - view_height == top) {
             stop = true;
         }
 
-        if (t == 0 || stop == true) {
+        if (top == 0 || stop == true) {
             try {
                 if (scrollView_mScroller == null) {
                     scrollView_mScroller = getDeclaredField(this, "mScroller");
@@ -75,7 +127,7 @@ public class CustomScrollView extends ScrollView {
                 Log.e(TAG, e.getMessage());
             }
         }
-        super.onScrollChanged(l, t, oldl, oldt);
+        super.onScrollChanged(left, top, oldLeft, oldTop);
     }
 
     private void stopAnim() {

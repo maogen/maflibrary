@@ -7,15 +7,30 @@ import com.maf.views.CustomSwipeRefreshLayout;
 
 /**
  * 项目名称：maflibrary
- * 类描述：集成下拉刷新SwipeRefresh组件的界面，在布局中需要包含以下布局：
+ * 类描述：
+ * 集成下拉刷新SwipeRefresh组件的界面，
+ * 在布局中需要包含以下布局：
  *
- *  <com.hd.ytb.views.CustomSwipeRefreshLayout
+ *  <com.maf.views.CustomSwipeRefreshLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/include_bottom">
+        android:layout_height="match_parent">
 
-        <com.hd.ytb.views.CustomScrollView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+ * 如果要检测下面布局是否滑动到顶部，或者底部，
+ * 可是添加CustomScrollView控件，然后设置监听器。
+ * 此时内部布局的RecycleView和ListView等控件的滑动事件将被截断
+ * 此时布局如下：
+    <com.maf.views.CustomSwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.maf.views.CustomScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
