@@ -2,6 +2,7 @@ package com.maf.base.activity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.maf.activity.BaseBackActivity;
 import com.maf.dialog.CheckMarDialogUtils;
@@ -47,15 +48,16 @@ public class ToastActivity extends BaseBackActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_show_short:
-                BaseToast.makeTextShort("Toast Short Test");
+                BaseToast.makeText("Toast Short Test", Toast.LENGTH_SHORT);
                 break;
             case R.id.btn_show_long:
-                BaseToast.makeTextLong("Toast Long Test");
-                CheckMarDialogUtils.showCheck(this, true);
+                BaseToast.makeText("Toast Long Test", Toast.LENGTH_LONG);
+//                CheckMarDialogUtils.showCheck(this, true);
                 break;
             case R.id.btn_show_duration:
-                BaseToast.makeText("Toast Duration", 3000);
-                CheckMarDialogUtils.showCheck(this, false);
+//                BaseToast.makeText("Toast Duration", 2000);
+//                CheckMarDialogUtils.showCheck(this, false);
+                BaseToast.makeText("Toast Duration", 2000);
                 break;
             default:
                 break;
