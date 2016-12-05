@@ -31,25 +31,7 @@ public class XBaseAPIUtils {
      * @param listener 回调接口
      */
     public static Callback.Cancelable post(String url, String action, Map<String, String> body,
-                                           Map<String, String> value, XAPIServiceListener listener) {
-        String content = "";
-        if (null != body) {
-            content = new Gson().toJson(body);
-        }
-        return basePost(url, action, content, value, listener);
-    }
-
-    /**
-     * 特殊Post网络请求一，可以设置任何类型Map参数
-     *
-     * @param url      请求地址
-     * @param action   请求的接口名
-     * @param body     body参数，可以传空
-     * @param value    header参数，可以传空
-     * @param listener 回调接口
-     */
-    public static Callback.Cancelable postObject(String url, String action, Map<String, Object> body,
-                                                 Map<String, String> value, XAPIServiceListener listener) {
+                                           Map<String, Object> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
@@ -67,7 +49,7 @@ public class XBaseAPIUtils {
      * @param listener 回调接口
      */
     public static Callback.Cancelable postObject(String url, String action, Object body,
-                                                 Map<String, String> value, XAPIServiceListener listener) {
+                                                 Map<String, Object> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
@@ -85,29 +67,11 @@ public class XBaseAPIUtils {
      * @param listener 回调接口
      */
     public static Callback.Cancelable get(String url, String action, Map<String, String> body,
-                                          Map<String, String> value, XAPIServiceListener listener) {
+                                          Map<String, Object> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
             LogUtils.d("body::::" + content);
-        }
-        return baseGet(url, action, content, value, listener);
-    }
-
-    /**
-     * 特殊get网络请求一，可以设置任何类型Map参数
-     *
-     * @param url      请求地址
-     * @param action   请求的接口名
-     * @param body     body参数，可以传空
-     * @param value    header参数，可以传空
-     * @param listener 回调接口
-     */
-    public static Callback.Cancelable getObject(String url, String action, Map<String, Object> body,
-                                                Map<String, String> value, XAPIServiceListener listener) {
-        String content = "";
-        if (null != body) {
-            content = new Gson().toJson(body);
         }
         return baseGet(url, action, content, value, listener);
     }
@@ -122,13 +86,14 @@ public class XBaseAPIUtils {
      * @param listener 回调接口
      */
     public static Callback.Cancelable getObject(String url, String action, Object body,
-                                                Map<String, String> value, XAPIServiceListener listener) {
+                                                Map<String, Object> value, XAPIServiceListener listener) {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
         }
         return baseGet(url, action, content, value, listener);
     }
+
 
     /**
      * 基础的Post请求，参数设置在body中
@@ -140,7 +105,7 @@ public class XBaseAPIUtils {
      * @param listener 回调接口
      */
     private static Callback.Cancelable basePost(String url, String action, String content,
-                                                Map<String, String> value, XAPIServiceListener listener) {
+                                                Map<String, Object> value, XAPIServiceListener listener) {
         if (null == BaseXConst.token) {
             LogUtils.d("token值为空，请设置后再请求");
             listener.onFinished();
@@ -156,14 +121,14 @@ public class XBaseAPIUtils {
      *
      * @return 返回构造的参数
      */
-    private static RequestParams getParams(String url, String action, String body, Map<String, String> value) {
+    private static RequestParams getParams(String url, String action, String body, Map<String, Object> value) {
         LogUtils.d("请求地址：" + url);
         LogUtils.d("请求方法：" + action);
         RequestParams params = new RequestParams(url + action);
         params.setCacheMaxAge(1000 * 60);// 设置缓存1分钟
         // 设置header
         if (null != value) {
-            for (Map.Entry<String, String> entry : value.entrySet()) {
+            for (Map.Entry<String, Object> entry : value.entrySet()) {
                 LogUtils.d(entry.getKey() + ":::" + entry.getValue());
                 params.addParameter(entry.getKey(), entry.getValue());
             }
@@ -200,7 +165,7 @@ public class XBaseAPIUtils {
      * @param listener 回调接口
      */
     public static Callback.Cancelable baseGet(String url, String action, String body,
-                                              Map<String, String> value, XAPIServiceListener listener) {
+                                              Map<String, Object> value, XAPIServiceListener listener) {
         if (null == BaseXConst.token) {
             LogUtils.d("token值为空，请设置后再请求");
             listener.onFinished();

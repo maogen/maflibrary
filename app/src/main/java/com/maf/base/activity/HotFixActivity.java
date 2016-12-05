@@ -118,7 +118,7 @@ public class HotFixActivity extends BaseBackActivity {
      */
     private void requestPatch() {
         DialogUtil.showProgressDialog(this);
-        Map<String, String> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("appversion", BuildConfig.VERSION_NAME);
         XBaseAPIUtils.post(patchBaseUrl, patchAction, null,
                 map, new XAPIServiceListener() {

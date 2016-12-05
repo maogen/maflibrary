@@ -76,7 +76,7 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
         if (!swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.autoRefresh();
         }
-        Map<String, String> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("appversion", BuildConfig.VERSION_NAME);
         XBaseAPIUtils.post(patchBaseUrl, patchAction, null,
                 map, new XAPIServiceListener() {

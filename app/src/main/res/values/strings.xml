@@ -14,7 +14,7 @@
     <string name="into_code">二维码测试</string>
     <string name="into_hot_fix">热修复测试</string>
     <string name="into_main_test">进入测试界面</string>
-    <string name="into_list_load">进入加载更多测试</string>
+    <string name="into_list_load">进入加载更多</string>
 
     <!-- activity_toast.xml -->
     <string name="toast_short">显示ShortToast</string>
