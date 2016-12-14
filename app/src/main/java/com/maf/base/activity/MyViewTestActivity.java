@@ -1,11 +1,15 @@
 package com.maf.base.activity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 
 import com.maf.activity.BaseTitleActivity;
 import com.maf.dialog.CitySelectDialog;
 import com.maf.utils.BaseToast;
+import com.maf.utils.StringUtils;
+import com.maf.views.MySearchBar;
 import com.maf.views.SlideSwitch;
 
 import maf.com.mafproject.R;
@@ -21,13 +25,15 @@ import maf.com.mafproject.R;
  */
 
 public class MyViewTestActivity extends BaseTitleActivity {
+    // 搜索
+    private MySearchBar searchBar;
+    // 切换控件
     private SlideSwitch slideOne;
     private SlideSwitch slideTwo;
     private SlideSwitch slideThree;
     private SlideSwitch slideFour;
-
+    // 选择城市
     private Button btnSelectDialog;
-
     private CitySelectDialog dialog;
 
     @Override
@@ -42,6 +48,7 @@ public class MyViewTestActivity extends BaseTitleActivity {
 
     @Override
     protected void initView() {
+        searchBar = (MySearchBar) findViewById(R.id.search_bar);
         slideOne = (SlideSwitch) findViewById(R.id.switch_one);
 
         slideTwo = (SlideSwitch) findViewById(R.id.switch_two);
@@ -69,6 +76,25 @@ public class MyViewTestActivity extends BaseTitleActivity {
             }
         });
         btnSelectDialog.setOnClickListener(this);
+        searchBar.setTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String search = charSequence.toString();
+                if (StringUtils.isNotEmpty(search)) {
+                    BaseToast.makeTextShort("搜索：" + search);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     @Override

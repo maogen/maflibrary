@@ -6,6 +6,8 @@
     <color name="half_trans">#E0FFFFFF</color>
     <!-- 半透明 -->
     <color name="half_trans_black">#E0AEB7C1</color>
+    <!-- 所有界面的公用背景色 -->
+    <color name="view_background">#eff2f5</color>
     <color name="province_line_border">#C7C7C7</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -25,5 +27,10 @@
     <color name="green_base_button">#63BA72</color>
     <!-- 标题栏背景色 -->
     <color name="titlebar_background">#44464d</color>
-
+    <!-- 主文字颜色，黑色-->
+    <color name="color_main_text_black">#FF333333</color>
+    <!-- 主文字颜色，灰色-->
+    <color name="color_main_text_gray">@color/light_gray</color>
+    <!-- 主文字颜色，提示-->
+    <color name="color_main_text_hint">#FFCCCCCC</color>
 </resources>

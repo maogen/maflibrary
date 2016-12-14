@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="28dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/shape_edit_background"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/search_bar_icon"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_search_gray" />
+
+    <TextView
+        android:id="@+id/search_bar_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="left|center"
+        android:maxLines="1"
+        android:text="输入搜索内容"
+        android:textColor="@color/color_main_text_gray"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/search_bar_editText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:gravity="left|center"
+        android:hint="输入搜索内容"
+        android:imeOptions="actionSearch"
+        android:maxLines="1"
+        android:textColor="@color/color_main_text_black"
+        android:textColorHint="@color/color_main_text_gray"
+        android:textSize="14dp"
+        android:visibility="gone" />
+</LinearLayout>
