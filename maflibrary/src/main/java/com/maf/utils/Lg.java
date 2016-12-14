@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by mzg on 2016/5/23.
  * log工具，可以设置是否显示log
  */
-public class LogUtils {
+public class Lg {
     private static String TAG = "MAF";
     private static boolean _isShowLog = true;
 

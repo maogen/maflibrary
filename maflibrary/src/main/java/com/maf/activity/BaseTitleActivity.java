@@ -8,7 +8,7 @@ import com.maf.views.TitleBarView;
 
 /**
  * 项目名称：Ytb_Android
- * 类描述：包含标题的公用界面，需要在布局中包含 <include layout="@layout/layout_titlebar_base_view" />
+ * 类描述：包含标题的公用界面，需要在布局中包含 <include layout="@layout/layout_titlebar_back" />
  * 创建人：mzg
  * 创建时间：2016/8/18 9:27
  * 修改人：mzg

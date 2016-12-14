@@ -1,6 +1,6 @@
 package com.maf.net;
 
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 
 import org.xutils.common.Callback;
 import org.xutils.ex.HttpException;
@@ -38,7 +38,7 @@ public class XAPIServiceCallBack implements Callback.CommonCallback<String> {
             HttpException httpEx = (HttpException) ex;
             responseCode = String.valueOf(httpEx.getCode());
             String responseMsg = httpEx.getMessage();
-            LogUtils.d("responseCode：" + responseCode + ";errorResult:" + responseMsg);
+            Lg.d("responseCode：" + responseCode + ";errorResult:" + responseMsg);
         } else if (ex instanceof UnknownHostException) {
             // 网络异常
             responseCode = BaseXConst.XAPI_ERROR_NET_ERROR;

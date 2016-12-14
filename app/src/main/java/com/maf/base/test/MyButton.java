@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.Button;
 
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 
 /**
  * 项目名称：maflibrary
@@ -28,7 +28,7 @@ public class MyButton extends Button {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         super.onKeyDown(keyCode, event);
-        LogUtils.d("onKeyDown");
+        Lg.d("onKeyDown");
         return false;
     }
 }

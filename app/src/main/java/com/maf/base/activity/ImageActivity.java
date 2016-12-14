@@ -11,7 +11,7 @@ import com.maf.dialog.TakePhotoDialogUtils;
 import com.maf.git.ImageLoaderUtils;
 import com.maf.utils.FileUtils;
 import com.maf.utils.ImageUtils;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 import com.maf.utils.SdcardUtils;
 
 import java.util.List;
@@ -54,12 +54,12 @@ public class ImageActivity extends BaseBackActivity {
         // 得到所有sdcard路径
         List<String> paths = SdcardUtils.getSdcardPath();
         for (int i = 0; i < paths.size(); i++) {
-            LogUtils.d(paths.get(i));
+            Lg.d(paths.get(i));
         }
         //  取得所有制定目录下的图片文件
         List<String> imageFiles = FileUtils.getImagesByPath("/storage/emulated/0/tencent/QQfile_recv");
         for (int i = 0; i < imageFiles.size(); i++) {
-            LogUtils.d(imageFiles.get(i));
+            Lg.d(imageFiles.get(i));
         }
         ImageLoaderUtils.showLocalImage(imageLocal, "storage/emulated/0/tencent/QQfile_recv/111111.png");
         ImageLoaderUtils.showAssetsImage(imageAssets, "image/image_one.jpg");
@@ -87,7 +87,7 @@ public class ImageActivity extends BaseBackActivity {
             case ImageUtils.TAKE_PHOTO_FROM_CAMERA:
                 // 从相机界面返回
                 if (resultCode == RESULT_OK) {
-                    LogUtils.d("拍照的照片：" + TakePhotoDialogUtils.imagePath);
+                    Lg.d("拍照的照片：" + TakePhotoDialogUtils.imagePath);
                     // 裁剪照片
                     ImageUtils.takePhotoFromCrop(this, TakePhotoDialogUtils.imagePath);
                 }
@@ -96,14 +96,14 @@ public class ImageActivity extends BaseBackActivity {
                 // 从相册界面返回
                 if (resultCode == RESULT_OK) {
                     String imgPath = ImageUtils.getImageAbsolutePath(this, data.getData());
-                    LogUtils.d("选择的照片：" + imgPath);
+                    Lg.d("选择的照片：" + imgPath);
                     // 裁剪照片
                     ImageUtils.takePhotoFromCrop(this, imgPath);
                 }
                 break;
             case Crop.REQUEST_CROP:
                 // 从裁剪照片返回
-                LogUtils.d("裁剪后的图片：" + ImageUtils.cropTempImagePath);
+                Lg.d("裁剪后的图片：" + ImageUtils.cropTempImagePath);
                 ImageLoaderUtils.showLocalImage(imageLocal, ImageUtils.cropTempImagePath);
                 break;
             default:

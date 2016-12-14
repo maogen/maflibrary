@@ -10,7 +10,7 @@ import com.maf.activity.BaseCustomSwipeRefreshActivity;
 import com.maf.base.adapter.MyLoadMoreAdapter;
 import com.maf.interfaces.ScrollCallBack;
 import com.maf.utils.BaseToast;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 import com.maf.views.CustomScrollView;
 
 import java.util.ArrayList;
@@ -82,12 +82,12 @@ public class LoadMoreActivity extends BaseCustomSwipeRefreshActivity implements 
         customScrollView.setCallBack(new ScrollCallBack() {
             @Override
             public void OnScrollTop(boolean isTop) {
-                LogUtils.d("是否滑动到顶部：" + isTop);
+                Lg.d("是否滑动到顶部：" + isTop);
             }
 
             @Override
             public void scrollBottomState() {
-                LogUtils.d("滑动到底部");
+                Lg.d("滑动到底部");
                 request();
             }
         });
@@ -108,7 +108,7 @@ public class LoadMoreActivity extends BaseCustomSwipeRefreshActivity implements 
 
     @Override
     public boolean handleMessage(Message msg) {
-        LogUtils.d("收到消息：" + msg.what);
+        Lg.d("收到消息：" + msg.what);
         switch (msg.what) {
             case 1:
                 addData(true);

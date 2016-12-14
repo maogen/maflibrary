@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.maf.application.ActivityManager;
 import com.maf.permission.AppPermissionUtil;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 
 /**
  * Created by mzg on 2016/5/23.
@@ -76,28 +76,28 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onStart() {
         super.onStart();
         if (isShowCycleLog)
-            LogUtils.d(getLocalClassName() + " onStart");
+            Lg.d(getLocalClassName() + " onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (isShowCycleLog)
-            LogUtils.d(getLocalClassName() + " onResume");
+            Lg.d(getLocalClassName() + " onResume");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         if (isShowCycleLog)
-            LogUtils.d(getLocalClassName() + " onStop");
+            Lg.d(getLocalClassName() + " onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (isShowCycleLog)
-            LogUtils.d(getLocalClassName() + " onDestroy");
+            Lg.d(getLocalClassName() + " onDestroy");
     }
 
     /**
@@ -113,10 +113,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             case 1001:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    LogUtils.d("权限获取成功");
+                    Lg.d("权限获取成功");
 
                 } else {
-                    LogUtils.d("权限获取失败");
+                    Lg.d("权限获取失败");
                 }
                 break;
         }

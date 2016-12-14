@@ -13,7 +13,7 @@ import com.maf.net.XBaseAPIUtils;
 import com.maf.utils.BaseToast;
 import com.maf.utils.DialogUtil;
 import com.maf.utils.FileUtils;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 import com.maf.utils.StringUtils;
 
 import org.xutils.common.Callback;
@@ -124,7 +124,7 @@ public class HotFixActivity extends BaseBackActivity {
                 map, new XAPIServiceListener() {
                     @Override
                     public void onSuccess(String result) {
-                        LogUtils.d("获取成功：" + result);
+                        Lg.d("获取成功：" + result);
                         PatchBean patchBean = GsonUtils.stringToGson(result, new TypeToken<PatchBean>() {
                         });
                         if (patchBean != null && patchBean.isHasNewPatch()) {
@@ -144,7 +144,7 @@ public class HotFixActivity extends BaseBackActivity {
                     @Override
                     public void onError(String result) {
                         // 请求错误
-                        LogUtils.d("获取失败：" + result);
+                        Lg.d("获取失败：" + result);
                         patchPath = "";
                         BaseToast.makeTextShort("获取热修复信息失败");
                         DialogUtil.dismissDialog();
@@ -162,7 +162,7 @@ public class HotFixActivity extends BaseBackActivity {
      */
     private void loadPatch() {
         if (StringUtils.isEmpty(patchPath)) {
-            LogUtils.d("插件地址为空");
+            Lg.d("插件地址为空");
             return;
         }
         if (!patchPath.startsWith("http")) {
@@ -180,7 +180,7 @@ public class HotFixActivity extends BaseBackActivity {
 
             @Override
             public void onStarted() {
-                LogUtils.d("开始下载文件");
+                Lg.d("开始下载文件");
                 BaseToast.makeTextShort("开始下载热修复插件");
             }
 
@@ -188,19 +188,19 @@ public class HotFixActivity extends BaseBackActivity {
             public void onLoading(long total, long current, boolean isDownloading) {
                 float p = current / (float) total * 100;
                 DecimalFormat format = new DecimalFormat("#.00");
-                LogUtils.d("文件下载进度:" + format.format(p) + "%");
+                Lg.d("文件下载进度:" + format.format(p) + "%");
             }
 
             @Override
             public void onSuccess(File result) {
                 filePath = result.getAbsolutePath();
-                LogUtils.d("文件下载成功：" + filePath);
+                Lg.d("文件下载成功：" + filePath);
                 BaseToast.makeTextShort("插件下载成功");
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                LogUtils.d("文件下载失败");
+                Lg.d("文件下载失败");
                 ex.printStackTrace();
                 BaseToast.makeTextShort("插件下载失败");
             }

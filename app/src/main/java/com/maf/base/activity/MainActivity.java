@@ -13,7 +13,7 @@ import com.maf.git.GsonUtils;
 import com.maf.popupwindow.BaseListPopup;
 import com.maf.utils.BaseToast;
 import com.maf.utils.DateUtils;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 import com.maf.utils.RawUtils;
 
 import maf.com.mafproject.R;
@@ -28,7 +28,8 @@ public class MainActivity extends BaseTitleActivity {
             R.id.btn_goto_html, R.id.btn_goto_chart,
             R.id.btn_goto_collapsing, R.id.btn_goto_sort,
             R.id.btn_goto_code, R.id.btn_goto_hot_fix,
-            R.id.btn_goto_main_text, R.id.btn_goto_load};
+            R.id.btn_goto_main_text, R.id.btn_goto_load,
+            R.id.btn_goto_slide};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
@@ -83,29 +84,29 @@ public class MainActivity extends BaseTitleActivity {
      * 测试时间工具类
      */
     private void testDateUtils() {
-        LogUtils.d("**********测试DateUtils***********");
+        Lg.d("**********测试DateUtils***********");
         String dateString = DateUtils.getDateByDefault();
-        LogUtils.d(dateString);
+        Lg.d(dateString);
         String purposeDate = DateUtils.changeDateFormat(dateString, DateUtils.defaultDateFormat, "HH:mm:ss(yyyy/MM/dd)");
-        LogUtils.d(purposeDate);
-        LogUtils.d("**********END***********");
+        Lg.d(purposeDate);
+        Lg.d("**********END***********");
     }
 
     /**
      * 测试Gson工具类
      */
     private void testGsonUtils() {
-        LogUtils.d("**********测试GsonUtils***********");
+        Lg.d("**********测试GsonUtils***********");
         String jsonString = RawUtils.getRawStr(BaseApplication._application, R.raw.jsontest);
         JsonTestBean bean = GsonUtils.stringToGson(jsonString, new TypeToken<JsonTestBean>() {
         });
         if (bean.getAge() == null) {
-            LogUtils.d("Integer is null");
+            Lg.d("Integer is null");
         } else {
-            LogUtils.d(bean.getAge().toString());
+            Lg.d(bean.getAge().toString());
         }
-        LogUtils.d(GsonUtils.gsonToString(bean));
-        LogUtils.d("**********END***********");
+        Lg.d(GsonUtils.gsonToString(bean));
+        Lg.d("**********END***********");
     }
 
     @Override
@@ -163,6 +164,9 @@ public class MainActivity extends BaseTitleActivity {
                 // 显示菜单
                 BaseToast.makeTextShort("点击菜单");
                 listPopup.showBottomByView(v);
+                break;
+            case R.id.btn_goto_slide:
+                startActivity(SlideSwitchActivity.class);
                 break;
             default:
                 break;

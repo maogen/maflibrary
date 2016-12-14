@@ -9,7 +9,7 @@ import com.maf.git.GsonUtils;
 import com.maf.net.XAPIServiceListener;
 import com.maf.net.XBaseAPIUtils;
 import com.maf.utils.BaseToast;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -82,7 +82,7 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
                 map, new XAPIServiceListener() {
                     @Override
                     public void onSuccess(String result) {
-                        LogUtils.d("获取成功：" + result);
+                        Lg.d("获取成功：" + result);
                         PatchBean patchBean = GsonUtils.stringToGson(result, new TypeToken<PatchBean>() {
                         });
                         if (patchBean != null && patchBean.isHasNewPatch()) {
@@ -97,7 +97,7 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
                     @Override
                     public void onError(String result) {
                         // 请求错误
-                        LogUtils.d("获取失败：" + result);
+                        Lg.d("获取失败：" + result);
                         BaseToast.makeTextShort("获取热修复信息失败");
                     }
 

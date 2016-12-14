@@ -15,6 +15,7 @@
     <string name="into_hot_fix">热修复测试</string>
     <string name="into_main_test">进入测试界面</string>
     <string name="into_list_load">进入加载更多</string>
+    <string name="into_slide_switch">自定义切换</string>
 
     <!-- activity_toast.xml -->
     <string name="toast_short">显示ShortToast</string>

@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,14 +55,14 @@ public class AppPermissionUtil {
         for (int i = 0; i < PERMISSIONS.length; i++) {
             int permissionResult = PermissionChecker.checkSelfPermission(activity,
                     PERMISSIONS[i]);
-            LogUtils.d("获取的权限值是：" + permissionResult);
+            Lg.d("获取的权限值是：" + permissionResult);
             if (permissionResult != PackageManager.PERMISSION_GRANTED) {
                 // 没有获取权限
                 permissionOkMap.put(PERMISSIONS[i], false);
                 // 缺少权限，请求还未获取的权限
                 ActivityCompat.requestPermissions(activity,
                         getNoPermission(), requestCode);
-                LogUtils.d("缺少权限：" + PERMISSIONS[i]);
+                Lg.d("缺少权限：" + PERMISSIONS[i]);
                 break;
             } else {
                 // 权限获取成功，保存

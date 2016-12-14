@@ -108,6 +108,10 @@
             android:name="com.maf.base.activity.LoadMoreActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.maf.base.activity.SlideSwitchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

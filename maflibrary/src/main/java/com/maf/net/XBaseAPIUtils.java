@@ -2,7 +2,7 @@ package com.maf.net;
 
 
 import com.google.gson.Gson;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 import com.maf.utils.StringUtils;
 
 import org.xutils.common.Callback;
@@ -71,7 +71,7 @@ public class XBaseAPIUtils {
         String content = "";
         if (null != body) {
             content = new Gson().toJson(body);
-            LogUtils.d("body::::" + content);
+            Lg.d("body::::" + content);
         }
         return baseGet(url, action, content, value, listener);
     }
@@ -107,7 +107,7 @@ public class XBaseAPIUtils {
     private static Callback.Cancelable basePost(String url, String action, String content,
                                                 Map<String, Object> value, XAPIServiceListener listener) {
         if (null == BaseXConst.token) {
-            LogUtils.d("token值为空，请设置后再请求");
+            Lg.d("token值为空，请设置后再请求");
             listener.onFinished();
             return null;
         }
@@ -122,23 +122,23 @@ public class XBaseAPIUtils {
      * @return 返回构造的参数
      */
     private static RequestParams getParams(String url, String action, String body, Map<String, Object> value) {
-        LogUtils.d("请求地址：" + url);
-        LogUtils.d("请求方法：" + action);
+        Lg.d("请求地址：" + url);
+        Lg.d("请求方法：" + action);
         RequestParams params = new RequestParams(url + action);
         params.setCacheMaxAge(1000 * 60);// 设置缓存1分钟
         // 设置header
         if (null != value) {
             for (Map.Entry<String, Object> entry : value.entrySet()) {
-                LogUtils.d(entry.getKey() + ":::" + entry.getValue());
+                Lg.d(entry.getKey() + ":::" + entry.getValue());
                 params.addParameter(entry.getKey(), entry.getValue());
             }
         } else {
-            LogUtils.d("请求参数为空");
+            Lg.d("请求参数为空");
         }
         // 设置body
         if (StringUtils.isNotEmpty(body)) {
             params.setAsJsonContent(true);
-            LogUtils.d("body::::" + body);
+            Lg.d("body::::" + body);
             try {
                 RequestBody requestBody = new StringBody(body, "utf-8");
                 requestBody.setContentType("application/json");
@@ -147,10 +147,10 @@ public class XBaseAPIUtils {
                 ex.printStackTrace();
             }
         } else {
-            LogUtils.d("body参数为空");
+            Lg.d("body参数为空");
         }
         params.addHeader("Authorization", BaseXConst.token);
-        LogUtils.d("token:" + BaseXConst.token);
+        Lg.d("token:" + BaseXConst.token);
         return params;
     }
 
@@ -167,12 +167,12 @@ public class XBaseAPIUtils {
     public static Callback.Cancelable baseGet(String url, String action, String body,
                                               Map<String, Object> value, XAPIServiceListener listener) {
         if (null == BaseXConst.token) {
-            LogUtils.d("token值为空，请设置后再请求");
+            Lg.d("token值为空，请设置后再请求");
             listener.onFinished();
             return null;
         }
-        LogUtils.d("请求地址：" + url);
-        LogUtils.d("请求方法：" + action);
+        Lg.d("请求地址：" + url);
+        Lg.d("请求方法：" + action);
         RequestParams params = getParams(url, action, body, value);
         Callback.Cancelable cancelable = x.http().get(params, new XAPIServiceCallBack(listener));
         return cancelable;
@@ -190,8 +190,8 @@ public class XBaseAPIUtils {
         RequestParams params = new RequestParams(downUrl);
         params.setAutoRename(true);//断点下载
         params.setSaveFilePath(saveFile);
-        LogUtils.d("下载文件：" + downUrl);
-        LogUtils.d("文件保存地址：" + saveFile);
+        Lg.d("下载文件：" + downUrl);
+        Lg.d("文件保存地址：" + saveFile);
         Callback.Cancelable cancelable = x.http().get(params, callback);
         return cancelable;
     }

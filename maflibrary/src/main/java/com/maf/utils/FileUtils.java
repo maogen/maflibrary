@@ -46,7 +46,7 @@ public class FileUtils {
         File dir = new File(dirName);
         if (!dir.exists()) {
             dir.mkdirs();
-            LogUtils.d("新建文件夹：" + dirName);
+            Lg.d("新建文件夹：" + dirName);
         }
     }
 

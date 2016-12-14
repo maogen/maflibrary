@@ -173,7 +173,7 @@ public class ImageUtils {
                 return imageUri.getPath();
             }
         } else {
-            LogUtils.e("没有读取文件系统的权限,图片路径获取失败");
+            Lg.e("没有读取文件系统的权限,图片路径获取失败");
         }
         return null;
     }

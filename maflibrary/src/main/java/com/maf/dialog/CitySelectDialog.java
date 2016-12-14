@@ -39,7 +39,7 @@ import javax.xml.parsers.SAXParserFactory;
     dialog.setOnSelectListener(new CitySelectDialog.OnSelectListener() {
         @Override
         public void onCitySelect(String provinceName, String cityName, String districtName) {
-            LogUtils.d(provinceName + ";" + cityName + ";" + districtName);
+            Lg.d(provinceName + ";" + cityName + ";" + districtName);
         }
     });
     dialog.show();

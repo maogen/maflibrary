@@ -32,13 +32,13 @@ public class RawUtils {
             }
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
-            LogUtils.d("文件编码错误");
+            Lg.d("文件编码错误");
         } catch (IOException ex) {
             ex.printStackTrace();
-            LogUtils.d("文件流异常");
+            Lg.d("文件流异常");
         } catch (Exception ex) {
             ex.printStackTrace();
-            LogUtils.d("未知异常");
+            Lg.d("未知异常");
         } finally {
             // 关闭流
             if (null != reader) {
@@ -46,7 +46,7 @@ public class RawUtils {
                     reader.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
-                    LogUtils.d("关闭流发生异常");
+                    Lg.d("关闭流发生异常");
                 }
             }
             if (null != is) {
@@ -54,7 +54,7 @@ public class RawUtils {
                     is.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
-                    LogUtils.d("关闭流发生异常");
+                    Lg.d("关闭流发生异常");
                 }
             }
         }

@@ -18,7 +18,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.maf.R;
 import com.maf.activity.BaseActivity;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 import com.maf.zxing.camera.CameraManager;
 import com.maf.zxing.decoding.CaptureActivityHandler;
 import com.maf.zxing.decoding.InactivityTimer;
@@ -131,7 +131,7 @@ public class CaptureActivity extends BaseActivity implements Callback {
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String resultString = result.getText();
-        LogUtils.d("扫描二维码结果：" + resultString);
+        Lg.d("扫描二维码结果：" + resultString);
         Intent intent = new Intent();
         intent.putExtra(SysCodeZxing.CODE_RESULT_KEY, resultString);
         setResult(RESULT_OK, intent);

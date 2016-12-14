@@ -1,7 +1,6 @@
 package com.maf.dialog;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 import com.maf.R;
 import com.maf.utils.FileUtils;
 import com.maf.utils.ImageUtils;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 import com.rey.material.app.BottomSheetDialog;
 
 import java.io.File;
@@ -44,14 +43,14 @@ public class TakePhotoDialogUtils {
                 case ImageUtils.TAKE_PHOTO_FROM_CAMERA:
                 // 从相机界面返回
                 if (resultCode == RESULT_OK) {
-                    LogUtils.d("拍照的照片：" + TakePhotoDialogUtils.imagePath);
+                    Lg.d("拍照的照片：" + TakePhotoDialogUtils.imagePath);
                 }
                 break;
                 case ImageUtils.TAKE_PHOTO_FROM_ALBUM:
                 // 从相册界面返回
                 if (resultCode == RESULT_OK) {
                     String imgPath = ImageUtils.getImageAbsolutePath(this, data.getData());
-                    LogUtils.d("选择的照片：" + imgPath);
+                    Lg.d("选择的照片：" + imgPath);
                 }
                 break;
             }
@@ -76,7 +75,7 @@ public class TakePhotoDialogUtils {
                 bottomSheetDialog.dismiss();
                 File tempCameraFile = new File(FileUtils.getImageDir(), System.currentTimeMillis() + FileUtils.IMAGE_FORMAT);
                 imagePath = tempCameraFile.getAbsolutePath();
-                LogUtils.d("拍照临时路径：" + imagePath);
+                Lg.d("拍照临时路径：" + imagePath);
                 ImageUtils.takePhotoFromCamera(activity, imagePath);
             }
         });

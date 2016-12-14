@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.maf.utils.FileUtils;
-import com.maf.utils.LogUtils;
+import com.maf.utils.Lg;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -96,7 +96,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 500,
                     restartIntent); // 1秒钟后重启应用
         } else {
-            LogUtils.d("没有设置启动界面");
+            Lg.d("没有设置启动界面");
         }
         System.exit(1);
     }
