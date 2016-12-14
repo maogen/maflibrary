@@ -126,7 +126,7 @@ public class MainActivity extends BaseTitleActivity {
                 break;
             case R.id.btn_goto_print:
                 // 进入打印功能
-                startActivity(PrintActivity.class);
+//                startActivity(PrintActivity.class);
                 break;
             case R.id.btn_goto_html:
                 // 进入html测试界面
@@ -166,7 +166,8 @@ public class MainActivity extends BaseTitleActivity {
                 listPopup.showBottomByView(v);
                 break;
             case R.id.btn_goto_slide:
-                startActivity(SlideSwitchActivity.class);
+                // 自定义控件
+                startActivity(MyViewTestActivity.class);
                 break;
             default:
                 break;
