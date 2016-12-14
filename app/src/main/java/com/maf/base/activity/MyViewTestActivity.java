@@ -32,7 +32,7 @@ public class MyViewTestActivity extends BaseTitleActivity {
 
     @Override
     protected void initTitleView() {
-        titleBarView.setTitle("测试切换控件");
+        titleBarView.setTitle("测试自定义控件");
     }
 
     @Override
