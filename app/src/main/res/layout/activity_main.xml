@@ -148,6 +148,14 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:text="@string/into_slide_switch" />
+
+                <Button
+                    android:id="@+id/btn_goto_system"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="@string/into_system_test" />
             </LinearLayout>
 
         </LinearLayout>

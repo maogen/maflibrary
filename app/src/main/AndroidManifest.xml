@@ -137,7 +137,26 @@
             android:name="com.maf.base.activity.MyViewTestActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.maf.base.activity.SystemTestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <!-- Adding：测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+                <!-- End Adding -->
+            </intent-filter>
+        </activity>
+        <!-- start:::测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
         <receiver
             android:name="com.maf.base.receiver.MmsReceiver"
             android:permission="android.permission.BROADCAST_WAP_PUSH">
@@ -147,6 +166,7 @@
                 <data android:mimeType="application/vnd.wap.mms-message" />
             </intent-filter>
         </receiver>
+        <!-- 测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
         <receiver
             android:name="com.maf.base.receiver.SmsReceiver"
             android:permission="android.permission.BROADCAST_SMS">
@@ -154,7 +174,7 @@
                 <action android:name="android.provider.Telephony.SMS_DELIVER" />
             </intent-filter>
         </receiver>
-
+        <!-- 测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
         <service
             android:name="com.maf.base.receiver.SmsSendService"
             android:exported="true"
@@ -171,7 +191,7 @@
             </intent-filter>
 
         </service>
-
+        <!-- end:::测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
     </application>
 
 </manifest>

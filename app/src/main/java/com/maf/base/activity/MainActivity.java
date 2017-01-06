@@ -29,7 +29,7 @@ public class MainActivity extends BaseTitleActivity {
             R.id.btn_goto_collapsing, R.id.btn_goto_sort,
             R.id.btn_goto_code, R.id.btn_goto_hot_fix,
             R.id.btn_goto_main_text, R.id.btn_goto_load,
-            R.id.btn_goto_slide};
+            R.id.btn_goto_slide, R.id.btn_goto_system};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
@@ -168,6 +168,10 @@ public class MainActivity extends BaseTitleActivity {
             case R.id.btn_goto_slide:
                 // 自定义控件
                 startActivity(MyViewTestActivity.class);
+                break;
+            case R.id.btn_goto_system:
+                // 进入系统测试界面
+                startActivity(SystemTestActivity.class);
                 break;
             default:
                 break;
