@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.maf.activity.BaseTitleActivity;
 import com.maf.dialog.CitySelectDialog;
+import com.maf.dialog.DatePickerDialog;
 import com.maf.utils.BaseToast;
 import com.maf.utils.StringUtils;
 import com.maf.views.MySearchBar;
@@ -35,6 +36,9 @@ public class MyViewTestActivity extends BaseTitleActivity {
     // 选择城市
     private Button btnSelectDialog;
     private CitySelectDialog dialog;
+    // 选择时间
+    private Button btnSelectTime;
+    private DatePickerDialog datePickerDialog;
 
     @Override
     protected void initTitleView() {
@@ -61,6 +65,32 @@ public class MyViewTestActivity extends BaseTitleActivity {
         slideFour.setText("关", "开");
 
         btnSelectDialog = (Button) findViewById(R.id.text_select_city);
+        btnSelectTime = (Button) findViewById(R.id.text_select_time);
+    }
+
+    @Override
+    protected void initValue() {
+        dialog = new CitySelectDialog(this);
+        dialog.setSelectCity("浙江省", "杭州市", "");
+        dialog.setOnSelectListener(new CitySelectDialog.OnSelectListener() {
+            @Override
+            public void onCitySelect(String provinceName, String cityName, String districtName) {
+                BaseToast.makeTextShort(provinceName + ";" + cityName + ";" + districtName);
+            }
+        });
+
+        datePickerDialog = new DatePickerDialog(this);
+        datePickerDialog.setOnDialogButtonClickListener(new DatePickerDialog.OnDialogButtonClickListener() {
+            @Override
+            public void positiveClick(int year, int month, int day) {
+                BaseToast.makeTextShort(year + "年" + month + "月" + day + "日");
+            }
+
+            @Override
+            public void negativeClick() {
+
+            }
+        });
     }
 
     @Override
@@ -76,6 +106,7 @@ public class MyViewTestActivity extends BaseTitleActivity {
             }
         });
         btnSelectDialog.setOnClickListener(this);
+        btnSelectTime.setOnClickListener(this);
         searchBar.setTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -98,23 +129,17 @@ public class MyViewTestActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initValue() {
-        dialog = new CitySelectDialog(this);
-        dialog.setSelectCity("浙江省", "杭州市", "");
-        dialog.setOnSelectListener(new CitySelectDialog.OnSelectListener() {
-            @Override
-            public void onCitySelect(String provinceName, String cityName, String districtName) {
-                BaseToast.makeTextShort(provinceName + ";" + cityName + ";" + districtName);
-            }
-        });
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.text_select_city:
                 // 选择城市
                 dialog.show();
+                break;
+            case R.id.text_select_time:
+                // 选择时间
+                datePickerDialog.setDateRange(1, 1, 1990, 1, 1, 2027);
+                datePickerDialog.setDefaultDate(2017, 1, 5);
+                datePickerDialog.show();
                 break;
             default:
                 break;

@@ -93,4 +93,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="选择城市" />
+
+    <Button
+        android:id="@+id/text_select_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="选择时间" />
 </LinearLayout>

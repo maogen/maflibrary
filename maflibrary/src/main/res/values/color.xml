@@ -33,4 +33,6 @@
     <color name="color_main_text_gray">@color/light_gray</color>
     <!-- 主文字颜色，提示-->
     <color name="color_main_text_hint">#FFCCCCCC</color>
+    <!--  时间选择对话框用到的颜色 -->
+    <color name="colorAccent">#FF4081</color>
 </resources>
