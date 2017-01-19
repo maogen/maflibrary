@@ -31,9 +31,17 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
     private OnItemClickListener onItemClickListener;// 单击监听器
     private OnItemLongClickListener onItemLongClickListener;// 长按监听器
 
+    private boolean hasBackground = true;
+    
     public BaseRecycleAdapter(Context context, List<T> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public BaseRecycleAdapter(Context context, List<T> list, boolean hasBackground) {
+        this.context = context;
+        this.list = list;
+        this.hasBackground = hasBackground;
     }
 
     protected abstract int getResourceId();
@@ -64,7 +72,7 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
         viewHolder = getViewHolder(view);
         // 设置单击监听
         if (onItemClickListener != null) {
-            viewHolder.setOnItemClickListener(onItemClickListener);
+            viewHolder.setOnItemClickListener(onItemClickListener, hasBackground);
         }
         // 设置长按监听
         if (onItemLongClickListener != null) {

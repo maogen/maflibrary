@@ -43,6 +43,20 @@ public abstract class BaseRecycleViewHolder extends RecyclerView.ViewHolder impl
     }
 
     /**
+     * 设置可点击
+     *
+     * @param onItemClickListener 监听器
+     * @param hasBackground       是否显示默认的点击背景，如果传true，自己定义的背景将无效
+     */
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener, boolean hasBackground) {
+        this.onItemClickListener = onItemClickListener;
+        itemView.setOnClickListener(this);
+        if (hasBackground) {
+            itemView.setBackgroundResource(R.drawable.recycler_bg);
+        }
+    }
+
+    /**
      * 设置长按监听器
      *
      * @param onItemLongClickListener 监听器
