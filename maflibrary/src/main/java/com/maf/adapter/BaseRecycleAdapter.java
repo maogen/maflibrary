@@ -32,7 +32,7 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
     private OnItemLongClickListener onItemLongClickListener;// 长按监听器
 
     private boolean hasBackground = true;
-    
+
     public BaseRecycleAdapter(Context context, List<T> list) {
         this.context = context;
         this.list = list;
