@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -39,4 +39,5 @@ dependencies {
     compile 'com.github.rey5137:material:1.2.2'
     compile 'com.android.support:multidex:1.0.0'
     compile files('libs/zxing-3.2.1.jar')
+    compile files('libs/droidText.0.5.jar')
 }

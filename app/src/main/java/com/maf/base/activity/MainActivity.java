@@ -4,10 +4,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 
+import com.example.jammy.pdf_demo.PDFActivity;
 import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseTitleActivity;
 import com.maf.application.BaseApplication;
-import com.maf.application.CrashHandler;
 import com.maf.base.bean.JsonTestBean;
 import com.maf.git.GsonUtils;
 import com.maf.popupwindow.BaseListPopup;
@@ -29,7 +29,8 @@ public class MainActivity extends BaseTitleActivity {
             R.id.btn_goto_collapsing, R.id.btn_goto_sort,
             R.id.btn_goto_code, R.id.btn_goto_hot_fix,
             R.id.btn_goto_main_text, R.id.btn_goto_load,
-            R.id.btn_goto_slide, R.id.btn_goto_system};
+            R.id.btn_goto_slide, R.id.btn_goto_system,
+            R.id.btn_goto_signal};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
@@ -75,7 +76,7 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     protected void initValue() {
-        CrashHandler.getInstance().setStartContext(this);
+//        CrashHandler.getInstance().setStartContext(this);
         testDateUtils();
         testGsonUtils();
     }
@@ -172,6 +173,11 @@ public class MainActivity extends BaseTitleActivity {
             case R.id.btn_goto_system:
                 // 进入系统测试界面
                 startActivity(SystemTestActivity.class);
+                break;
+            case R.id.btn_goto_signal:
+                // 进入签名界面
+                startActivity(ReadPdfActivity.class);
+//                startActivity(PDFActivity.class);
                 break;
             default:
                 break;

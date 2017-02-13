@@ -61,7 +61,7 @@
         <activity
             android:name="com.maf.base.activity.PieChartActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.ToastActivity"
             android:screenOrientation="portrait"
@@ -116,7 +116,7 @@
         <activity
             android:name="com.maf.base.activity.FingerprintActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.zxing.CaptureActivity"
             android:screenOrientation="portrait"
@@ -135,6 +135,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.MyViewTestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.maf.base.activity.SignalActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.maf.base.activity.ReadPdfActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.jammy.pdf_demo.PDFActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

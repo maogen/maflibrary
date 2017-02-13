@@ -6,10 +6,11 @@ android {
 
     defaultConfig {
         applicationId "maf.com.mafproject"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     //配置keystore签名+
     signingConfigs {
@@ -47,5 +48,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.alipay.euler:andfix:0.5.0@aar'
+    compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
     compile project(':maflibrary')
+    compile 'com.jakewharton:butterknife:7.0.0'
 }

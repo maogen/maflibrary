@@ -23,6 +23,14 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/title_more"
         android:visibility="gone" />
+    <!-- 显示菜单左边的按钮-->
+    <ImageView
+        android:id="@+id/image_title_menu_left"
+        style="@style/TitleIconStyle"
+        android:layout_alignParentRight="false"
+        android:layout_toLeftOf="@id/image_title_menu"
+        android:src="@drawable/menu_delete"
+        android:visibility="gone" />
     <!-- 右边按钮 -->
     <TextView
         android:id="@+id/text_title_right"
