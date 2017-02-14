@@ -1,2 +1,3 @@
 自我集成的android框架，library工程是maflibrry
 框架测试程序在app里
+工程集成了freeline，使用freeline编译。
