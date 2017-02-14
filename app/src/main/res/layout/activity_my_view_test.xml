@@ -6,98 +6,113 @@
 
     <include layout="@layout/layout_titlebar_back" />
 
-    <com.maf.views.MySearchBar
-        android:id="@+id/search_bar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
-            android:text="正常切换" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.maf.views.SlideSwitch
-            android:id="@+id/switch_one"
-            android:layout_width="50dp"
-            android:layout_height="30dp" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <com.maf.views.MySearchBar
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
-            android:text="禁止切换" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-        <com.maf.views.SlideSwitch
-            android:id="@+id/switch_two"
-            android:layout_width="50dp"
-            android:layout_height="30dp" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:text="正常切换" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+                <com.maf.views.SlideSwitch
+                    android:id="@+id/switch_one"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
-            android:text="显示文字" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-        <com.maf.views.SlideSwitch
-            android:id="@+id/switch_three"
-            android:layout_width="50dp"
-            android:layout_height="30dp" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:text="禁止切换" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+                <com.maf.views.SlideSwitch
+                    android:id="@+id/switch_two"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"
-            android:text="显示文字大" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-        <com.maf.views.SlideSwitch
-            android:id="@+id/switch_four"
-            android:layout_width="80dp"
-            android:layout_height="45dp" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:text="显示文字" />
 
-    <Button
-        android:id="@+id/text_select_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="选择城市" />
+                <com.maf.views.SlideSwitch
+                    android:id="@+id/switch_three"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/text_select_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="选择时间" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:text="显示文字大" />
+
+                <com.maf.views.SlideSwitch
+                    android:id="@+id/switch_four"
+                    android:layout_width="80dp"
+                    android:layout_height="45dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/text_select_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="选择城市" />
+
+            <Button
+                android:id="@+id/text_select_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="选择时间" />
+
+            <include layout="@layout/view_edit_image" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

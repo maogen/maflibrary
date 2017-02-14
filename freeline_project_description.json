@@ -1,0 +1,145 @@
+{
+    "android_gradle_plugin_version": "2.1.2",
+    "apk_path": "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\build\\outputs\\apk\\app-debug.apk",
+    "apt": {
+        
+    },
+    "apt_libraries": {
+        "dagger": false,
+        "butterknife": true
+    },
+    "auto_dependency": true,
+    "build_cache_dir": "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\build\\freeline",
+    "build_directory": "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\build",
+    "build_script": "gradlew.bat :app:assembleDebug",
+    "build_script_work_directory": "",
+    "build_tools_directory": "E:\\android\\adt_bundle\\sdk\\build-tools\\24.0.3",
+    "build_tools_version": "24.0.3",
+    "compile_sdk_directory": "E:\\android\\adt_bundle\\sdk\\platforms\\android-23",
+    "compile_sdk_version": "android-23",
+    "databinding": [
+        
+    ],
+    "databinding_compiler_jar": "",
+    "databinding_modules": [
+        
+    ],
+    "debug_package": "maf.com.mafproject",
+    "exclude_dep_res_paths": [
+        
+    ],
+    "extra_dep_res_paths": [
+        
+    ],
+    "freeline_cache_dir": "E:\\android\\studio_workspace\\MAF\\maflibrary",
+    "freeline_gradle_plugin_version": "0.8.5",
+    "ignore_resource_ids": [
+        "avd_hide_password_1",
+        "avd_hide_password_2",
+        "avd_hide_password_3",
+        "avd_show_password_1",
+        "avd_show_password_2",
+        "avd_show_password_3"
+    ],
+    "java_home": "E:\\java1.8\\jdk",
+    "launcher": "com.maf.base.activity.MainActivity",
+    "main_assets_directory": [
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\assets",
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\assets"
+    ],
+    "main_jniLibs_directory": [
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\jniLibs",
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\jniLibs"
+    ],
+    "main_jni_directory": [
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\jni",
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\jni"
+    ],
+    "main_manifest_path": "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\AndroidManifest.xml",
+    "main_project_dir": "app",
+    "main_project_name": "app",
+    "main_r_path": "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\build\\generated\\source\\r\\debug\\R.java",
+    "main_res_directory": [
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\res",
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\res"
+    ],
+    "main_src_directory": [
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\java",
+        "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\java"
+    ],
+    "module_dependencies": {
+        "app": [
+            "maflibrary"
+        ],
+        "maflibrary": [
+            
+        ]
+    },
+    "modules": [
+        {
+            "name": "app",
+            "path": "E:\\android\\studio_workspace\\MAF\\maflibrary\\app"
+        },
+        {
+            "name": "maflibrary",
+            "path": "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary"
+        }
+    ],
+    "package": "maf.com.mafproject",
+    "product_flavor": "",
+    "project_source_sets": {
+        "app": {
+            "main_assets_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\assets",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\assets"
+            ],
+            "main_jniLibs_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\jniLibs",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\jniLibs"
+            ],
+            "main_jni_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\jni",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\jni"
+            ],
+            "main_manifest_path": "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\AndroidManifest.xml",
+            "main_res_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\res",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\res"
+            ],
+            "main_src_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\debug\\java",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\app\\src\\main\\java"
+            ]
+        },
+        "maflibrary": {
+            "main_assets_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\release\\assets",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\main\\assets"
+            ],
+            "main_jniLibs_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\release\\jniLibs",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\main\\jniLibs"
+            ],
+            "main_jni_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\release\\jni",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\main\\jni"
+            ],
+            "main_manifest_path": "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\main\\AndroidManifest.xml",
+            "main_res_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\release\\res",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\main\\res"
+            ],
+            "main_src_directory": [
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\release\\java",
+                "E:\\android\\studio_workspace\\MAF\\maflibrary\\maflibrary\\src\\main\\java"
+            ]
+        }
+    },
+    "project_type": "gradle",
+    "retrolambda": {
+        
+    },
+    "root_dir": "E:\\android\\studio_workspace\\MAF\\maflibrary",
+    "sdk_directory": "E:\\android\\adt_bundle\\sdk",
+    "use_jdk8": false
+}

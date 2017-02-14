@@ -12,6 +12,7 @@ import com.maf.utils.BaseToast;
 import com.maf.utils.StringUtils;
 import com.maf.views.MySearchBar;
 import com.maf.views.SlideSwitch;
+import com.maf.views.ZoomImageView;
 
 import maf.com.mafproject.R;
 
@@ -39,6 +40,8 @@ public class MyViewTestActivity extends BaseTitleActivity {
     // 选择时间
     private Button btnSelectTime;
     private DatePickerDialog datePickerDialog;
+    // 缩放控件测试
+    private ZoomImageView zoomImageView;
 
     @Override
     protected void initTitleView() {
@@ -66,6 +69,8 @@ public class MyViewTestActivity extends BaseTitleActivity {
 
         btnSelectDialog = (Button) findViewById(R.id.text_select_city);
         btnSelectTime = (Button) findViewById(R.id.text_select_time);
+
+        zoomImageView = (ZoomImageView) findViewById(R.id.zoomImageView);
     }
 
     @Override

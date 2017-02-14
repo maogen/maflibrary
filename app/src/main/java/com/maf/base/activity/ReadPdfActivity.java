@@ -202,8 +202,8 @@ public class ReadPdfActivity extends BaseTitleActivity implements OnPageChangeLi
 //        Lg.d("bitmap大小" + bitmap.getHeight() + "；" + bitmap.getWidth());
 //        Lg.d("newBitmap大小" + newBitmap.getHeight() + "；" + newBitmap.getWidth());
         savePdf.setBitmap(bitmap);
-        SavePdfTask saveTask = new SavePdfTask(savePdf);
-        saveTask.execute();
+//        SavePdfTask saveTask = new SavePdfTask(savePdf);
+//        saveTask.execute();
 
 
     }
