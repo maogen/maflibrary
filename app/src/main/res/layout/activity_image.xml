@@ -4,40 +4,61 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_get_picture"
+    <include layout="@layout/layout_titlebar_back" />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="选择照片" />
+        android:scrollbars="vertical">
 
-    <ImageView
-        android:id="@+id/image_local"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 测试Glide加载图片的各种效果 -->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/image_drawable"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1" />
+            <Button
+                android:id="@+id/btn_get_picture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="选择照片" />
+
+            <ImageView
+                android:id="@+id/image_local"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/image_drawable"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1" />
 
 
-    <ImageView
-        android:id="@+id/image_assets"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/image_assets"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1" />
 
-    <ImageView
-        android:id="@+id/image_url"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/image_url"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
