@@ -47,4 +47,19 @@ public class XUtilsTestActivity extends Activity {
     private void clickBtnAnno(View view) {
         BaseToast.makeTextShort("注解方式处理按钮单击事件");
     }
+
+    /**
+     * 请求地址
+     */
+    private String url = "http://api.m.mtime.cn/PageSubArea/TrailerList.api";
+
+    /**
+     * 下载大文件
+     *
+     * @param view
+     */
+    @Event(value = R.id.btn_file_download)
+    private void clickBtnFileDownload(View view) {
+        BaseToast.makeTextShort("下载大文件");
+    }
 }

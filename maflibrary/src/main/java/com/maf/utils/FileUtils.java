@@ -114,7 +114,8 @@ public class FileUtils {
         // crash log文件名
         String logDir = rootPath + DIR_NAME + File.separator + DIR_LOG_NAME;
         mkDirs(logDir);
-        String logFileName = logDir + File.separator + "crash_" + DateUtils.getDateByFormat("yyyyMMddHHmmss") + ".log";
+        String logFileName = logDir + File.separator + "crash_" + DateUtils
+                .getDateByFormat("yyyyMMddHHmmss") + ".log";
         writeTextToFile(text, logFileName);
     }
 
@@ -187,7 +188,19 @@ public class FileUtils {
      * @return 图片路劲
      */
     public static File getTempImagePath() {
-        File tempCameraFile = new File(FileUtils.getImageDir(), System.currentTimeMillis() + FileUtils.IMAGE_FORMAT);
+        File tempCameraFile = new File(FileUtils.getImageDir(), System
+                .currentTimeMillis() + FileUtils.IMAGE_FORMAT);
         return tempCameraFile;
+    }
+
+    /**
+     * 根据一个文件的完整路径，返回文件名
+     *
+     * @param path 文件的完整路径
+     * @return
+     */
+    public static String getFileNameByPath(String path) {
+        File file = new File(path);
+        return file.getName();
     }
 }

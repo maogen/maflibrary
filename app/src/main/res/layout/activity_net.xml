@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <com.maf.views.CustomSwipeRefreshLayout
         android:id="@+id/swipe_refresh"
@@ -11,12 +11,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="下拉刷新" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="点击电影名，下载预告片"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_movie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </com.maf.views.CustomSwipeRefreshLayout>
 </LinearLayout>

@@ -12,4 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:text="xUtils注解"/>
+
+    <Button
+        android:id="@+id/btn_file_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:text="大文件下载"/>
 </LinearLayout>
