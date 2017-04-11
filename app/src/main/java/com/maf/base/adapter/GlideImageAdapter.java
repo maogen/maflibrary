@@ -173,7 +173,7 @@ public class GlideImageAdapter extends BaseRecycleAdapter<Integer,
                         .bitmapTransform(new RoundedCornersTransformation
                                 (mContext, 30, 0,
                                         RoundedCornersTransformation
-                                                .CornerType.BOTTOM))
+                                                .CornerType.ALL))
                         .into(holder.imageView);
                 break;
             case Blur:

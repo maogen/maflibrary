@@ -18,6 +18,7 @@
     <string name="into_slide_switch">自定义控件</string>
     <string name="into_system_test">测试系统相关</string>
     <string name="into_signal">进入签名界面</string>
+    <string name="into_x_utils">进入xUtils测试界面</string>
 
     <!-- activity_toast.xml -->
     <string name="toast_short">显示ShortToast</string>

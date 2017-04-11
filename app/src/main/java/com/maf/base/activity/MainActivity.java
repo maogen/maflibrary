@@ -30,7 +30,7 @@ public class MainActivity extends BaseTitleActivity {
             R.id.btn_goto_code, R.id.btn_goto_hot_fix,
             R.id.btn_goto_main_text, R.id.btn_goto_load,
             R.id.btn_goto_slide, R.id.btn_goto_system,
-            R.id.btn_goto_signal};
+            R.id.btn_goto_signal, R.id.btn_goto_x_utils};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
@@ -64,7 +64,8 @@ public class MainActivity extends BaseTitleActivity {
         listPopup = new BaseListPopup(this);
         listPopup.setMenu(menu, null, new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long
+                    l) {
                 BaseToast.makeTextShort("点击第" + i + "个菜单");
             }
         });
@@ -88,7 +89,8 @@ public class MainActivity extends BaseTitleActivity {
         Lg.d("**********测试DateUtils***********");
         String dateString = DateUtils.getDateByDefault();
         Lg.d(dateString);
-        String purposeDate = DateUtils.changeDateFormat(dateString, DateUtils.defaultDateFormat, "HH:mm:ss(yyyy/MM/dd)");
+        String purposeDate = DateUtils.changeDateFormat(dateString, DateUtils
+                .defaultDateFormat, "HH:mm:ss(yyyy/MM/dd)");
         Lg.d(purposeDate);
         Lg.d("**********END***********");
     }
@@ -98,9 +100,11 @@ public class MainActivity extends BaseTitleActivity {
      */
     private void testGsonUtils() {
         Lg.d("**********测试GsonUtils***********");
-        String jsonString = RawUtils.getRawStr(BaseApplication._application, R.raw.jsontest);
-        JsonTestBean bean = GsonUtils.stringToGson(jsonString, new TypeToken<JsonTestBean>() {
-        });
+        String jsonString = RawUtils.getRawStr(BaseApplication._application, R.raw
+                .jsontest);
+        JsonTestBean bean = GsonUtils.stringToGson(jsonString, new
+                TypeToken<JsonTestBean>() {
+                });
         if (bean.getAge() == null) {
             Lg.d("Integer is null");
         } else {
@@ -178,6 +182,10 @@ public class MainActivity extends BaseTitleActivity {
                 // 进入签名界面
                 startActivity(ReadPdfActivity.class);
 //                startActivity(PDFActivity.class);
+                break;
+            case R.id.btn_goto_x_utils:
+                // 进入xUtils测试界面
+                startActivity(XUtilsTestActivity.class);
                 break;
             default:
                 break;
