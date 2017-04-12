@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maf/maf.iml" filepath="$PROJECT_DIR$/maf/maf.iml" />
       <module fileurl="file://$PROJECT_DIR$/maflibrary.iml" filepath="$PROJECT_DIR$/maflibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/maflibrary/maflibrary-maflibrary.iml" filepath="$PROJECT_DIR$/maflibrary/maflibrary-maflibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vitamio/vitamio.iml" filepath="$PROJECT_DIR$/vitamio/vitamio.iml" />
     </modules>
   </component>
 </project>
