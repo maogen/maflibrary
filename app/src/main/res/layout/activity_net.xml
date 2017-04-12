@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_titlebar_back"/>
 
     <com.maf.views.CustomSwipeRefreshLayout
         android:id="@+id/swipe_refresh"
@@ -26,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:text="点击电影名，下载预告片"/>
+                android:text="点击电影名，下载预告片\n点击图片播放视频"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_movie"

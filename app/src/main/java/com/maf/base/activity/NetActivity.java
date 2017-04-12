@@ -14,6 +14,7 @@ import com.maf.git.GsonUtils;
 import com.maf.net.XAPIServiceListener;
 import com.maf.net.XBaseAPIUtils;
 import com.maf.utils.Lg;
+import com.maf.views.TitleBarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import maf.com.mafproject.R;
  * 网络测试界面
  */
 public class NetActivity extends BaseCustomSwipeRefreshActivity {
+    protected TitleBarView titleBarView;
     // 热修复后台地址
     private String patchBaseUrl = "http://api.m.mtime.cn/PageSubArea/";
     // 热修复后台地址
@@ -59,6 +61,9 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
 
     @Override
     protected void initView() {
+        titleBarView = (TitleBarView) findViewById(R.id.view_title_background);
+        titleBarView.setTitle("网络测试");
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         recyclerViewMovie = (RecyclerView) findViewById(R.id.recycler_movie);

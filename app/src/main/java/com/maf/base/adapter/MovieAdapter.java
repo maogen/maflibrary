@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.maf.adapter.BaseRecycleAdapter;
+import com.maf.base.activity.VideoPlayActivity;
 import com.maf.base.bean.Trailer;
 import com.maf.git.GlideUtils;
 import com.maf.utils.BaseToast;
@@ -77,6 +78,12 @@ public class MovieAdapter extends BaseRecycleAdapter<Trailer, MovieViewHolder> {
             @Override
             public void onClick(View v) {
                 downloadFile(trailer);
+            }
+        });
+        holder.imageCover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playMovie(trailer);
             }
         });
     }
@@ -165,5 +172,27 @@ public class MovieAdapter extends BaseRecycleAdapter<Trailer, MovieViewHolder> {
                 isLoading = false;
             }
         });
+    }
+
+    /**
+     * 播放视频
+     *
+     * @param trailer
+     */
+    private void playMovie(Trailer trailer) {
+        String movieUrl = trailer.getHightUrl();
+        String fileName = FileUtils.getFileNameByPath(movieUrl);
+        // 根据文件名，得到本地文件地址
+        String sdcardFilePath = FileUtils.getFilePath(fileName);
+        File sdcardFile = new File(sdcardFilePath);
+        if (sdcardFile.exists()) {
+            // 本地文件存在，播放本地视频
+            BaseToast.makeTextShort("播放本地视频");
+            VideoPlayActivity.actionStart(context, trailer.getMovieName(),
+                    sdcardFilePath);
+        } else {
+            BaseToast.makeTextShort("播放在线视频");
+            VideoPlayActivity.actionStart(context, trailer.getMovieName(), movieUrl);
+        }
     }
 }

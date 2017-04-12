@@ -7,6 +7,8 @@ import com.maf.application.CrashHandler;
 import com.maf.base.activity.MainActivity;
 import com.maf.utils.FileUtils;
 
+import io.vov.vitamio.Vitamio;
+
 /**
  * Created by mzg on 2016/5/23.
  */
@@ -20,5 +22,7 @@ public class MAFProjectApplication extends BaseApplication {
         FileUtils.initDir();
         // 应用崩溃初始化
         CrashHandler.getInstance().init(this);
+        // 初始化视频
+        Vitamio.isInitialized(this);
     }
 }

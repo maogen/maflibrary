@@ -20,7 +20,6 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
         }
-
     }
 
 }

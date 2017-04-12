@@ -197,12 +197,12 @@ public class MediaController extends FrameLayout {
     mWindow.setOutsideTouchable(true);
     mAnimStyle = android.R.style.Animation;
   }
-  
+
   @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public void setWindowLayoutType() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 			try {
-				mAnchor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+				mAnchor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
 				Method setWindowLayoutType = PopupWindow.class.getMethod("setWindowLayoutType", new Class[] { int.class });
 				setWindowLayoutType.invoke(mWindow, WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
 			} catch (Exception e) {
@@ -341,7 +341,7 @@ public class MediaController extends FrameLayout {
 
         mWindow.setAnimationStyle(mAnimStyle);
         setWindowLayoutType();
-        mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, anchorRect.left, anchorRect.bottom);
+        mWindow.showAtLocation(mAnchor, Gravity.BOTTOM, anchorRect.left, anchorRect.bottom);
       }
       mShowing = true;
       if (mShownListener != null)
