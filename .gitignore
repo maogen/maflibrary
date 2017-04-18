@@ -3,6 +3,8 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/gradle.xml
+/.idea/misc.xml
 .DS_Store
 /build
 /maf/build
@@ -10,4 +12,4 @@
 /captures
 /.idea
 /freeline
-/freeline_core
+/freeline_core 
