@@ -1,6 +1,10 @@
 [
     {
-        "merged": "E:\\android\\studio_workspace\\MAF\\maflibrary\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
-        "source": "E:\\android\\studio_workspace\\MAF\\maflibrary\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
+        "merged": "/Users/mzgkq/Documents/development/Android/workspace/maflibrary/E:\\android\\studio_workspace\\MAF\\maflibrary\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "/Users/mzgkq/Documents/development/Android/workspace/maflibrary/E:\\android\\studio_workspace\\MAF\\maflibrary\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "/Users/mzgkq/Documents/development/Android/workspace/maflibrary/vitamio/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/Users/mzgkq/Documents/development/Android/workspace/maflibrary/vitamio/build/intermediates/bundles/debug/res/drawable-mdpi-v4/ic_launcher.png"
     }
 ]
