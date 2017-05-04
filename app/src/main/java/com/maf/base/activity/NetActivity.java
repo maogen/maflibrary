@@ -5,14 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseCustomSwipeRefreshActivity;
 import com.maf.base.adapter.MovieAdapter;
 import com.maf.base.bean.Trailer;
 import com.maf.base.bean.Trailers;
-import com.maf.git.GsonUtils;
-import com.maf.net.XAPIServiceListener;
-import com.maf.net.XBaseAPIUtils;
+import com.maf.base.logic.MovieLogic;
+import com.maf.interfaces.IViewListener;
 import com.maf.utils.Lg;
 import com.maf.views.TitleBarView;
 
@@ -25,12 +23,8 @@ import maf.com.mafproject.R;
  * Created by mzg on 2016/5/30.
  * 网络测试界面
  */
-public class NetActivity extends BaseCustomSwipeRefreshActivity {
+public class NetActivity extends BaseCustomSwipeRefreshActivity implements IViewListener<Trailers> {
     protected TitleBarView titleBarView;
-    // 热修复后台地址
-    private String patchBaseUrl = "http://api.m.mtime.cn/PageSubArea/";
-    // 热修复后台地址
-    private String patchAction = "/TrailerList.api";
 
     private ProgressBar progressBar;
     // 展示电影列表
@@ -78,14 +72,45 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
     protected void initEvent() {
     }
 
+    private MovieLogic movieLogic;
+
     @Override
     protected void initValue() {
-
+        movieLogic = new MovieLogic(this, this);
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void updateView(Trailers trailers) {
+        if (null != trailers) {
+            List<Trailer> movieList = trailers.getTrailers();
+            if (movieList == null) {
+                Lg.e("trailerList is null");
+                return;
+            }
+            trailerList.clear();
+            trailerList.addAll(movieList);
+            recyclerViewMovie.getAdapter().notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onSuccess(String result) {
+
+    }
+
+    @Override
+    public void onError(String result) {
+        Lg.d("获取失败：" + result);
+    }
+
+    @Override
+    public void onFinished() {
+        finishRefresh();
     }
 
     /**
@@ -95,48 +120,6 @@ public class NetActivity extends BaseCustomSwipeRefreshActivity {
         if (!swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.autoRefresh();
         }
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("appversion", BuildConfig.VERSION_NAME);
-        XBaseAPIUtils.get(patchBaseUrl, patchAction, null,
-                null, new XAPIServiceListener() {
-                    @Override
-                    public void onSuccess(String result) {
-                        Lg.d("获取成功：" + result);
-                        Trailers trailers = GsonUtils.stringToGson(result, new
-                                TypeToken<Trailers>() {
-                                });
-                        List<Trailer> movieList = trailers.getTrailers();
-                        if (movieList == null) {
-                            Lg.e("trailerList is null");
-                            return;
-                        }
-                        trailerList.clear();
-                        trailerList.addAll(movieList);
-                        recyclerViewMovie.getAdapter().notifyDataSetChanged();
-//                        PatchBean patchBean = GsonUtils.stringToGson(result, new
-//                                TypeToken<PatchBean>() {
-//                        });
-//                        if (patchBean != null && patchBean.isHasNewPatch()) {
-//                            // 有新插件，下载插件地址
-//                            BaseToast.makeTextShort("有新插件：" + patchBean.getPatchPath());
-//
-//                        } else {
-//                            BaseToast.makeTextShort("无需修复");
-//                        }
-                    }
-
-                    @Override
-                    public void onError(String result) {
-                        // 请求错误
-                        Lg.d("获取失败：" + result);
-//                        BaseToast.makeTextShort("获取热修复信息失败");
-                    }
-
-                    @Override
-                    public void onFinished() {
-                        finishRefresh();
-                    }
-                });
+        movieLogic.requestMovieList();
     }
-
 }

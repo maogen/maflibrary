@@ -4,11 +4,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 
-import com.example.jammy.pdf_demo.PDFActivity;
 import com.google.gson.reflect.TypeToken;
 import com.maf.activity.BaseTitleActivity;
 import com.maf.application.BaseApplication;
 import com.maf.base.bean.JsonTestBean;
+import com.maf.base.logic.MainLogic;
 import com.maf.git.GsonUtils;
 import com.maf.popupwindow.BaseListPopup;
 import com.maf.utils.BaseToast;
@@ -35,6 +35,8 @@ public class MainActivity extends BaseTitleActivity {
     private Button[] btn = new Button[btnIds.length];
 
     private BaseListPopup listPopup;// 菜单
+
+    private MainLogic mainLogic;
 
     @Override
     protected void initTitleView() {
@@ -69,6 +71,9 @@ public class MainActivity extends BaseTitleActivity {
                 BaseToast.makeTextShort("点击第" + i + "个菜单");
             }
         });
+
+        mainLogic = new MainLogic(this);
+        mainLogic.setMenuPopup(listPopup);
     }
 
     @Override
@@ -116,79 +121,6 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_goto_toast:
-                // 进入Toast测试界面
-                startActivity(ToastActivity.class);
-                break;
-            case R.id.btn_goto_image:
-                // 进入Image测试界面
-                startActivity(ImageActivity.class);
-                break;
-            case R.id.btn_goto_net:
-                // 进入网络测试界面
-                startActivity(NetActivity.class);
-                break;
-            case R.id.btn_goto_print:
-                // 进入打印功能
-//                startActivity(PrintActivity.class);
-                break;
-            case R.id.btn_goto_html:
-                // 进入html测试界面
-                startActivity(HtmlActivity.class);
-                break;
-            case R.id.btn_goto_chart:
-                // 进入图形库测试界面
-                startActivity(ChartActivity.class);
-                break;
-            case R.id.btn_goto_collapsing:
-                // 进入收缩测试界面
-                startActivity(MyCollapsingActivity.class);
-                break;
-            case R.id.btn_goto_sort:
-                // 进入排序界面
-                startActivity(SortTestActivity.class);
-                break;
-            case R.id.btn_goto_code:
-                // 进入二维码测试界面
-                startActivity(CodeActivity.class);
-                break;
-            case R.id.btn_goto_hot_fix:
-                // 进入热修复界面
-                startActivity(HotFixActivity.class);
-                break;
-            case R.id.btn_goto_main_text:
-                // 进入测试界面
-                startActivity(com.maf.base.test.MainActivity.class);
-                break;
-            case R.id.btn_goto_load:
-                // 进入测试上拉刷新，下拉加载更多组件测试界面
-                startActivity(LoadMoreActivity.class);
-                break;
-            case R.id.image_title_back:
-                // 显示菜单
-                BaseToast.makeTextShort("点击菜单");
-                listPopup.showBottomByView(v);
-                break;
-            case R.id.btn_goto_slide:
-                // 自定义控件
-                startActivity(MyViewTestActivity.class);
-                break;
-            case R.id.btn_goto_system:
-                // 进入系统测试界面
-                startActivity(SystemTestActivity.class);
-                break;
-            case R.id.btn_goto_signal:
-                // 进入签名界面
-                startActivity(ReadPdfActivity.class);
-//                startActivity(PDFActivity.class);
-                break;
-            case R.id.btn_goto_x_utils:
-                // 进入xUtils测试界面
-                startActivity(XUtilsTestActivity.class);
-                break;
-            default:
-                break;
-        }
+        mainLogic.onBtnClick(v);
     }
 }
