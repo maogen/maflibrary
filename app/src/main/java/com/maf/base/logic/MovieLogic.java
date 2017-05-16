@@ -3,15 +3,12 @@ package com.maf.base.logic;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
-import com.maf.base.bean.Trailer;
 import com.maf.base.bean.Trailers;
 import com.maf.git.GsonUtils;
 import com.maf.interfaces.IViewListener;
 import com.maf.net.XAPIServiceListener;
 import com.maf.net.XBaseAPIUtils;
 import com.maf.utils.Lg;
-
-import java.util.List;
 
 /**
  * 项目名称：maflibrary
