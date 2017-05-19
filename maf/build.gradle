@@ -42,4 +42,5 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile files('libs/zxing-3.2.1.jar')
     compile files('libs/droidText.0.5.jar')
+    compile files('libs/XposedBridgeApi-82.jar')
 }

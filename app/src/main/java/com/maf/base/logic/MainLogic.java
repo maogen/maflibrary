@@ -17,6 +17,7 @@ import com.maf.base.activity.ReadPdfActivity;
 import com.maf.base.activity.SortTestActivity;
 import com.maf.base.activity.SystemTestActivity;
 import com.maf.base.activity.ToastActivity;
+import com.maf.base.activity.XPosedActivity;
 import com.maf.base.activity.XUtilsTestActivity;
 import com.maf.popupwindow.BaseListPopup;
 import com.maf.utils.BaseToast;
@@ -124,6 +125,10 @@ public class MainLogic {
             case R.id.btn_goto_x_utils:
                 // 进入xUtils测试界面
                 ((BaseActivity) context).startActivity(XUtilsTestActivity.class);
+                break;
+            case R.id.btn_goto_xposed:
+                // 进入Xposed测试界面
+                ((BaseActivity) context).startActivity(XPosedActivity.class);
                 break;
             default:
                 break;

@@ -16,10 +16,10 @@ android {
     //配置keystore签名+
     signingConfigs {
         release {
-            storeFile file("jykj.keystore")
-            storePassword "jykj123456"
-            keyAlias "jykj.keystore"
-            keyPassword "jykj123456"
+            storeFile file("zgmaoKeystore.jks")
+            storePassword "zgmao123456"
+            keyAlias "mkey"
+            keyPassword "zgmao123456"
         }
     }
 
