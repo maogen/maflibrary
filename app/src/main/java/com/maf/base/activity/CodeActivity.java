@@ -6,9 +6,13 @@ import android.widget.Button;
 
 import com.maf.activity.BaseTitleActivity;
 import com.maf.dialog.ShowQRCodeDialogUtils;
+import com.maf.git.GsonUtils;
 import com.maf.scanlib.activity.ActivityScanQRCode;
 import com.maf.scanlib.activity.SysCodeZxing;
 import com.maf.utils.BaseToast;
+import com.maf.utils.Lg;
+import com.scan.idcard.activity.ActivityScanIdCard;
+import com.scan.idcard.activity.IDCardResult;
 
 import maf.com.mafproject.R;
 
@@ -24,6 +28,7 @@ import maf.com.mafproject.R;
 public class CodeActivity extends BaseTitleActivity {
     private Button btnCreateCode;// 生成二维码
     private Button btnScanCode;// 扫描二维码
+    private Button btn_scan_id_card;// 扫描身份证
 
     @Override
     protected void initTitleView() {
@@ -39,12 +44,15 @@ public class CodeActivity extends BaseTitleActivity {
     protected void initView() {
         btnCreateCode = (Button) findViewById(R.id.btn_create_code);
         btnScanCode = (Button) findViewById(R.id.btn_scan_code);
+        btn_scan_id_card = (Button) findViewById(R.id.btn_scan_id_card);
+
     }
 
     @Override
     protected void initEvent() {
         btnCreateCode.setOnClickListener(this);
         btnScanCode.setOnClickListener(this);
+        btn_scan_id_card.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +72,10 @@ public class CodeActivity extends BaseTitleActivity {
                 // 扫描二维码
                 ActivityScanQRCode.actionStartForResult(this, 1001);
                 break;
+            case R.id.btn_scan_id_card:
+                // 扫描身份证
+                ActivityScanIdCard.actionStart(this, 1002);
+                break;
         }
     }
 
@@ -76,6 +88,14 @@ public class CodeActivity extends BaseTitleActivity {
                     // 从扫描二维码界面返回内容
                     String code = data.getStringExtra(SysCodeZxing.CODE_RESULT_KEY);
                     BaseToast.makeTextShort("扫描结果：" + code);
+                    break;
+                case 1002:
+                    // 从扫描身份证界面返回
+                    IDCardResult result = (IDCardResult) data.getSerializableExtra(com.scan.idcard.activity.SysCode.SCAN_RESULT_ID_CARD);
+                    BaseToast.makeTextShort("扫描结果：" + GsonUtils.gsonToString(result));
+                    Lg.d("扫描结果：" + GsonUtils.gsonToString(result));
+                    break;
+                default:
                     break;
             }
         }

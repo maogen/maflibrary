@@ -45,4 +45,8 @@
     <color name="viewfinder_laser">#ffff0000</color>
 
     <color name="viewfinder_mask">#60000000</color>
+
+    <color name="viewfinder_box">#ffafafaf</color>
+    <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
 </resources>

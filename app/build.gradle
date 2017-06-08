@@ -55,5 +55,6 @@ dependencies {
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
     compile project(':maf')
     compile project(':vitamio')
+    compile project(':IdcardScan')
     compile 'com.jakewharton:butterknife:7.0.0'
 }

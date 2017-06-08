@@ -83,22 +83,20 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        PendingIntent restartIntent = null;
         if (startContext != null) {
             Intent intent = new Intent(mContext, startContext.getClass());
-            restartIntent = PendingIntent.getActivity(
+            PendingIntent restartIntent = PendingIntent.getActivity(
                     mContext, 0, intent,
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        //退出程序
-        AlarmManager mgr = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        if (restartIntent != null) {
+
+            AlarmManager mgr = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
             mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 500,
                     restartIntent); // 1秒钟后重启应用
         } else {
             Lg.d("没有设置启动界面");
         }
-        System.exit(1);
+        //退出程序
+        System.exit(0);
     }
 
     /**
