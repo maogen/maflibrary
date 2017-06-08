@@ -20,7 +20,6 @@ import com.maf.base.activity.ToastActivity;
 import com.maf.base.activity.XPosedActivity;
 import com.maf.base.activity.XUtilsTestActivity;
 import com.maf.popupwindow.BaseListPopup;
-import com.maf.scanlib.ActivityScanQRCode;
 import com.maf.utils.BaseToast;
 
 import maf.com.mafproject.R;

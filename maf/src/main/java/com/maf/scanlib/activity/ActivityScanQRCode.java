@@ -1,4 +1,4 @@
-package com.maf.scanlib;
+package com.maf.scanlib.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,7 +33,7 @@ import java.util.Vector;
  * 扫描二维码界面
  * 使用步骤：
  * 1：在Manifest注册震动权限和摄像头权限：android.permission.VIBRATE、android.permission.CAMERA
- * 2：在Manifest里面注册Activity：android:name="com.maf.scanlib.ActivityScanQRCode"
+ * 2：在Manifest里面注册Activity：android:name="com.maf.scanlib.scan.ActivityScanQRCode"
  * 3：在onActivityResult里面进行回调的处理：String code = intent.getStringExtra(SysCodeZxing.CODE_RESULT_KEY);
  */
 public class ActivityScanQRCode extends AppCompatActivity implements Callback {

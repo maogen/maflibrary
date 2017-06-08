@@ -24,7 +24,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.maf.scanlib.ActivityScanQRCode;
+import com.maf.scanlib.activity.ActivityScanQRCode;
 
 import java.lang.reflect.Method;
 import java.util.Collection;

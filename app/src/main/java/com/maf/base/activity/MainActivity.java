@@ -1,6 +1,5 @@
 package com.maf.base.activity;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,7 +11,6 @@ import com.maf.base.bean.JsonTestBean;
 import com.maf.base.logic.MainLogic;
 import com.maf.git.GsonUtils;
 import com.maf.popupwindow.BaseListPopup;
-import com.maf.scanlib.SysCodeZxing;
 import com.maf.utils.BaseToast;
 import com.maf.utils.DateUtils;
 import com.maf.utils.Lg;

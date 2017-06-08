@@ -22,7 +22,7 @@ import android.os.Looper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
-import com.maf.scanlib.ActivityScanQRCode;
+import com.maf.scanlib.activity.ActivityScanQRCode;
 
 import java.util.Hashtable;
 import java.util.Vector;

@@ -1,4 +1,4 @@
-package com.maf.scanlib;
+package com.maf.scanlib.activity;
 
 /**
  * 类描述：扫描二维码常量

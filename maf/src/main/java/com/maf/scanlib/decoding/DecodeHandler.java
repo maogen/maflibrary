@@ -28,8 +28,8 @@ import com.google.zxing.MultiFormatReader;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.maf.scanlib.ActivityScanQRCode;
-import com.maf.scanlib.SysCodeZxing;
+import com.maf.scanlib.activity.ActivityScanQRCode;
+import com.maf.scanlib.activity.SysCodeZxing;
 import com.maf.scanlib.camera.CameraManager;
 import com.maf.scanlib.camera.PlanarYUVLuminanceSource;
 

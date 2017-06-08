@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-import com.maf.activity.BaseActivity;
 import com.maf.activity.BaseTitleActivity;
 import com.maf.dialog.ShowQRCodeDialogUtils;
-import com.maf.scanlib.ActivityScanQRCode;
-import com.maf.scanlib.SysCodeZxing;
+import com.maf.scanlib.activity.ActivityScanQRCode;
+import com.maf.scanlib.activity.SysCodeZxing;
 import com.maf.utils.BaseToast;
 
 import maf.com.mafproject.R;
