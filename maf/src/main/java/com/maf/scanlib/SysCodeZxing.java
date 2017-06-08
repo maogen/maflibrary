@@ -1,13 +1,8 @@
-package com.maf.zxing;
+package com.maf.scanlib;
 
 /**
- * 项目名称：maflibrary
  * 类描述：扫描二维码常量
  * 创建人：mzg
- * 创建时间：2016/9/10 17:47
- * 修改人：mzg
- * 修改时间：2016/9/10 17:47
- * 修改备注：
  */
 public class SysCodeZxing {
     public static final int auto_focus = 0x0001;

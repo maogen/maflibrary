@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.view;
+package com.maf.scanlib.view;
 
 import com.google.zxing.ResultPoint;
 import com.google.zxing.ResultPointCallback;

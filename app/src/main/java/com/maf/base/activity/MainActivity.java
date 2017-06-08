@@ -1,5 +1,6 @@
 package com.maf.base.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import com.maf.base.bean.JsonTestBean;
 import com.maf.base.logic.MainLogic;
 import com.maf.git.GsonUtils;
 import com.maf.popupwindow.BaseListPopup;
+import com.maf.scanlib.SysCodeZxing;
 import com.maf.utils.BaseToast;
 import com.maf.utils.DateUtils;
 import com.maf.utils.Lg;
@@ -30,7 +32,8 @@ public class MainActivity extends BaseTitleActivity {
             R.id.btn_goto_code, R.id.btn_goto_hot_fix,
             R.id.btn_goto_main_text, R.id.btn_goto_load,
             R.id.btn_goto_slide, R.id.btn_goto_system,
-            R.id.btn_goto_signal, R.id.btn_goto_x_utils, R.id.btn_goto_xposed};
+            R.id.btn_goto_signal, R.id.btn_goto_x_utils,
+            R.id.btn_goto_xposed, R.id.btn_goto_scan_code};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 

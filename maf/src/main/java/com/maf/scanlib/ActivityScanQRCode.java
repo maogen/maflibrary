@@ -1,28 +1,30 @@
-package com.maf.zxing;
+package com.maf.scanlib;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.maf.R;
-import com.maf.activity.BaseActivity;
-import com.maf.utils.Lg;
-import com.maf.zxing.camera.CameraManager;
-import com.maf.zxing.decoding.CaptureActivityHandler;
-import com.maf.zxing.decoding.InactivityTimer;
-import com.maf.zxing.view.ViewfinderView;
+import com.maf.scanlib.camera.CameraManager;
+import com.maf.scanlib.decoding.CaptureActivityHandler;
+import com.maf.scanlib.decoding.InactivityTimer;
+import com.maf.scanlib.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -31,10 +33,12 @@ import java.util.Vector;
  * 扫描二维码界面
  * 使用步骤：
  * 1：在Manifest注册震动权限和摄像头权限：android.permission.VIBRATE、android.permission.CAMERA
- * 2：在Manifest里面注册Activity：android:name="com.maf.zxing.CaptureActivity"
+ * 2：在Manifest里面注册Activity：android:name="com.maf.scanlib.ActivityScanQRCode"
  * 3：在onActivityResult里面进行回调的处理：String code = intent.getStringExtra(SysCodeZxing.CODE_RESULT_KEY);
  */
-public class CaptureActivity extends BaseActivity implements Callback {
+public class ActivityScanQRCode extends AppCompatActivity implements Callback {
+    protected Context mContext;
+
     private CaptureActivityHandler handler;
     private ViewfinderView viewfinderView;
     private boolean hasSurface;
@@ -46,38 +50,56 @@ public class CaptureActivity extends BaseActivity implements Callback {
     private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
 
+    //灯光开关
+    private CheckBox check_light;
+    private CameraManager cameraManager;
+    public static boolean LIGHT_ON = false;
+
     public static void actionStartForResult(Activity activity, int requestCode) {
-        Intent intent = new Intent(activity, CaptureActivity.class);
+        Intent intent = new Intent(activity, ActivityScanQRCode.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         activity.startActivityForResult(intent, requestCode);
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = this;
+        setContentView(getLayoutResId());
+        initView();
+        initEvent();
+        initValue();
+    }
+
     protected int getLayoutResId() {
         return R.layout.layout_qr_capture;
     }
 
-    @Override
     public void initView() {
         //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
         CameraManager.init(getApplication());
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
+
+        check_light = (CheckBox) findViewById(R.id.check_light);
     }
 
-    @Override
     public void initEvent() {
-
+        check_light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    cameraManager.setTorch(true);
+                } else {
+                    cameraManager.setTorch(false);
+                }
+            }
+        });
     }
 
-    @Override
     public void initValue() {
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 
@@ -131,7 +153,6 @@ public class CaptureActivity extends BaseActivity implements Callback {
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String resultString = result.getText();
-        Lg.d("扫描二维码结果：" + resultString);
         Intent intent = new Intent();
         intent.putExtra(SysCodeZxing.CODE_RESULT_KEY, resultString);
         setResult(RESULT_OK, intent);
@@ -143,7 +164,8 @@ public class CaptureActivity extends BaseActivity implements Callback {
      */
     private void initCamera(SurfaceHolder surfaceHolder) {
         try {
-            CameraManager.get().openDriver(surfaceHolder);
+            cameraManager = CameraManager.get();
+            cameraManager.openDriver(surfaceHolder);
         } catch (IOException ioe) {
             return;
         } catch (RuntimeException e) {

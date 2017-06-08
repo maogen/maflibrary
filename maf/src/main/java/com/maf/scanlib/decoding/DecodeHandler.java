@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.decoding;
+package com.maf.scanlib.decoding;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,10 +28,10 @@ import com.google.zxing.MultiFormatReader;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.maf.zxing.CaptureActivity;
-import com.maf.zxing.SysCodeZxing;
-import com.maf.zxing.camera.CameraManager;
-import com.maf.zxing.camera.PlanarYUVLuminanceSource;
+import com.maf.scanlib.ActivityScanQRCode;
+import com.maf.scanlib.SysCodeZxing;
+import com.maf.scanlib.camera.CameraManager;
+import com.maf.scanlib.camera.PlanarYUVLuminanceSource;
 
 import java.util.Hashtable;
 
@@ -39,10 +39,10 @@ final class DecodeHandler extends Handler {
 
     private static final String TAG = DecodeHandler.class.getSimpleName();
 
-    private final CaptureActivity activity;
+    private final ActivityScanQRCode activity;
     private final MultiFormatReader multiFormatReader;
 
-    DecodeHandler(CaptureActivity activity, Hashtable<DecodeHintType, Object> hints) {
+    DecodeHandler(ActivityScanQRCode activity, Hashtable<DecodeHintType, Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
         this.activity = activity;

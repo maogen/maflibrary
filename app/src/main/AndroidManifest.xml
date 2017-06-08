@@ -118,10 +118,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.maf.zxing.CaptureActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name="com.maf.base.activity.HotFixActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -159,6 +155,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.maf.base.activity.XPosedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.maf.scanlib.ActivityScanQRCode"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <!-- 视频播放插件必须初始化 -->

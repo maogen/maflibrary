@@ -3,14 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <SurfaceView
         android:id="@+id/preview_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.maf.zxing.view.ViewfinderView
+    <com.maf.scanlib.view.ViewfinderView
         android:id="@+id/viewfinder_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <CheckBox
+        android:id="@+id/check_light"
+        android:layout_width="55dip"
+        android:layout_height="50.0dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10.0dip"
+        android:button="@drawable/selector_capture_power_checkbox" />
 </RelativeLayout>

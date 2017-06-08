@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.decoding;
+package com.maf.scanlib.decoding;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,10 +27,10 @@ import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.maf.zxing.CaptureActivity;
-import com.maf.zxing.SysCodeZxing;
-import com.maf.zxing.camera.CameraManager;
-import com.maf.zxing.view.ViewfinderResultPointCallback;
+import com.maf.scanlib.ActivityScanQRCode;
+import com.maf.scanlib.SysCodeZxing;
+import com.maf.scanlib.camera.CameraManager;
+import com.maf.scanlib.view.ViewfinderResultPointCallback;
 
 import java.util.Vector;
 
@@ -41,7 +41,7 @@ public final class CaptureActivityHandler extends Handler {
 
     private static final String TAG = CaptureActivityHandler.class.getSimpleName();
 
-    private final CaptureActivity activity;
+    private final ActivityScanQRCode activity;
     private final DecodeThread decodeThread;
     private State state;
 
@@ -51,7 +51,7 @@ public final class CaptureActivityHandler extends Handler {
         DONE
     }
 
-    public CaptureActivityHandler(CaptureActivity activity, Vector<BarcodeFormat> decodeFormats,
+    public CaptureActivityHandler(ActivityScanQRCode activity, Vector<BarcodeFormat> decodeFormats,
                                   String characterSet) {
         this.activity = activity;
         decodeThread = new DecodeThread(activity, decodeFormats, characterSet,

@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maf.R;
-import com.maf.zxing.SysCodeZxing;
 import com.maf.utils.BaseToast;
 import com.maf.utils.QRCodeUtil;
 

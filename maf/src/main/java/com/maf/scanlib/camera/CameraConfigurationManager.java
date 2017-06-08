@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.maf.zxing.camera;
+package com.maf.scanlib.camera;
 
 
 import android.content.Context;
@@ -24,7 +24,10 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.maf.scanlib.ActivityScanQRCode;
+
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 final class CameraConfigurationManager {
@@ -289,6 +292,58 @@ final class CameraConfigurationManager {
                 downPolymorphic.invoke(camera, new Object[]{angle});
         } catch (Exception e1) {
         }
+    }
+
+    boolean getTorchState(Camera camera) {
+        if (camera != null) {
+            Camera.Parameters parameters = camera.getParameters();
+            if (parameters != null) {
+                String flashMode = camera.getParameters().getFlashMode();
+                return flashMode != null
+                        && (Camera.Parameters.FLASH_MODE_ON.equals(flashMode) || Camera.Parameters.FLASH_MODE_TORCH
+                        .equals(flashMode));
+            }
+        }
+        return false;
+    }
+
+    void setTorch(Camera camera, boolean newSetting) {
+        Camera.Parameters parameters = camera.getParameters();
+        doSetTorch(parameters, newSetting, false);
+        camera.setParameters(parameters);
+    }
+
+    private void doSetTorch(Camera.Parameters parameters, boolean newSetting, boolean safeMode) {
+        String flashMode;
+        if (newSetting) {
+            flashMode = findSettableValue(parameters.getSupportedFlashModes(), Camera.Parameters.FLASH_MODE_TORCH,
+                    Camera.Parameters.FLASH_MODE_ON);
+        } else {
+            flashMode = findSettableValue(parameters.getSupportedFlashModes(), Camera.Parameters.FLASH_MODE_OFF);
+        }
+        if (flashMode != null) {
+            if (ActivityScanQRCode.LIGHT_ON) {
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            } else {
+                parameters.setFlashMode(flashMode);
+            }
+        }
+
+    }
+
+    private static String findSettableValue(Collection<String> supportedValues, String... desiredValues) {
+        Log.i(TAG, "Supported values: " + supportedValues);
+        String result = null;
+        if (supportedValues != null) {
+            for (String desiredValue : desiredValues) {
+                if (supportedValues.contains(desiredValue)) {
+                    result = desiredValue;
+                    break;
+                }
+            }
+        }
+        Log.i(TAG, "Settable value: " + result);
+        return result;
     }
 
 }

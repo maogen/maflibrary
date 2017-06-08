@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.view;
+package com.maf.scanlib.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -29,7 +29,7 @@ import android.view.View;
 
 import com.google.zxing.ResultPoint;
 import com.maf.R;
-import com.maf.zxing.camera.CameraManager;
+import com.maf.scanlib.camera.CameraManager;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -40,7 +40,6 @@ import java.util.HashSet;
  * animation and result points.
  */
 public final class ViewfinderView extends View {
-    private static final String TAG = "log";
     /**
      * 刷新界面的时间
      */
@@ -197,7 +196,7 @@ public final class ViewfinderView extends View {
             paint.setTextSize(TEXT_SIZE * density);
             paint.setAlpha(0x40);
             paint.setTypeface(Typeface.create("System", Typeface.BOLD));
-            canvas.drawText(getResources().getString(R.string.scan_text), frame.left - 32 * density, (frame.bottom + TEXT_PADDING_TOP * density), paint);
+            canvas.drawText(getResources().getString(R.string.scan_text), frame.left + 5 * density, (frame.bottom + TEXT_PADDING_TOP * density), paint);
 
 
             Collection<ResultPoint> currentPossible = possibleResultPoints;

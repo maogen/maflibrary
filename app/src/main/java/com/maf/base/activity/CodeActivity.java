@@ -5,10 +5,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.maf.activity.BaseActivity;
+import com.maf.activity.BaseTitleActivity;
 import com.maf.dialog.ShowQRCodeDialogUtils;
+import com.maf.scanlib.ActivityScanQRCode;
+import com.maf.scanlib.SysCodeZxing;
 import com.maf.utils.BaseToast;
-import com.maf.zxing.CaptureActivity;
-import com.maf.zxing.SysCodeZxing;
 
 import maf.com.mafproject.R;
 
@@ -21,9 +22,14 @@ import maf.com.mafproject.R;
  * 修改时间：2016/8/31 9:31
  * 修改备注：
  */
-public class CodeActivity extends BaseActivity {
+public class CodeActivity extends BaseTitleActivity {
     private Button btnCreateCode;// 生成二维码
     private Button btnScanCode;// 扫描二维码
+
+    @Override
+    protected void initTitleView() {
+        titleBarView.setTitle("扫描二维码");
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -57,7 +63,7 @@ public class CodeActivity extends BaseActivity {
                 break;
             case R.id.btn_scan_code:
                 // 扫描二维码
-                CaptureActivity.actionStartForResult(this, 1001);
+                ActivityScanQRCode.actionStartForResult(this, 1001);
                 break;
         }
     }

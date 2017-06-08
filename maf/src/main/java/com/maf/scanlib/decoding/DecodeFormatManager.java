@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.decoding;
+package com.maf.scanlib.decoding;
 
 import android.content.Intent;
 import android.net.Uri;

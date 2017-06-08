@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.camera;
+package com.maf.scanlib.camera;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -73,7 +73,7 @@ public final class CameraManager {
     /**
      * Autofocus callbacks arrive here, and are dispatched to the Handler which requested them.
      */
-    private final AutoFocusCallback autoFocusCallback;
+    private AutoFocusCallback autoFocusCallback;
 
     /**
      * Initializes this static object with the Context of the calling Activity.
@@ -108,7 +108,6 @@ public final class CameraManager {
         useOneShotPreviewCallback = Integer.parseInt(Build.VERSION.SDK) > 3; // 3 = Cupcake
 
         previewCallback = new PreviewCallback(configManager, useOneShotPreviewCallback);
-        autoFocusCallback = new AutoFocusCallback();
     }
 
     /**
@@ -159,6 +158,7 @@ public final class CameraManager {
         if (camera != null && !previewing) {
             camera.startPreview();
             previewing = true;
+            autoFocusCallback = new AutoFocusCallback(context, camera);
         }
     }
 
@@ -166,13 +166,16 @@ public final class CameraManager {
      * Tells the camera to stop drawing preview frames.
      */
     public void stopPreview() {
+        if (autoFocusCallback != null) {
+            autoFocusCallback.stop();
+            autoFocusCallback = null;
+        }
         if (camera != null && previewing) {
             if (!useOneShotPreviewCallback) {
                 camera.setPreviewCallback(null);
             }
             camera.stopPreview();
             previewCallback.setHandler(null, 0);
-            autoFocusCallback.setHandler(null, 0);
             previewing = false;
         }
     }
@@ -325,4 +328,17 @@ public final class CameraManager {
         return context;
     }
 
+    public synchronized void setTorch(boolean newSetting) {
+        if (newSetting != configManager.getTorchState(camera)) {
+            if (camera != null) {
+                if (autoFocusCallback != null) {
+                    autoFocusCallback.stop();
+                }
+                configManager.setTorch(camera, newSetting);
+                if (autoFocusCallback != null) {
+                    autoFocusCallback.start();
+                }
+            }
+        }
+    }
 }

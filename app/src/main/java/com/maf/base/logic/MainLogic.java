@@ -20,6 +20,7 @@ import com.maf.base.activity.ToastActivity;
 import com.maf.base.activity.XPosedActivity;
 import com.maf.base.activity.XUtilsTestActivity;
 import com.maf.popupwindow.BaseListPopup;
+import com.maf.scanlib.ActivityScanQRCode;
 import com.maf.utils.BaseToast;
 
 import maf.com.mafproject.R;
@@ -129,6 +130,10 @@ public class MainLogic {
             case R.id.btn_goto_xposed:
                 // 进入Xposed测试界面
                 ((BaseActivity) context).startActivity(XPosedActivity.class);
+                break;
+            case R.id.btn_goto_scan_code:
+                // 测试扫描二维码
+                ((BaseActivity) context).startActivity(CodeActivity.class);
                 break;
             default:
                 break;

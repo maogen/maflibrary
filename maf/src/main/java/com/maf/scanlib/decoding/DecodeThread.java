@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.decoding;
+package com.maf.scanlib.decoding;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -22,7 +22,7 @@ import android.os.Looper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
-import com.maf.zxing.CaptureActivity;
+import com.maf.scanlib.ActivityScanQRCode;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -35,12 +35,12 @@ import java.util.concurrent.CountDownLatch;
 final class DecodeThread extends Thread {
 
   public static final String BARCODE_BITMAP = "barcode_bitmap";
-  private final CaptureActivity activity;
+  private final ActivityScanQRCode activity;
   private final Hashtable<DecodeHintType, Object> hints;
   private Handler handler;
   private final CountDownLatch handlerInitLatch;
 
-  DecodeThread(CaptureActivity activity,
+  DecodeThread(ActivityScanQRCode activity,
                Vector<BarcodeFormat> decodeFormats,
                String characterSet,
                ResultPointCallback resultPointCallback) {

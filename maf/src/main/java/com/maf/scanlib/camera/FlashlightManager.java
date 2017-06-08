@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maf.zxing.camera;
+package com.maf.scanlib.camera;
 
 import android.os.IBinder;
 import android.util.Log;
