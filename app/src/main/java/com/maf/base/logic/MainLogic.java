@@ -6,6 +6,7 @@ import android.view.View;
 import com.maf.activity.BaseActivity;
 import com.maf.base.activity.ChartActivity;
 import com.maf.base.activity.CodeActivity;
+import com.maf.base.activity.GPSActivity;
 import com.maf.base.activity.HotFixActivity;
 import com.maf.base.activity.HtmlActivity;
 import com.maf.base.activity.ImageActivity;
@@ -133,6 +134,10 @@ public class MainLogic {
             case R.id.btn_goto_scan_code:
                 // 测试扫描二维码
                 ((BaseActivity) context).startActivity(CodeActivity.class);
+                break;
+            case R.id.btn_goto_gps:
+                // GPS测试
+                ((BaseActivity) context).startActivity(GPSActivity.class);
                 break;
             default:
                 break;
