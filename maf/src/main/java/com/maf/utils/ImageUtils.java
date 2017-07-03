@@ -233,6 +233,26 @@ public class ImageUtils {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
+
+    /**
+     * 将图片压缩到1M以内
+     *
+     * @param path
+     * @return
+     */
+    public static String compressImage(String path) {
+        File file = new File(path);
+        long fileSize = file.length() / 1024;
+        Lg.d("图片大小" + fileSize);
+        if (fileSize <= 1024) {
+            // 图片大小小于最大值，不压缩，直接返回原来的路劲
+            return path;
+        }
+        String desPath = FileUtils.getTempImagePath().getAbsolutePath();
+        desPath = compressPicture(path, desPath);
+        return desPath;
+    }
+
     /**
      * 得到图片bitmap
      *
