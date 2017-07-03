@@ -170,6 +170,10 @@
             android:name="com.maf.base.activity.GPSActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.maf.base.activity.XListViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- 视频播放插件必须初始化 -->
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"

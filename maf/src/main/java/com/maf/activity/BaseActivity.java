@@ -1,5 +1,6 @@
 package com.maf.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.maf.utils.Lg;
  * MAF包的基础Activity类，用于使用堆栈管理Activity
  */
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+    protected Context mContext;
     /**
      * 是否显示周期Activity回调函数的log
      */
@@ -31,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(getLayoutResId());
         ActivityManager.getInstance().addActivity(this);
         initView();

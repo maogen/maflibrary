@@ -18,6 +18,7 @@ import com.maf.base.activity.ReadPdfActivity;
 import com.maf.base.activity.SortTestActivity;
 import com.maf.base.activity.SystemTestActivity;
 import com.maf.base.activity.ToastActivity;
+import com.maf.base.activity.XListViewActivity;
 import com.maf.base.activity.XPosedActivity;
 import com.maf.base.activity.XUtilsTestActivity;
 import com.maf.popupwindow.BaseListPopup;
@@ -138,6 +139,10 @@ public class MainLogic {
             case R.id.btn_goto_gps:
                 // GPS测试
                 ((BaseActivity) context).startActivity(GPSActivity.class);
+                break;
+            case R.id.btn_goto_x_listview:
+                // XListView测试
+                ((BaseActivity) context).startActivity(XListViewActivity.class);
                 break;
             default:
                 break;

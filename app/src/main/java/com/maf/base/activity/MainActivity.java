@@ -32,7 +32,7 @@ public class MainActivity extends BaseTitleActivity {
             R.id.btn_goto_slide, R.id.btn_goto_system,
             R.id.btn_goto_signal, R.id.btn_goto_x_utils,
             R.id.btn_goto_xposed, R.id.btn_goto_scan_code,
-            R.id.btn_goto_gps};
+            R.id.btn_goto_gps, R.id.btn_goto_x_listview};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
