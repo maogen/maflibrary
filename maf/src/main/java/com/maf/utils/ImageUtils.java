@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.DocumentsContract;
@@ -17,6 +19,9 @@ import com.maf.application.BaseApplication;
 import com.maf.crop.Crop;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * 项目名称：maflibrary
@@ -73,6 +78,7 @@ public class ImageUtils {
     /**
      * 拍照获得图片
      * 传入的路径就是图片的路径
+     * 注：部分手机拍摄完照片，照片会旋转
      *
      * @param activity Activity对象
      * @param imgPath  文件的路径
@@ -225,5 +231,156 @@ public class ImageUtils {
      */
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+
+    /**
+     * 得到图片bitmap
+     *
+     * @param path
+     * @return
+     */
+    public static Bitmap getImageBitmap(String path) {
+        BitmapFactory.Options opts = new BitmapFactory.Options();//获取缩略图显示到屏幕上
+        opts.inSampleSize = 2;
+        Bitmap newBitmap = BitmapFactory.decodeFile(path, opts);
+        return newBitmap;
+    }
+
+    /**
+     * 压缩图片
+     *
+     * @param srcPath 图片原来的路径
+     * @param desPath 图片压缩之后的路径
+     * @return
+     */
+    public static String compressPicture(String srcPath, String desPath) {
+        BitmapFactory.Options op = new BitmapFactory.Options();
+
+        // 开始读入图片，此时把options.inJustDecodeBounds 设回true了
+        op.inJustDecodeBounds = true;
+        Bitmap bitmap = BitmapFactory.decodeFile(srcPath, op);
+        op.inJustDecodeBounds = false;
+
+        // 缩放图片的尺寸
+        float w = op.outWidth;
+        float h = op.outHeight;
+        float hh = 1024f;//
+        float ww = 1024f;//
+        // 最长宽度或高度1024
+        float be = 1.0f;
+        if (w > h && w > ww) {
+            be = (w / ww);
+        } else if (w < h && h > hh) {
+            be = (h / hh);
+        }
+        if (be <= 0) {
+            be = 1.0f;
+        }
+        op.inSampleSize = (int) be;// 设置缩放比例,这个数字越大,图片大小越小.
+        // 重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
+        bitmap = BitmapFactory.decodeFile(srcPath, op);
+        int desWidth = (int) (w / be);
+        int desHeight = (int) (h / be);
+        bitmap = Bitmap.createScaledBitmap(bitmap, desWidth, desHeight, true);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(desPath);
+            if (bitmap != null) {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != fos) {
+                try {
+                    fos.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return desPath;
+    }
+
+    /**
+     * 将图片进行旋转
+     *
+     * @param path 图片原来的路径
+     * @return 旋转之后的路径
+     */
+    public static String rotateImage(String path) {
+        int degree = getBitmapDegree(path);
+        Lg.d("图片角度:" + degree);
+        if (degree != 0) {
+            // 如果图片旋转角度不是0，需要旋转处理
+            Bitmap newBitmap = rotateBitmapByDegree(getImageBitmap(path), degree);
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(path);
+                if (newBitmap != null) {
+                    newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                if (null != fos) {
+                    try {
+                        fos.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        }
+        return path;
+    }
+
+    /**
+     * 读取图片的旋转的角度
+     *
+     * @param path 图片绝对路径
+     * @return 图片的旋转角度
+     */
+    public static int getBitmapDegree(String path) {
+        int degree = 0;
+        try {
+            // 从指定路径下读取图片，并获取其EXIF信息
+            ExifInterface exifInterface = new ExifInterface(path);
+            // 获取图片的旋转信息
+            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return degree;
+    }
+
+    /**
+     * 将图片按照某个角度进行旋转
+     *
+     * @param bitmap 需要旋转的图片
+     * @param angle  旋转角度
+     * @return 旋转后的图片
+     */
+    public static Bitmap rotateBitmapByDegree(Bitmap bitmap, int angle) {
+        //旋转图片 动作
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        // 创建新的图片
+        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return resizedBitmap;
     }
 }
