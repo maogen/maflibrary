@@ -1,6 +1,13 @@
 package com.maf.base.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Parcelable;
+import android.telecom.PhoneAccountHandle;
+import android.telecom.TelecomManager;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 
@@ -15,6 +22,10 @@ import com.maf.utils.BaseToast;
 import com.maf.utils.DateUtils;
 import com.maf.utils.Lg;
 import com.maf.utils.RawUtils;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
 
 import maf.com.mafproject.R;
 
@@ -80,6 +91,49 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     protected void initEvent() {
+        getTelecomManager();
+    }
+
+    public void getTelecomManager() {
+        int slotId = 1;
+        if (Build.VERSION.SDK_INT >= 23) {
+            try {
+                TelecomManager telecomManager = (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
+                List<PhoneAccountHandle> listHandle = telecomManager.getCallCapablePhoneAccounts();
+                if (null != listHandle) {
+                    PhoneAccountHandle phoneAccountHandle = listHandle.get(slotId);
+                    Intent intent = new Intent();
+                    intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);
+                }
+            } catch (SecurityException se) {
+                se.printStackTrace();
+            }
+        }
+
+        try {
+            Class<?> tManager = Class.forName("android.telecom.TelecomManager");
+//            Class manager =  tManager.newInstance();
+            Method callMethod = tManager.getClass().getDeclaredMethod("getCallCapablePhoneAccounts");
+            callMethod.setAccessible(true);
+            // getCallCapablePhoneAccounts返回的是List<PhoneAccountHandle>
+            Object object = callMethod.invoke(tManager);
+            Method getMethod = object.getClass().getDeclaredMethod("get");
+            getMethod.setAccessible(true);
+            // PhoneAccountHandle handler = list.get(i);
+            Object listItem = getMethod.invoke(object, slotId);
+            // 处理PhoneAccountHandle
+            Intent intent = new Intent();
+            intent.putExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE, (Parcelable) listItem);
+//            listItem.getClass().getDeclaredMethod("");
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        } catch (InvocationTargetException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
