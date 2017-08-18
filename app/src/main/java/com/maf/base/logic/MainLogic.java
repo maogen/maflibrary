@@ -15,6 +15,7 @@ import com.maf.base.activity.MyCollapsingActivity;
 import com.maf.base.activity.MyViewTestActivity;
 import com.maf.base.activity.NetActivity;
 import com.maf.base.activity.ReadPdfActivity;
+import com.maf.base.activity.ShellTestActivity;
 import com.maf.base.activity.SortTestActivity;
 import com.maf.base.activity.SystemTestActivity;
 import com.maf.base.activity.ToastActivity;
@@ -143,6 +144,10 @@ public class MainLogic {
             case R.id.btn_goto_x_listview:
                 // XListView测试
                 ((BaseActivity) context).startActivity(XListViewActivity.class);
+                break;
+            case R.id.btn_goto_shell:
+                // 测试Shell
+                ((BaseActivity) context).startActivity(ShellTestActivity.class);
                 break;
             default:
                 break;

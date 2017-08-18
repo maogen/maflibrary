@@ -216,6 +216,14 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:text="XListView测试" />
+
+                <Button
+                    android:id="@+id/btn_goto_shell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="Shell命令测试" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
