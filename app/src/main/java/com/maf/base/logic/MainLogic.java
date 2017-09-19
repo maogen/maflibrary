@@ -38,15 +38,18 @@ import maf.com.mafproject.R;
  * Created by Administrator on 2017/5/4.
  */
 
-public class MainLogic {
+public class MainLogic
+{
     private Context context;
     private BaseListPopup listPopup;// 菜单
 
-    public MainLogic(Context _context) {
+    public MainLogic(Context _context)
+    {
         this.context = _context;
     }
 
-    public void setMenuPopup(BaseListPopup _listPopup) {
+    public void setMenuPopup(BaseListPopup _listPopup)
+    {
         this.listPopup = _listPopup;
     }
 
@@ -55,7 +58,8 @@ public class MainLogic {
      *
      * @param view 按钮控件
      */
-    public void onBtnClick(View view) {
+    public void onBtnClick(View view)
+    {
         switch (view.getId()) {
             case R.id.btn_goto_toast:
                 // 进入Toast测试界面
@@ -153,4 +157,5 @@ public class MainLogic {
                 break;
         }
     }
+
 }
