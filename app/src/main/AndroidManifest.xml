@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="maf.com.mafproject">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="maf.com.mafproject"
+    >
 
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
@@ -42,11 +44,13 @@
         android:icon="@drawable/maf_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity
             android:name="com.maf.base.activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,15 +62,18 @@
         <activity
             android:name="com.maf.base.test.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.PieChartActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.ToastActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <!-- Adding -->
                 <action android:name="android.intent.action.SEND" />
@@ -85,116 +92,149 @@
         <activity
             android:name="com.maf.base.activity.ImageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.NetActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.PrintActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.HtmlActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.ChartActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.MyCollapsingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.SortTestActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.CodeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.FingerprintActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.HotFixActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.crop.CropImageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.LoadMoreActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.MyViewTestActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.SignalActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.ReadPdfActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.example.jammy.pdf_demo.PDFActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.XUtilsTestActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.BillingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.XPosedActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.scanlib.activity.ActivityScanQRCode"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.scan.idcard.activity.ActivityScanIdCard"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.GPSActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.XListViewActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.ShellTestActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity
+            android:name="com.maf.base.activity.DownloadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
         <!-- 视频播放插件必须初始化 -->
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
         <activity
             android:name="com.maf.base.activity.VideoPlayActivity"
             android:fitsSystemWindows="true"
             android:process=":vitamio"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name="com.maf.base.activity.SystemTestActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <!-- Adding：测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
                 <action android:name="android.intent.action.SEND" />
@@ -213,7 +253,8 @@
         <!-- start:::测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
         <receiver
             android:name="com.maf.base.receiver.MmsReceiver"
-            android:permission="android.permission.BROADCAST_WAP_PUSH">
+            android:permission="android.permission.BROADCAST_WAP_PUSH"
+            >
             <intent-filter>
                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
 
@@ -223,7 +264,8 @@
         <!-- 测试插入短信共能，5.0以后的版本，需要将应用设为默认短信应用 -->
         <receiver
             android:name="com.maf.base.receiver.SmsReceiver"
-            android:permission="android.permission.BROADCAST_SMS">
+            android:permission="android.permission.BROADCAST_SMS"
+            >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_DELIVER" />
             </intent-filter>
@@ -232,7 +274,8 @@
         <service
             android:name="com.maf.base.receiver.SmsSendService"
             android:exported="true"
-            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
 
@@ -250,17 +293,20 @@
         <!-- 作为xposed模块 -->
         <meta-data
             android:name="xposedmodule"
-            android:value="true" />
+            android:value="true"
+            />
 
         <!-- 模块描述 -->
         <meta-data
             android:name="xposeddescription"
-            android:value="zgmao_xposed" />
+            android:value="zgmao_xposed"
+            />
 
         <!-- XposedBridgeApi的最低版本号 -->
         <meta-data
             android:name="xposedminversion"
-            android:value="82" />
+            android:value="82"
+            />
         <!-- end::: xposed -->
     </application>
 

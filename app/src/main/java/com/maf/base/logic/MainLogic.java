@@ -6,6 +6,7 @@ import android.view.View;
 import com.maf.activity.BaseActivity;
 import com.maf.base.activity.ChartActivity;
 import com.maf.base.activity.CodeActivity;
+import com.maf.base.activity.DownloadActivity;
 import com.maf.base.activity.GPSActivity;
 import com.maf.base.activity.HotFixActivity;
 import com.maf.base.activity.HtmlActivity;
@@ -152,6 +153,10 @@ public class MainLogic
             case R.id.btn_goto_shell:
                 // 测试Shell
                 ((BaseActivity) context).startActivity(ShellTestActivity.class);
+                break;
+            case R.id.btn_goto_download:
+                // 文件下载
+                ((BaseActivity) context).startActivity(DownloadActivity.class);
                 break;
             default:
                 break;
