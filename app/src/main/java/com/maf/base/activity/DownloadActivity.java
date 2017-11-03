@@ -1,13 +1,18 @@
 package com.maf.base.activity;
 
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.maf.activity.BaseTitleActivity;
-import com.maf.base.thread.DownloadThread;
+import com.maf.net.XBaseAPIUtils;
+import com.maf.utils.FileUtils;
+import com.maf.utils.Lg;
+
+import org.xutils.common.Callback;
+
+import java.io.File;
 
 import maf.com.mafproject.R;
 
@@ -23,18 +28,27 @@ import maf.com.mafproject.R;
  */
 public class DownloadActivity extends BaseTitleActivity
 {
-    // 进度条
-    private ProgressBar progressBar;
-    // 开始下载按钮
-    private Button btnStart;
-    // 暂停下载按钮
-    private Button btnPause;
 
-    // 进度回调
-    private Handler handler;
-
-    // 下载链接
-    private String url = "http://sw.bos.baidu.com/sw-search-sp/software/16d5a98d3e034/QQ_8.9.5.22062_setup.exe";
+    /**
+     * 文件下载地址
+     */
+    private String[] filePath = {"http://34.44.1.227/apk/1.zip", "http://34.44.1.227/apk/2.apk", "http://34.44.1.227/apk/3.exe"};
+    /**
+     * 文件名
+     */
+    TextView textFileName;
+    /**
+     * 文件大小
+     */
+    TextView textFileSize;
+    /**
+     * 下载进度条
+     */
+    ProgressBar progressBar;
+    /**
+     * 下载状态
+     */
+    Button btnStatus;
 
     @Override
     protected void initTitleView()
@@ -51,55 +65,82 @@ public class DownloadActivity extends BaseTitleActivity
     @Override
     protected void initView()
     {
+        textFileName = (TextView) findViewById(R.id.text_file_name);
+        textFileSize = (TextView) findViewById(R.id.text_file_size);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        btnStart = (Button) findViewById(R.id.btn_start);
-        btnPause = (Button) findViewById(R.id.btn_pause);
-        handler = new Handler(new Handler.Callback()
-        {
-            @Override
-            public boolean handleMessage(Message msg)
-            {
-                switch (msg.what) {
-                    case DownloadThread.MSG_DOWNLOAD_PROGRESS:
-                        break;
-                    default:
-                        break;
-                }
-                return false;
-            }
-        });
+        progressBar.setMax(100);
+        btnStatus = (Button) findViewById(R.id.btn_download_status);
     }
 
     @Override
     protected void initEvent()
     {
-        btnStart.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // 开始下载
-            }
-        });
-        btnPause.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // 暂停下载
-            }
-        });
+        btnStatus.setOnClickListener(this);
     }
 
     @Override
     protected void initValue()
     {
-
     }
+
 
     @Override
     public void onClick(View v)
     {
+        switch (v.getId()) {
+            case R.id.btn_download_status:
+                String url = filePath[1];
+                File file = new File(url);
+                String saveFile = FileUtils.getFilePath(file.getName());
+                Callback.Cancelable cancelable = XBaseAPIUtils.loadFile(url, saveFile, new Callback.ProgressCallback<File>()
+                {
+                    @Override
+                    public void onWaiting()
+                    {
+                        Lg.d("onStarted");
+                    }
 
+                    @Override
+                    public void onStarted()
+                    {
+                        Lg.d("onStarted");
+                    }
+
+                    @Override
+                    public void onLoading(long total, long current, boolean isDownloading)
+                    {
+                        Lg.d("onLoading，current:+" + current + ";total:" + total + ";isDownloading:" + isDownloading);
+                        textFileSize.setText(FileUtils.getFileSize(current) + "/" + FileUtils.getFileSize(total));
+                    }
+
+                    @Override
+                    public void onSuccess(File result)
+                    {
+                        Lg.d("onSuccess，AbsolutePath:" + result.getAbsolutePath());
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback)
+                    {
+                        ex.printStackTrace();
+                        Lg.d("onError，isOnCallback" + isOnCallback);
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex)
+                    {
+                        cex.printStackTrace();
+                        Lg.d("onCancelled");
+                    }
+
+                    @Override
+                    public void onFinished()
+                    {
+                        Lg.d("onFinished");
+                    }
+                });
+            default:
+                break;
+        }
     }
 }

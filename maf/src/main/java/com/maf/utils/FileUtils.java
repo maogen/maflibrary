@@ -3,6 +3,7 @@ package com.maf.utils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,8 @@ import java.util.List;
  * Created by mzg on 2016/5/23.
  * File工具类
  */
-public class FileUtils {
+public class FileUtils
+{
     private static List<String> imageList;// 图片文件列表
     /**
      * sdCard根目录
@@ -38,11 +40,24 @@ public class FileUtils {
     private static final String DIR_FILE_NAME = "File";
 
     /**
+     * 计算文件大小，字节->兆
+     *
+     * @param length
+     * @return
+     */
+    public static String getFileSize(long length)
+    {
+        DecimalFormat format = new DecimalFormat("0.00");
+        return format.format(length) + "M";
+    }
+
+    /**
      * 判断文件是否存在，不存在则新建
      *
      * @param dirName
      */
-    private static void mkDirs(String dirName) {
+    private static void mkDirs(String dirName)
+    {
         File dir = new File(dirName);
         if (!dir.exists()) {
             dir.mkdirs();
@@ -53,7 +68,8 @@ public class FileUtils {
     /**
      * 初始化文件夹，如果没有，新建
      */
-    public static void initDir() {
+    public static void initDir()
+    {
         mkDirs(rootPath + DIR_NAME);
     }
 
@@ -63,7 +79,8 @@ public class FileUtils {
      * @param fileName
      * @return 创建文件成功，返回true
      */
-    private static boolean createNewFile(String fileName) {
+    private static boolean createNewFile(String fileName)
+    {
         File file = new File(fileName);
         if (!file.exists()) {
             try {
@@ -82,7 +99,8 @@ public class FileUtils {
      * @param text     文本内容
      * @param fileName 文件绝对路径
      */
-    public static void writeTextToFile(String text, String fileName) {
+    public static void writeTextToFile(String text, String fileName)
+    {
         if (!createNewFile(fileName)) {
             return;
         }
@@ -110,7 +128,8 @@ public class FileUtils {
      *
      * @param text
      */
-    public static void writeCrashLog(String text) {
+    public static void writeCrashLog(String text)
+    {
         // crash log文件名
         String logDir = rootPath + DIR_NAME + File.separator + DIR_LOG_NAME;
         mkDirs(logDir);
@@ -125,7 +144,8 @@ public class FileUtils {
      * @param path
      * @return
      */
-    public static List<String> getImagesByPath(String path) {
+    public static List<String> getImagesByPath(String path)
+    {
         File file = new File(path);
         imageList = new ArrayList<>();
         getPath(file);
@@ -137,7 +157,8 @@ public class FileUtils {
      *
      * @return 图片保存目录
      */
-    public static String getImageDir() {
+    public static String getImageDir()
+    {
         String imageDir = rootPath + DIR_NAME + File.separator + DIR_IMAGE_NAME;
         mkDirs(imageDir);
         return imageDir;
@@ -148,7 +169,8 @@ public class FileUtils {
      *
      * @param file 文件目录
      */
-    private static void getPath(File file) {
+    private static void getPath(File file)
+    {
         if (!file.exists()) {
             return;
         }
@@ -176,7 +198,8 @@ public class FileUtils {
      * @param fileName
      * @return
      */
-    public static String getFilePath(String fileName) {
+    public static String getFilePath(String fileName)
+    {
         String fileDir = rootPath + DIR_NAME + File.separator + DIR_FILE_NAME;
         mkDirs(fileDir);
         return fileDir + File.separator + fileName;
@@ -187,7 +210,8 @@ public class FileUtils {
      *
      * @return 图片路劲
      */
-    public static File getTempImagePath() {
+    public static File getTempImagePath()
+    {
         File tempCameraFile = new File(FileUtils.getImageDir(), System
                 .currentTimeMillis() + FileUtils.IMAGE_FORMAT);
         return tempCameraFile;
@@ -199,7 +223,8 @@ public class FileUtils {
      * @param path 文件的完整路径
      * @return
      */
-    public static String getFileNameByPath(String path) {
+    public static String getFileNameByPath(String path)
+    {
         File file = new File(path);
         return file.getName();
     }
