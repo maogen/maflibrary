@@ -6,6 +6,7 @@ import android.view.View;
 import com.maf.activity.BaseActivity;
 import com.maf.base.activity.ChartActivity;
 import com.maf.base.activity.CodeActivity;
+import com.maf.base.activity.DownloadActivity;
 import com.maf.base.activity.GPSActivity;
 import com.maf.base.activity.HotFixActivity;
 import com.maf.base.activity.HtmlActivity;
