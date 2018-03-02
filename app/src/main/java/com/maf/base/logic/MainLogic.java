@@ -155,6 +155,10 @@ public class MainLogic {
                 // 安装apk
                 FileUtils.installApk(context, FileUtils.getFilePath("test.apk"));
                 break;
+            case R.id.btn_goto_download:
+                // 文件下载
+                ((BaseActivity) context).startActivity(DownloadActivity.class);
+                break;
             default:
                 break;
         }

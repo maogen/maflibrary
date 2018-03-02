@@ -33,8 +33,7 @@ import maf.com.mafproject.R;
  * Created by mzg on 2016/5/23.
  * 开始界面，进入不同的测试界面
  */
-public class MainActivity extends BaseTitleActivity
-{
+public class MainActivity extends BaseTitleActivity {
     private int[] btnIds = {R.id.btn_goto_toast, R.id.btn_goto_image,
             R.id.btn_goto_net, R.id.btn_goto_print,
             R.id.btn_goto_html, R.id.btn_goto_chart,
@@ -45,7 +44,8 @@ public class MainActivity extends BaseTitleActivity
             R.id.btn_goto_signal, R.id.btn_goto_x_utils,
             R.id.btn_goto_xposed, R.id.btn_goto_scan_code,
             R.id.btn_goto_gps, R.id.btn_goto_x_listview,
-            R.id.btn_goto_shell,R.id.btn_install_apk};
+            R.id.btn_goto_shell, R.id.btn_goto_download,
+            R.id.btn_install_apk};
     // 声明Button控件
     private Button[] btn = new Button[btnIds.length];
 
@@ -54,14 +54,11 @@ public class MainActivity extends BaseTitleActivity
     private MainLogic mainLogic;
 
     @Override
-    protected void initTitleView()
-    {
+    protected void initTitleView() {
         titleBarView.setTitle("首页");
-        titleBarView.setOnMenuClick(new View.OnClickListener()
-        {
+        titleBarView.setOnMenuClick(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 // 显示菜单
                 BaseToast.makeTextShort("点击菜单");
                 listPopup.showBottomByView(view);
@@ -70,26 +67,22 @@ public class MainActivity extends BaseTitleActivity
     }
 
     @Override
-    protected int getLayoutResId()
-    {
+    protected int getLayoutResId() {
         return R.layout.activity_main;
     }
 
     @Override
-    protected void initView()
-    {
+    protected void initView() {
         for (int i = 0; i < btnIds.length; i++) {
             btn[i] = (Button) findViewById(btnIds[i]);
             btn[i].setOnClickListener(this);
         }
         String[] menu = {"菜单1", "菜单2"};
         listPopup = new BaseListPopup(this);
-        listPopup.setMenu(menu, null, new AdapterView.OnItemClickListener()
-        {
+        listPopup.setMenu(menu, null, new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long
-                    l)
-            {
+                    l) {
                 BaseToast.makeTextShort("点击第" + i + "个菜单");
             }
         });
@@ -99,13 +92,11 @@ public class MainActivity extends BaseTitleActivity
     }
 
     @Override
-    protected void initEvent()
-    {
+    protected void initEvent() {
         getTelecomManager();
     }
 
-    public void getTelecomManager()
-    {
+    public void getTelecomManager() {
         int slotId = 1;
         if (Build.VERSION.SDK_INT >= 23) {
             try {
@@ -148,8 +139,7 @@ public class MainActivity extends BaseTitleActivity
     }
 
     @Override
-    protected void initValue()
-    {
+    protected void initValue() {
 //        CrashHandler.getInstance().setStartContext(this);
         testDateUtils();
         testGsonUtils();
@@ -158,8 +148,7 @@ public class MainActivity extends BaseTitleActivity
     /**
      * 测试时间工具类
      */
-    private void testDateUtils()
-    {
+    private void testDateUtils() {
         Lg.d("**********测试DateUtils***********");
         String dateString = DateUtils.getDateByDefault();
         Lg.d(dateString);
@@ -172,14 +161,12 @@ public class MainActivity extends BaseTitleActivity
     /**
      * 测试Gson工具类
      */
-    private void testGsonUtils()
-    {
+    private void testGsonUtils() {
         Lg.d("**********测试GsonUtils***********");
         String jsonString = RawUtils.getRawStr(BaseApplication._application, R.raw
                 .jsontest);
         JsonTestBean bean = GsonUtils.stringToGson(jsonString, new
-                TypeToken<JsonTestBean>()
-                {
+                TypeToken<JsonTestBean>() {
                 });
         if (bean.getAge() == null) {
             Lg.d("Integer is null");
@@ -191,8 +178,7 @@ public class MainActivity extends BaseTitleActivity
     }
 
     @Override
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         mainLogic.onBtnClick(v);
     }
 }
