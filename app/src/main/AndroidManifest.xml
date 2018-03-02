@@ -262,6 +262,17 @@
             android:name="xposedminversion"
             android:value="82" />
         <!-- end::: xposed -->
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="maf.com.mafproject.fileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <!--元数据-->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
     </application>
 
 </manifest>

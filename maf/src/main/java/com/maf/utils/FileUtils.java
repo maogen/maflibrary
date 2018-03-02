@@ -1,5 +1,11 @@
 package com.maf.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.BuildConfig;
+import android.support.v4.content.FileProvider;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -203,4 +209,35 @@ public class FileUtils {
         File file = new File(path);
         return file.getName();
     }
+
+    /**
+     * 安装apk
+     *
+     * @param apkPath
+     */
+    public static void installApk(Context context, String apkPath) {
+        Lg.d("需要安装的apk是：" + apkPath);
+        if (!new File(apkPath).exists()) {
+            BaseToast.makeTextShort("文件不存在");
+            return;
+        }
+        if (android.os.Build.VERSION.SDK_INT > 23) {
+            File apkFile = new File(apkPath);
+            Uri apkUri = FileProvider.getUriForFile(context,
+                    "maf.com.mafproject.fileProvider", apkFile);
+            Intent installIntent = new Intent(Intent.ACTION_VIEW);
+            installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            installIntent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+            context.startActivity(installIntent);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            // 由于没有在Activity环境下启动Activity,设置下面的标签
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setDataAndType(Uri.fromFile(new File(apkPath)),
+                    "application/vnd.android.package-archive");
+            context.startActivity(intent);
+        }
+    }
+
 }

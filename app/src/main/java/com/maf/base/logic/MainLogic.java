@@ -24,6 +24,7 @@ import com.maf.base.activity.XPosedActivity;
 import com.maf.base.activity.XUtilsTestActivity;
 import com.maf.popupwindow.BaseListPopup;
 import com.maf.utils.BaseToast;
+import com.maf.utils.FileUtils;
 
 import maf.com.mafproject.R;
 
@@ -38,18 +39,15 @@ import maf.com.mafproject.R;
  * Created by Administrator on 2017/5/4.
  */
 
-public class MainLogic
-{
+public class MainLogic {
     private Context context;
     private BaseListPopup listPopup;// 菜单
 
-    public MainLogic(Context _context)
-    {
+    public MainLogic(Context _context) {
         this.context = _context;
     }
 
-    public void setMenuPopup(BaseListPopup _listPopup)
-    {
+    public void setMenuPopup(BaseListPopup _listPopup) {
         this.listPopup = _listPopup;
     }
 
@@ -58,8 +56,7 @@ public class MainLogic
      *
      * @param view 按钮控件
      */
-    public void onBtnClick(View view)
-    {
+    public void onBtnClick(View view) {
         switch (view.getId()) {
             case R.id.btn_goto_toast:
                 // 进入Toast测试界面
@@ -152,6 +149,10 @@ public class MainLogic
             case R.id.btn_goto_shell:
                 // 测试Shell
                 ((BaseActivity) context).startActivity(ShellTestActivity.class);
+                break;
+            case R.id.btn_install_apk:
+                // 安装apk
+                FileUtils.installApk(context, FileUtils.getFilePath("test.apk"));
                 break;
             default:
                 break;
