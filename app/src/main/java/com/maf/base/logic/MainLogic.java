@@ -26,6 +26,16 @@ import com.maf.base.activity.XUtilsTestActivity;
 import com.maf.popupwindow.BaseListPopup;
 import com.maf.utils.BaseToast;
 import com.maf.utils.FileUtils;
+import com.maf.utils.Lg;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import maf.com.mafproject.R;
 
@@ -158,6 +168,31 @@ public class MainLogic {
             case R.id.btn_goto_download:
                 // 文件下载
                 ((BaseActivity) context).startActivity(DownloadActivity.class);
+                break;
+            case R.id.btn_copy_file:
+                // 复制文件到System
+                String fileContent = "";
+                try {
+                    File f = new File("system/秘钥.txt");
+                    if (f.isFile() && f.exists()) {
+                        InputStreamReader read = new InputStreamReader(new FileInputStream(f), "gbk");
+                        BufferedReader reader = new BufferedReader(read);
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            fileContent += line;
+                            fileContent += "\n";
+                        }
+                        read.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Lg.d("result:" + fileContent);
+//                File[] fileList = sysDir.listFiles();
+//                for (File file : fileList) {
+//                    Lg.d(file.getAbsolutePath());
+//                }
+//                FileUtils.writeTextToFile("test","/system/test.txt");
                 break;
             default:
                 break;

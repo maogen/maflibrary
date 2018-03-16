@@ -246,6 +246,13 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:text="安装apk" />
+                <Button
+                    android:id="@+id/btn_copy_file"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="往System复制文件" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
