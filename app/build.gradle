@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.antfortune.freeline'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
 
     defaultConfig {
         applicationId "maf.com.mafproject"
-        minSdkVersion 16
-        targetSdkVersion 23
+        minSdkVersion 19
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
