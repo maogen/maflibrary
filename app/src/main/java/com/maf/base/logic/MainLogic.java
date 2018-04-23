@@ -8,6 +8,7 @@ import com.maf.base.activity.ChartActivity;
 import com.maf.base.activity.CodeActivity;
 import com.maf.base.activity.DownloadActivity;
 import com.maf.base.activity.GPSActivity;
+import com.maf.base.activity.GroupSendActivity;
 import com.maf.base.activity.HotFixActivity;
 import com.maf.base.activity.HtmlActivity;
 import com.maf.base.activity.ImageActivity;
@@ -50,15 +51,18 @@ import maf.com.mafproject.R;
  * Created by Administrator on 2017/5/4.
  */
 
-public class MainLogic {
+public class MainLogic
+{
     private Context context;
     private BaseListPopup listPopup;// 菜单
 
-    public MainLogic(Context _context) {
+    public MainLogic(Context _context)
+    {
         this.context = _context;
     }
 
-    public void setMenuPopup(BaseListPopup _listPopup) {
+    public void setMenuPopup(BaseListPopup _listPopup)
+    {
         this.listPopup = _listPopup;
     }
 
@@ -67,7 +71,8 @@ public class MainLogic {
      *
      * @param view 按钮控件
      */
-    public void onBtnClick(View view) {
+    public void onBtnClick(View view)
+    {
         switch (view.getId()) {
             case R.id.btn_goto_toast:
                 // 进入Toast测试界面
@@ -193,6 +198,10 @@ public class MainLogic {
 //                    Lg.d(file.getAbsolutePath());
 //                }
 //                FileUtils.writeTextToFile("test","/system/test.txt");
+                break;
+            case R.id.btn_group_send:
+                // 进入群发界面
+                ((BaseActivity) context).startActivity(GroupSendActivity.class);
                 break;
             default:
                 break;
