@@ -5,14 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.maf.base.adapter.GroupSendAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import maf.com.mafproject.R;
