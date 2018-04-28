@@ -7,11 +7,12 @@
 /.idea/gradle.xml
 /.idea/misc.xml
 .DS_Store
-/build
-/app/build
-/maf/build
-/vitamio/build
 /captures
 /.idea
 /freeline
 /freeline_core 
+/build
+/app/build
+/maf/build
+/vitamio/build
+/QRcodeScan/build

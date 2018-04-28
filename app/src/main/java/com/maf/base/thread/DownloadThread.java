@@ -3,16 +3,17 @@ package com.maf.base.thread;
 import android.os.Handler;
 import android.os.Message;
 
+import com.maf.utils.Lg;
+
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import io.vov.vitamio.utils.Log;
+//import io.vov.vitamio.utils.Log;
 
 /**
  * 项目名称：maflibrary
@@ -88,7 +89,7 @@ public class DownloadThread extends Thread
             URLConnection connection = url.openConnection();
             connection.setAllowUserInteraction(true);
             long fileSize = connection.getContentLength();
-            Log.d("TAG", "文件大小：" + fileSize);
+            Lg.d("文件大小：" + fileSize);
             // 设置线程下载的起点和终点
             long startPosition = countFile();// 开始位置
             long curPosition = startPosition;// 当前位置，循环下载时，会跟着变动

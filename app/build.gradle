@@ -12,6 +12,14 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        ndk {
+            // 当依赖多个module时，如果多module都会引用so文件。
+            // 为解决部分so文件无法找到，需要添加配置
+            moduleName "libexocrenginec.so"  //设置库(so)文件名称
+            moduleName "libruntimecore_java.so"  //设置库(so)文件名称
+            ldLibs "log"
+            abiFilters "armeabi", "armeabi-v7a", "x86_64"
+        }
     }
     //配置keystore签名+
     signingConfigs {
@@ -52,9 +60,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.alipay.euler:andfix:0.5.0@aar'
-    compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
     compile project(':maf')
     compile project(':vitamio')
     compile project(':IdcardScan')
+    compile project(':QRcodeScan')
     compile 'com.jakewharton:butterknife:7.0.0'
 }

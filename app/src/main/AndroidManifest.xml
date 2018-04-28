@@ -160,16 +160,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name="com.maf.base.activity.ReadPdfActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity
-            android:name="com.example.jammy.pdf_demo.PDFActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity
             android:name="com.maf.base.activity.XUtilsTestActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -185,7 +175,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name="com.maf.scanlib.activity.ActivityScanQRCode"
+            android:name="com.tgram.qrcode.ActivityCapture"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             />

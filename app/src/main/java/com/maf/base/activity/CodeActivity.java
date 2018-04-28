@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.maf.activity.BaseTitleActivity;
-import com.maf.dialog.ShowQRCodeDialogUtils;
+import com.maf.base.util.ShowQRCodeDialogUtils;
 import com.maf.git.GsonUtils;
-import com.maf.scanlib.activity.ActivityScanQRCode;
-import com.maf.scanlib.activity.SysCodeZxing;
 import com.maf.utils.BaseToast;
 import com.maf.utils.Lg;
 import com.scan.idcard.activity.ActivityScanIdCard;
 import com.scan.idcard.activity.IDCardResult;
+import com.tgram.qrcode.ActivityCapture;
+import com.tgram.qrcode.SysCodeZxing;
 
 import maf.com.mafproject.R;
 
@@ -25,23 +25,27 @@ import maf.com.mafproject.R;
  * 修改时间：2016/8/31 9:31
  * 修改备注：
  */
-public class CodeActivity extends BaseTitleActivity {
+public class CodeActivity extends BaseTitleActivity
+{
     private Button btnCreateCode;// 生成二维码
     private Button btnScanCode;// 扫描二维码
     private Button btn_scan_id_card;// 扫描身份证
 
     @Override
-    protected void initTitleView() {
+    protected void initTitleView()
+    {
         titleBarView.setTitle("扫描二维码");
     }
 
     @Override
-    protected int getLayoutResId() {
+    protected int getLayoutResId()
+    {
         return R.layout.activity_code;
     }
 
     @Override
-    protected void initView() {
+    protected void initView()
+    {
         btnCreateCode = (Button) findViewById(R.id.btn_create_code);
         btnScanCode = (Button) findViewById(R.id.btn_scan_code);
         btn_scan_id_card = (Button) findViewById(R.id.btn_scan_id_card);
@@ -49,19 +53,22 @@ public class CodeActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initEvent() {
+    protected void initEvent()
+    {
         btnCreateCode.setOnClickListener(this);
         btnScanCode.setOnClickListener(this);
         btn_scan_id_card.setOnClickListener(this);
     }
 
     @Override
-    protected void initValue() {
+    protected void initValue()
+    {
 
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         switch (v.getId()) {
             case R.id.btn_create_code:
                 // 生成二维码
@@ -70,7 +77,7 @@ public class CodeActivity extends BaseTitleActivity {
                 break;
             case R.id.btn_scan_code:
                 // 扫描二维码
-                ActivityScanQRCode.actionStartForResult(this, 1001);
+                ActivityCapture.actionStartForResult(this, 1001);
                 break;
             case R.id.btn_scan_id_card:
                 // 扫描身份证
@@ -80,7 +87,8 @@ public class CodeActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         if (resultCode == RESULT_OK) {
             // 返回内容成功
             switch (requestCode) {

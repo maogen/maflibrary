@@ -16,7 +16,6 @@ import com.maf.base.activity.LoadMoreActivity;
 import com.maf.base.activity.MyCollapsingActivity;
 import com.maf.base.activity.MyViewTestActivity;
 import com.maf.base.activity.NetActivity;
-import com.maf.base.activity.ReadPdfActivity;
 import com.maf.base.activity.ShellTestActivity;
 import com.maf.base.activity.SortTestActivity;
 import com.maf.base.activity.SystemTestActivity;
@@ -30,13 +29,9 @@ import com.maf.utils.FileUtils;
 import com.maf.utils.Lg;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 import maf.com.mafproject.R;
 
@@ -139,8 +134,6 @@ public class MainLogic
                 break;
             case R.id.btn_goto_signal:
                 // 进入签名界面
-                ((BaseActivity) context).startActivity(ReadPdfActivity.class);
-//                startActivity(PDFActivity.class);
                 break;
             case R.id.btn_goto_x_utils:
                 // 进入xUtils测试界面

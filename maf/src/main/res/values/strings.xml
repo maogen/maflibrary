@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MAFLibrary</string>
-    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
     <!-- XListView相关 -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
