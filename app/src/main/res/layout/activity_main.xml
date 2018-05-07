@@ -158,12 +158,12 @@
                     android:text="@string/into_system_test" />
 
                 <Button
-                    android:id="@+id/btn_goto_signal"
+                    android:id="@+id/btn_goto_my_camera"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:text="@string/into_signal" />
+                    android:text="@string/into_my_camera" />
             </LinearLayout>
 
             <LinearLayout

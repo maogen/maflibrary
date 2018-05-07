@@ -17,7 +17,7 @@
     <string name="into_list_load">进入加载更多</string>
     <string name="into_slide_switch">自定义控件</string>
     <string name="into_system_test">测试系统相关</string>
-    <string name="into_signal">进入签名界面</string>
+    <string name="into_my_camera">自定义相机</string>
     <string name="into_x_utils">进入xUtils测试界面</string>
     <string name="into_xposed">进入xposed测试界面</string>
 
