@@ -23,7 +23,7 @@ import com.maf.base.activity.ToastActivity;
 import com.maf.base.activity.XListViewActivity;
 import com.maf.base.activity.XPosedActivity;
 import com.maf.base.activity.XUtilsTestActivity;
-import com.maf.base.camera.CameraActivity;
+import com.maf.camera.CameraActivity;
 import com.maf.popupwindow.BaseListPopup;
 import com.maf.utils.BaseToast;
 import com.maf.utils.FileUtils;
@@ -135,7 +135,8 @@ public class MainLogic
                 break;
             case R.id.btn_goto_my_camera:
                 // 进入签名界面
-                ((BaseActivity) context).startActivity(CameraActivity.class);
+                CameraActivity.actionStart((BaseActivity) context, 1000);
+//                ((BaseActivity) context).startActivity(CameraActivity.class);
                 break;
             case R.id.btn_goto_x_utils:
                 // 进入xUtils测试界面

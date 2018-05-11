@@ -1,4 +1,4 @@
-package com.maf.base.camera;
+package com.maf.camera;
 
 import android.app.Activity;
 import android.hardware.Camera;
@@ -10,7 +10,7 @@ import android.view.SurfaceView;
 import java.io.IOException;
 
 /**
- * 项目名称：BorderCollection
+ * 项目名称：maf
  * 类描述：sufaceView 的预览类，其中SurfaceHolder.CallBack用来监听Surface的变化，
  * 当Surface发生改变的时候自动调用该回调方法
  * 通过调用方SurfaceHolder.addCallBack来绑定该方法
@@ -24,6 +24,9 @@ public class CameraPreview extends SurfaceView implements
     private SurfaceHolder mHolder;
     private Camera mCamera;
     private Activity context;
+
+    // 0-前置摄像头，1-后置摄像头
+    private int cameraIndex = 0;
 
     public CameraPreview(Activity context, Camera camera)
     {
@@ -47,7 +50,7 @@ public class CameraPreview extends SurfaceView implements
             Camera.Parameters parameters = mCamera.getParameters();
             Camera.CameraInfo info =
                     new Camera.CameraInfo();
-            Camera.getCameraInfo(0, info);
+            Camera.getCameraInfo(cameraIndex, info);
             int rotation = context.getWindowManager().getDefaultDisplay()
                     .getRotation();
             Log.d(tag, "rotation =" + rotation);
@@ -72,11 +75,11 @@ public class CameraPreview extends SurfaceView implements
                 result = (info.orientation + degrees) % 360;
                 parameters.setRotation(result);//设置存储的图片显示
                 result = (360 - result) % 360;  // compensate the mirror  前置默认270
-
+//                parameters.setRotation(result);
             } else {  // back-facing
-                parameters.setRotation((info.orientation - degrees) % 360);
+                result = (info.orientation - degrees) % 360;
+                parameters.setRotation(result);
                 result = (info.orientation - degrees + 360) % 360;  //后置默认90
-
             }
 
             Log.d(tag, "result =" + result);
@@ -125,5 +128,13 @@ public class CameraPreview extends SurfaceView implements
     public void surfaceDestroyed(SurfaceHolder holder)
     {
 
+    }
+
+    /**
+     * @param cameraIndex
+     */
+    public void setCameraIndex(int cameraIndex)
+    {
+        this.cameraIndex = cameraIndex;
     }
 }

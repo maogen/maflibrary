@@ -102,12 +102,12 @@ public class MainActivity extends BaseTitleActivity
     @Override
     protected void initEvent()
     {
-        getTelecomManager();
+//        getTelecomManager();
     }
 
     public void getTelecomManager()
     {
-        int slotId = 1;
+        int slotId = 0;
         if (Build.VERSION.SDK_INT >= 23) {
             try {
                 TelecomManager telecomManager = (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
@@ -195,5 +195,24 @@ public class MainActivity extends BaseTitleActivity
     public void onClick(View v)
     {
         mainLogic.onBtnClick(v);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1000:
+                // 自定义相机返回
+                if (resultCode != RESULT_OK || data == null) {
+                    BaseToast.makeTextShort("拍照失败");
+                } else {
+                    String pictureFile = data.getStringExtra("picture");
+                    BaseToast.makeTextShort("拍照结果：" + pictureFile);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -32,7 +32,8 @@ import java.io.IOException;
  * 修改时间：2016/8/12 11:16
  * 修改备注：
  */
-public class ImageUtils {
+public class ImageUtils
+{
     public static final int TAKE_PHOTO_FROM_CAMERA = 0x1000;
     public static final int TAKE_PHOTO_FROM_ALBUM = 0x1001;
     public static final int TAKE_PHOTO_FROM_CROP = 0x1002;
@@ -48,7 +49,8 @@ public class ImageUtils {
      * @param imageId 图片地址
      * @return bitmap
      */
-    public static Bitmap getBitmapById(int imageId) {
+    public static Bitmap getBitmapById(int imageId)
+    {
         BitmapFactory.Options newOpts = new BitmapFactory.Options();
         // 开始读入图片，此时把options.inJustDecodeBounds 设回true了
         newOpts.inJustDecodeBounds = true;
@@ -61,7 +63,8 @@ public class ImageUtils {
      * @param imageId 图片id
      * @return 图片高
      */
-    public static int getImageHeight(int imageId) {
+    public static int getImageHeight(int imageId)
+    {
         return getBitmapById(imageId).getHeight();
     }
 
@@ -71,7 +74,8 @@ public class ImageUtils {
      * @param imageId 图片id
      * @return 图片宽
      */
-    public static int getImageWidth(int imageId) {
+    public static int getImageWidth(int imageId)
+    {
         return getBitmapById(imageId).getWidth();
     }
 
@@ -83,7 +87,8 @@ public class ImageUtils {
      * @param activity Activity对象
      * @param imgPath  文件的路径
      */
-    public static void takePhotoFromCamera(Activity activity, String imgPath) {
+    public static void takePhotoFromCamera(Activity activity, String imgPath)
+    {
         Intent intent = new Intent(
                 MediaStore.ACTION_IMAGE_CAPTURE);
         Uri imgUri = Uri.fromFile(new File(imgPath));
@@ -98,7 +103,8 @@ public class ImageUtils {
      *
      * @param activity
      */
-    public static void takePhotoFromAbnum(Activity activity) {
+    public static void takePhotoFromAbnum(Activity activity)
+    {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
@@ -117,7 +123,8 @@ public class ImageUtils {
      * }
      * }
      */
-    public static void takePhotoFromCrop(Activity activity, String imagePath) {
+    public static void takePhotoFromCrop(Activity activity, String imagePath)
+    {
         if (StringUtils.isEmpty(imagePath)) {
             return;
         }
@@ -135,7 +142,8 @@ public class ImageUtils {
      * @author yaoxing
      * @date 2016年4月6日
      */
-    public static String getImageAbsolutePath(Activity context, Uri imageUri) {
+    public static String getImageAbsolutePath(Activity context, Uri imageUri)
+    {
         if (context.getPackageManager().checkPermission("android.permission.WRITE_EXTERNAL_STORAGE", context.getPackageName()) == PackageManager.PERMISSION_GRANTED) {
             if (context == null || imageUri == null)
                 return null;
@@ -184,7 +192,8 @@ public class ImageUtils {
         return null;
     }
 
-    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs)
+    {
         Cursor cursor = null;
         String column = MediaStore.Images.Media.DATA;
         String[] projection = {column};
@@ -205,7 +214,8 @@ public class ImageUtils {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
      */
-    public static boolean isExternalStorageDocument(Uri uri) {
+    public static boolean isExternalStorageDocument(Uri uri)
+    {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
@@ -213,7 +223,8 @@ public class ImageUtils {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
-    public static boolean isDownloadsDocument(Uri uri) {
+    public static boolean isDownloadsDocument(Uri uri)
+    {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
@@ -221,7 +232,8 @@ public class ImageUtils {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
-    public static boolean isMediaDocument(Uri uri) {
+    public static boolean isMediaDocument(Uri uri)
+    {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
@@ -229,7 +241,8 @@ public class ImageUtils {
      * @param uri The Uri to check.
      * @return Whether the Uri authority is Google Photos.
      */
-    public static boolean isGooglePhotosUri(Uri uri) {
+    public static boolean isGooglePhotosUri(Uri uri)
+    {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
@@ -240,7 +253,8 @@ public class ImageUtils {
      * @param path
      * @return
      */
-    public static String compressImage(String path) {
+    public static String compressImage(String path)
+    {
         File file = new File(path);
         long fileSize = file.length() / 1024;
         Lg.d("图片大小" + fileSize);
@@ -259,7 +273,8 @@ public class ImageUtils {
      * @param path
      * @return
      */
-    public static Bitmap getImageBitmap(String path) {
+    public static Bitmap getImageBitmap(String path)
+    {
         BitmapFactory.Options opts = new BitmapFactory.Options();//获取缩略图显示到屏幕上
         opts.inSampleSize = 2;
         Bitmap newBitmap = BitmapFactory.decodeFile(path, opts);
@@ -273,7 +288,8 @@ public class ImageUtils {
      * @param desPath 图片压缩之后的路径
      * @return
      */
-    public static String compressPicture(String srcPath, String desPath) {
+    public static String compressPicture(String srcPath, String desPath)
+    {
         BitmapFactory.Options op = new BitmapFactory.Options();
 
         // 开始读入图片，此时把options.inJustDecodeBounds 设回true了
@@ -329,7 +345,8 @@ public class ImageUtils {
      * @param path 图片原来的路径
      * @return 旋转之后的路径
      */
-    public static String rotateImage(String path) {
+    public static String rotateImage(String path)
+    {
         int degree = getBitmapDegree(path);
         Lg.d("图片角度:" + degree);
         if (degree != 0) {
@@ -362,7 +379,8 @@ public class ImageUtils {
      * @param path 图片绝对路径
      * @return 图片的旋转角度
      */
-    public static int getBitmapDegree(String path) {
+    public static int getBitmapDegree(String path)
+    {
         int degree = 0;
         try {
             // 从指定路径下读取图片，并获取其EXIF信息
@@ -394,7 +412,8 @@ public class ImageUtils {
      * @param angle  旋转角度
      * @return 旋转后的图片
      */
-    public static Bitmap rotateBitmapByDegree(Bitmap bitmap, int angle) {
+    public static Bitmap rotateBitmapByDegree(Bitmap bitmap, int angle)
+    {
         //旋转图片 动作
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
@@ -402,5 +421,39 @@ public class ImageUtils {
         Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
                 bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         return resizedBitmap;
+    }
+
+    /**
+     * 水平翻转图片
+     *
+     * @param path
+     * @return
+     */
+    public static String flipHorizontal(String path)
+    {
+        Bitmap bitmap = getImageBitmap(path);
+        Matrix matrix = new Matrix();
+        matrix.setScale(-1, 1);// 水平翻转
+        // 创建新的图片
+        Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(path);
+            if (newBitmap != null) {
+                newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != fos) {
+                try {
+                    fos.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return path;
     }
 }

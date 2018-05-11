@@ -210,7 +210,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name="com.maf.base.camera.CameraActivity"
+            android:name="com.maf.camera.CameraActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             />
