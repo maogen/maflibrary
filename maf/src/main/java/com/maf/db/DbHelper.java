@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ import java.util.Set;
  *
  * @author nanhuang
  */
-public class DbHelper {
+public class DbHelper
+{
 
     /**
      * 数据库类
@@ -34,7 +36,8 @@ public class DbHelper {
      *
      * @param context
      */
-    public DbHelper(Context context) {
+    public DbHelper(Context context)
+    {
         this.ctx = context;
     }
 
@@ -44,7 +47,8 @@ public class DbHelper {
      * @param dbname
      * @param dbversion
      */
-    public void init(String dbname, int dbversion) {
+    public void init(String dbname, int dbversion)
+    {
         this.sqldb = new SqliteDbHelper(ctx, dbname, dbversion)
                 .getWritableDatabase();
     }
@@ -56,7 +60,8 @@ public class DbHelper {
      *
      * @param obj
      */
-    public void save(Object obj) {
+    public void save(Object obj)
+    {
         if (obj == null)
             return;
         checkOrCreateTable(obj.getClass());
@@ -69,7 +74,8 @@ public class DbHelper {
      *
      * @param obj
      */
-    public void update(Object obj) {
+    public void update(Object obj)
+    {
         if (obj == null)
             return;
         checkOrCreateTable(obj.getClass());
@@ -85,7 +91,8 @@ public class DbHelper {
      * @param whereargs
      * @return
      */
-    public <T> T queryFirst(Class<T> clazz, String where, Object... whereargs) {
+    public <T> T queryFirst(Class<T> clazz, String where, Object... whereargs)
+    {
         if (where.indexOf("limit") < -1) {
             where += " limit 0,1";
         }
@@ -104,7 +111,8 @@ public class DbHelper {
      * @return
      */
     public <T> List<T> queryList(Class<T> clazz, String where,
-                                 Object... whereargs) {
+                                 Object... whereargs)
+    {
         checkOrCreateTable(clazz);
         SqlProxy proxy = SqlProxy.select(clazz, where, whereargs);
         return queryList(proxy);
@@ -116,7 +124,8 @@ public class DbHelper {
      * @param proxy
      * @return
      */
-    public <T> T queryFirst(SqlProxy proxy) {
+    public <T> T queryFirst(SqlProxy proxy)
+    {
         String sql = proxy.getSql();
         if (sql.indexOf("limit") < -1) {
             sql += " limit 0,1";
@@ -137,7 +146,8 @@ public class DbHelper {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public <T> List<T> queryList(SqlProxy proxy) {
+    public <T> List<T> queryList(SqlProxy proxy)
+    {
         Cursor cursor = sqldb.rawQuery(proxy.getSql(), proxy.paramsArgs());
         try {
             List<T> list = new ArrayList<T>();
@@ -161,7 +171,8 @@ public class DbHelper {
      *
      * @return
      */
-    public Long getLastInsertId(String table) {
+    public Long getLastInsertId(String table)
+    {
         Cursor c = sqldb.rawQuery("select Max(id) from " + table, null);
         Long count = 0L;
         if (c.moveToNext()) {
@@ -178,7 +189,8 @@ public class DbHelper {
      * @param clazz
      * @return
      */
-    private <T> T cursorToBean(Cursor cursor, Class<T> clazz) {
+    private <T> T cursorToBean(Cursor cursor, Class<T> clazz)
+    {
         EntityInfo entity = EntityInfo.build(clazz);
         Set<String> keys = entity.getColumns().keySet();
         T obj = null;
@@ -228,8 +240,14 @@ public class DbHelper {
                 }
             } else if (field.getType().equals(Boolean.class)
                     || field.getType().equals(boolean.class)) {
-                BeanUtil.setProperty(obj, key, cursor.getInt(cursor
-                        .getColumnIndex(column)) == 0 ? false : true);
+                String value = cursor.getString(cursor.getColumnIndex(column));
+                if (TextUtils.isEmpty(value)) {
+                    BeanUtil.setProperty(obj, key, cursor.getInt(cursor
+                            .getColumnIndex(column)) == 0 ? false : true);
+                } else {
+                    BeanUtil.setProperty(obj, key, "true".equals(value) ? true : false);
+                }
+
             }
         }
 
@@ -242,7 +260,8 @@ public class DbHelper {
      * @param clazz
      */
     @SuppressWarnings("rawtypes")
-    public void checkOrCreateTable(Class clazz) {
+    public void checkOrCreateTable(Class clazz)
+    {
         EntityInfo info = EntityInfo.build(clazz);
         if (info.isChecked()) {
             return;
@@ -261,7 +280,8 @@ public class DbHelper {
      * @param clazz
      * @return
      */
-    private static String getCreatTableSQL(Class<?> clazz) {
+    private static String getCreatTableSQL(Class<?> clazz)
+    {
         EntityInfo info = EntityInfo.build(clazz);
         StringBuffer sql = new StringBuffer();
         sql.append("CREATE TABLE IF NOT EXISTS ");
@@ -305,7 +325,8 @@ public class DbHelper {
      * @param table
      * @return
      */
-    private boolean checkTable(String table) {
+    private boolean checkTable(String table)
+    {
         Cursor cursor = null;
         try {
             String sql = "SELECT COUNT(*) AS c FROM sqlite_master WHERE type ='table' AND name ='"
@@ -337,7 +358,8 @@ public class DbHelper {
      * @return
      */
     public int getCount(Class<?> clazz, String where,
-                        Object... whereargs) {
+                        Object... whereargs)
+    {
         SqlProxy sqlProxy = SqlProxy.count(clazz, where, whereargs);
         Cursor cursor = sqldb.rawQuery(sqlProxy.getSql(), sqlProxy.paramsArgs());
         try {
@@ -362,12 +384,14 @@ public class DbHelper {
      *
      * @author nanHuang
      */
-    class SqliteDbHelper extends SQLiteOpenHelper {
+    class SqliteDbHelper extends SQLiteOpenHelper
+    {
         //private MyApp ap;
         private Context context;
         private String dbName;
 
-        public SqliteDbHelper(Context context, String name, int version) {
+        public SqliteDbHelper(Context context, String name, int version)
+        {
             super(context, name, null, version);
             this.context = context;
             this.dbName = name;
@@ -375,11 +399,13 @@ public class DbHelper {
         }
 
         @Override
-        public void onCreate(SQLiteDatabase db) {
+        public void onCreate(SQLiteDatabase db)
+        {
         }
 
         @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+        {
             // 如果版本号不一致，删除原来的数据库
             if (oldVersion != newVersion && null != context) {
                 context.deleteDatabase(dbName);
@@ -397,14 +423,16 @@ public class DbHelper {
     /**
      * @return the db
      */
-    public SQLiteDatabase getDb() {
+    public SQLiteDatabase getDb()
+    {
         return sqldb;
     }
 
     /**
      * @param db the db to set
      */
-    public void setDb(SQLiteDatabase db) {
+    public void setDb(SQLiteDatabase db)
+    {
         this.sqldb = db;
     }
 
