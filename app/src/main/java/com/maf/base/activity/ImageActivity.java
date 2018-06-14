@@ -26,7 +26,8 @@ import maf.com.mafproject.R;
  * Created by mzg on 2016/5/23.
  * 测试Image相关操作界面
  */
-public class ImageActivity extends BaseTitleActivity {
+public class ImageActivity extends BaseTitleActivity
+{
     private Button btnGetPicture;// 拍照或者选择图片，选择完之后
     private ImageView imageLocal;
     private ImageView imageAssets;
@@ -41,17 +42,20 @@ public class ImageActivity extends BaseTitleActivity {
     private List<Integer> listImage;
 
     @Override
-    protected void initTitleView() {
+    protected void initTitleView()
+    {
         titleBarView.setTitle("图片测试");
     }
 
     @Override
-    protected int getLayoutResId() {
+    protected int getLayoutResId()
+    {
         return R.layout.activity_image;
     }
 
     @Override
-    protected void initView() {
+    protected void initView()
+    {
         btnGetPicture = (Button) findViewById(R.id.btn_get_picture);
 
         imageLocal = (ImageView) findViewById(R.id.image_local);
@@ -88,7 +92,7 @@ public class ImageActivity extends BaseTitleActivity {
 
         listImage = new ArrayList<>();
         for (int i = 0; i < dataSet.size(); i++) {
-            listImage.add(R.drawable.image_ff);
+            listImage.add(R.drawable.temp_user_icon_three);
         }
         adapter = new GlideImageAdapter(this, listImage, dataSet);
         recyclerView.setAdapter(adapter);
@@ -96,12 +100,14 @@ public class ImageActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initEvent() {
+    protected void initEvent()
+    {
         btnGetPicture.setOnClickListener(this);
     }
 
     @Override
-    protected void initValue() {
+    protected void initValue()
+    {
         // 得到所有sdcard路径
         List<String> paths = SdcardUtils.getSdcardPath();
         for (int i = 0; i < paths.size(); i++) {
@@ -122,7 +128,8 @@ public class ImageActivity extends BaseTitleActivity {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         switch (v.getId()) {
             case R.id.btn_get_picture:
                 // 选择照相还是相册
@@ -133,7 +140,8 @@ public class ImageActivity extends BaseTitleActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent
-            data) {
+            data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) {
             return;
