@@ -9,8 +9,6 @@ import com.maf.base.util.ShowQRCodeDialogUtils;
 import com.maf.git.GsonUtils;
 import com.maf.utils.BaseToast;
 import com.maf.utils.Lg;
-import com.scan.idcard.activity.ActivityScanIdCard;
-import com.scan.idcard.activity.IDCardResult;
 import com.tgram.qrcode.ActivityCapture;
 import com.tgram.qrcode.SysCodeZxing;
 
@@ -81,7 +79,7 @@ public class CodeActivity extends BaseTitleActivity
                 break;
             case R.id.btn_scan_id_card:
                 // 扫描身份证
-                ActivityScanIdCard.actionStart(this, 1002);
+//                ActivityScanIdCard.actionStart(this, 1002);
                 break;
         }
     }
@@ -99,9 +97,9 @@ public class CodeActivity extends BaseTitleActivity
                     break;
                 case 1002:
                     // 从扫描身份证界面返回
-                    IDCardResult result = (IDCardResult) data.getSerializableExtra(com.scan.idcard.activity.SysCode.SCAN_RESULT_ID_CARD);
-                    BaseToast.makeTextShort("扫描结果：" + GsonUtils.gsonToString(result));
-                    Lg.d("扫描结果：" + GsonUtils.gsonToString(result));
+//                    IDCardResult result = (IDCardResult) data.getSerializableExtra(com.scan.idcard.activity.SysCode.SCAN_RESULT_ID_CARD);
+//                    BaseToast.makeTextShort("扫描结果：" + GsonUtils.gsonToString(result));
+//                    Lg.d("扫描结果：" + GsonUtils.gsonToString(result));
                     break;
                 default:
                     break;

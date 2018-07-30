@@ -65,7 +65,6 @@ dependencies {
     compile 'com.alipay.euler:andfix:0.5.0@aar'
     compile project(':maf')
     compile project(':vitamio')
-    compile project(':IdcardScan')
     compile project(':QRcodeScan')
     compile 'com.jakewharton:butterknife:7.0.0'
 }
