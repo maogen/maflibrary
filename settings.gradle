@@ -1,1 +1,1 @@
-include ':app', ':maf', ':vitamio', ':IdcardScan', ':QRcodeScan'
+include ':app', ':maf', ':vitamio', ':QRcodeScan'
