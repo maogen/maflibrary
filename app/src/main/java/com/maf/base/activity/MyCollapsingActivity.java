@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 import com.maf.activity.BaseActivity;
 import com.maf.base.adapter.MyCollapsingAdapter;
 import com.maf.interfaces.OnItemClickListener;
+import com.maf.interfaces.OnItemDoubleClickListener;
 import com.maf.interfaces.OnItemLongClickListener;
 import com.maf.utils.BaseToast;
 import com.maf.utils.Lg;
@@ -31,7 +32,8 @@ import maf.com.mafproject.R;
  * 修改时间：2016/7/14 20:55
  * 修改备注：
  */
-public class MyCollapsingActivity extends BaseActivity {
+public class MyCollapsingActivity extends BaseActivity
+{
     private RecyclerView mRecyclerView;
     private MyCollapsingAdapter adapter;
     private List<String> dataList;
@@ -41,12 +43,14 @@ public class MyCollapsingActivity extends BaseActivity {
     private ImageView imageView;
 
     @Override
-    protected int getLayoutResId() {
+    protected int getLayoutResId()
+    {
         return R.layout.activity_my_collapsing;
     }
 
     @Override
-    protected void initView() {
+    protected void initView()
+    {
         mRecyclerView = (RecyclerView) this.findViewById(R.id.recyclerView);
         // 瀑布流效果
 //        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -61,34 +65,49 @@ public class MyCollapsingActivity extends BaseActivity {
     }
 
     @Override
-    protected void initEvent() {
+    protected void initEvent()
+    {
         imageView.setOnClickListener(this);
     }
 
     @Override
-    protected void initValue() {
+    protected void initValue()
+    {
         dataList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             dataList.add("aaa" + i);
         }
         adapter = new MyCollapsingAdapter(this, dataList);
         mRecyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener()
+        {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position)
+            {
                 BaseToast.makeTextShort("点击了：" + dataList.get(position));
             }
         });
-        adapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+        adapter.setOnItemLongClickListener(new OnItemLongClickListener()
+        {
             @Override
-            public void onItemLongClick(View view, int position) {
+            public void onItemLongClick(View view, int position)
+            {
                 BaseToast.makeTextShort("长按了：" + dataList.get(position));
+            }
+        });
+        adapter.setOnItemDoubleClickListener(new OnItemDoubleClickListener()
+        {
+            @Override
+            public void onItemDoubleClick(View view, int position)
+            {
+                BaseToast.makeTextShort("双击了：" + dataList.get(position));
             }
         });
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         switch (v.getId()) {
             case R.id.imageView:
                 // 点击图片，RecycleView聚焦到底部
@@ -106,14 +125,16 @@ public class MyCollapsingActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event)
+    {
         Lg.d("事件类型" + event.getAction());
         return super.onTouchEvent(event);
     }
 
     boolean move = false;
 
-    private void moveToPosition(int n) {
+    private void moveToPosition(int n)
+    {
         //先从RecyclerView的LayoutManager中获取第一项和最后一项的Position
         LinearLayoutManager mLinearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
         int firstItem = mLinearLayoutManager.findFirstVisibleItemPosition();

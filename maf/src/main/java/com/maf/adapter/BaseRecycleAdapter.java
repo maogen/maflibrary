@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.maf.interfaces.OnItemClickListener;
+import com.maf.interfaces.OnItemDoubleClickListener;
 import com.maf.interfaces.OnItemLongClickListener;
 
 import java.util.List;
@@ -23,22 +24,26 @@ import java.util.List;
  * 修改时间：2016/8/11 17:08
  * 修改备注：
  */
-public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> extends RecyclerView.Adapter<VH>
+{
     protected Context context;
     protected List<T> list;
     protected VH viewHolder;
 
     private OnItemClickListener onItemClickListener;// 单击监听器
     private OnItemLongClickListener onItemLongClickListener;// 长按监听器
+    private OnItemDoubleClickListener onItemDoubleClickListener;// 双击监听器
 
     private boolean hasBackground = true;
 
-    public BaseRecycleAdapter(Context context, List<T> list) {
+    public BaseRecycleAdapter(Context context, List<T> list)
+    {
         this.context = context;
         this.list = list;
     }
 
-    public BaseRecycleAdapter(Context context, List<T> list, boolean hasBackground) {
+    public BaseRecycleAdapter(Context context, List<T> list, boolean hasBackground)
+    {
         this.context = context;
         this.list = list;
         this.hasBackground = hasBackground;
@@ -53,7 +58,8 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
      *
      * @param onItemClickListener 监听器
      */
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener)
+    {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -62,12 +68,24 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
      *
      * @param onItemLongClickListener 监听器
      */
-    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener)
+    {
         this.onItemLongClickListener = onItemLongClickListener;
     }
 
+    /**
+     * 设置双击事件监听器
+     *
+     * @param onItemDoubleClickListener
+     */
+    public void setOnItemDoubleClickListener(OnItemDoubleClickListener onItemDoubleClickListener)
+    {
+        this.onItemDoubleClickListener = onItemDoubleClickListener;
+    }
+
     @Override
-    public VH onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(context).inflate(getResourceId(), parent, false);
         viewHolder = getViewHolder(view);
         // 设置单击监听
@@ -78,12 +96,17 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
         if (onItemLongClickListener != null) {
             viewHolder.setOnItemLongClickListener(onItemLongClickListener);
         }
+        // 设置双击监听
+        if (onItemDoubleClickListener != null) {
+            viewHolder.setOnItemDoubleClickListener(onItemDoubleClickListener);
+        }
         return viewHolder;
     }
 
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         if (list == null) {
             return 0;
         }
