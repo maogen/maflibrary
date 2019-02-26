@@ -5,7 +5,6 @@ import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.maf.R;
 import com.maf.interfaces.OnItemClickListener;
 import com.maf.interfaces.OnItemDoubleClickListener;
 import com.maf.interfaces.OnItemLongClickListener;
@@ -25,9 +24,12 @@ public abstract class BaseRecycleViewHolder extends RecyclerView.ViewHolder impl
 {
     protected View itemView;
 
-    private OnItemClickListener onItemClickListener;// 单击监听器
-    private OnItemLongClickListener onItemLongClickListener;// 长按监听器
-    private OnItemDoubleClickListener onItemDoubleClickListener; // 双击监听器
+    // 单击监听器
+    private OnItemClickListener onItemClickListener;
+    // 长按监听器
+    private OnItemLongClickListener onItemLongClickListener;
+    // 双击监听器
+    private OnItemDoubleClickListener onItemDoubleClickListener;
     // 消息发送
     private Handler handler;
 
@@ -47,17 +49,15 @@ public abstract class BaseRecycleViewHolder extends RecyclerView.ViewHolder impl
                     return false;
                 }
                 switch (msg.what) {
-                    case 0:
-                        // 单击
-                        if (onItemClickListener != null) {
-                            onItemClickListener.onItemClick(v, position);
-                        }
-                        break;
                     case 1:
                         // 双击
                         if (onItemDoubleClickListener != null) {
                             onItemDoubleClickListener.onItemDoubleClick(v, position);
                         }
+                        break;
+                    case 3:
+                        // 将点击次数至为0
+                        count = 0;
                         break;
                     default:
                         break;
@@ -78,22 +78,6 @@ public abstract class BaseRecycleViewHolder extends RecyclerView.ViewHolder impl
     {
         this.onItemClickListener = onItemClickListener;
         itemView.setOnClickListener(this);
-        itemView.setBackgroundResource(R.drawable.recycler_bg);
-    }
-
-    /**
-     * 设置可点击
-     *
-     * @param onItemClickListener 监听器
-     * @param hasBackground       是否显示默认的点击背景，如果传true，自己定义的背景将无效
-     */
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener, boolean hasBackground)
-    {
-        this.onItemClickListener = onItemClickListener;
-        itemView.setOnClickListener(this);
-        if (hasBackground) {
-            itemView.setBackgroundResource(R.drawable.recycler_bg);
-        }
     }
 
     /**
@@ -121,29 +105,19 @@ public abstract class BaseRecycleViewHolder extends RecyclerView.ViewHolder impl
     private int count = 0;//点击次数
     private long firstClick = 0;//第一次点击时间
     private long secondClick = 0;//第二次点击时间
-    private final int totalTime = 618;// 两次点击时间间隔，单位毫秒
-
+    private final int totalTime = 1000;// 两次点击时间间隔，单位毫秒
 
     @Override
     public void onClick(View v)
     {
+        count++;
         if (this.onItemDoubleClickListener != null) {
             // 有设置双击事件
-//            Logger.d("OnItemClick", "count = " + count);
-            if (count == 0) {
+            if (count == 1) {
                 // 第一次点击
-                count = 1;
-
                 firstClick = new Date().getTime();
-                // 一段时间后，响应单击事件
-                Message message = Message.obtain();
-                message.what = 0;
-                message.obj = v;
-                handler.sendMessageDelayed(message, totalTime);
             } else {
                 // 第二次点击
-                count = 0;
-
                 secondClick = new Date().getTime();
                 // 判断如果两次点击事件间隔小，响应双击事件
                 if ((secondClick - firstClick) <= totalTime) {
@@ -153,18 +127,12 @@ public abstract class BaseRecycleViewHolder extends RecyclerView.ViewHolder impl
                     message.what = 1;
                     message.obj = v;
                     handler.sendMessage(message);
-                } else {
-                    Message message = Message.obtain();
-                    message.what = 0;
-                    message.obj = v;
-                    handler.sendMessage(message);
                 }
+                count = 0;
             }
-        } else {
-            // 没有设置双击事件，直接响应单击事件
-            if (this.onItemClickListener != null) {
-                onItemClickListener.onItemClick(v, getPosition());
-            }
+        }
+        if (this.onItemClickListener != null) {
+            onItemClickListener.onItemClick(v, getPosition());
         }
     }
 
