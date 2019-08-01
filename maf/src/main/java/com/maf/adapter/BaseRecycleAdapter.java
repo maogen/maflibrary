@@ -90,7 +90,7 @@ public abstract class BaseRecycleAdapter<T, VH extends BaseRecycleViewHolder> ex
         viewHolder = getViewHolder(view);
         // 设置单击监听
         if (onItemClickListener != null) {
-            viewHolder.setOnItemClickListener(onItemClickListener, hasBackground);
+            viewHolder.setOnItemClickListener(onItemClickListener);
         }
         // 设置长按监听
         if (onItemLongClickListener != null) {
